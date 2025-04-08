@@ -1,0 +1,143 @@
+CREATE COMPUTE MODULE Http_Message_Compute
+    CREATE FUNCTION Main() RETURNS BOOLEAN
+    BEGIN
+        -- Guardar los parámetros de filtrado en Environment
+        SET Environment.RequestEntrada = InputRoot.JSON.Data;
+        
+        RETURN TRUE;
+    END;
+END MODULE;
+
+CREATE COMPUTE MODULE Http_Consulta_Productos
+    CREATE FUNCTION Main() RETURNS BOOLEAN
+    BEGIN
+        -- Obtener la categoría del JSON de entrada
+        DECLARE chCategory CHARACTER '';
+        
+        -- Verificar si existe la categoría
+        IF FIELDTYPE(InputRoot.JSON.Data.category) IS NOT NULL THEN
+            SET chCategory = InputRoot.JSON.Data.category;
+        END IF;
+        
+        -- Configurar la URL base
+        DECLARE baseURL CHARACTER 'https://fakestoreapi.com/products';
+        
+        -- Si hay categoría, usar el endpoint específico de categoría
+        IF chCategory <> '' THEN
+            SET baseURL = baseURL || '/category/' || REPLACE(chCategory, '''', '%27');
+        END IF;
+        
+        -- Configuración de la petición HTTP
+        SET OutputLocalEnvironment.Destination.HTTP.RequestURL = baseURL;
+        SET OutputLocalEnvironment.Destination.HTTP.Timeout = 10;
+        SET OutputLocalEnvironment.Destination.HTTP.RequestLine.Method = 'GET';
+        
+        -- Pasar el mensaje original a la salida
+        SET OutputRoot = InputRoot;
+        
+        RETURN TRUE;
+    END;
+END MODULE;
+
+CREATE COMPUTE MODULE HTTP_Filtrar
+    CREATE FUNCTION Main() RETURNS BOOLEAN
+    BEGIN
+        -- Pasar el mensaje original a la salida
+        SET OutputRoot = InputRoot;
+        
+        RETURN TRUE;
+    END;
+END MODULE;
+
+CREATE COMPUTE MODULE HTTP_Filtrar_Respuesta
+    CREATE FUNCTION Main() RETURNS BOOLEAN
+    BEGIN
+        -- Obtener los parámetros de filtrado desde Environment
+        DECLARE chCategory CHARACTER '';
+        DECLARE minPrice DECIMAL 0;
+        DECLARE maxPrice DECIMAL 999999;
+        
+        -- Verificar si existen los parámetros
+        IF FIELDTYPE(Environment.RequestEntrada) IS NOT NULL THEN
+            IF FIELDTYPE(Environment.RequestEntrada.category) IS NOT NULL THEN
+                SET chCategory = Environment.RequestEntrada.category;
+            END IF;
+            
+            IF FIELDTYPE(Environment.RequestEntrada.minPrice) IS NOT NULL THEN
+                SET minPrice = CAST(Environment.RequestEntrada.minPrice AS DECIMAL);
+            END IF;
+            
+            IF FIELDTYPE(Environment.RequestEntrada.maxPrice) IS NOT NULL THEN
+                SET maxPrice = CAST(Environment.RequestEntrada.maxPrice AS DECIMAL);
+            END IF;
+        END IF;
+        
+        -- Crear la estructura de salida JSON
+        CREATE LASTCHILD OF OutputRoot DOMAIN 'JSON';
+        CREATE FIELD OutputRoot.JSON.Data;
+        CREATE FIELD OutputRoot.JSON.Data.filteredProducts TYPE JSON.Array;
+        
+        -- Contador para los productos filtrados
+        DECLARE j INTEGER 1;
+        
+        -- Verificar si hay productos en la respuesta
+        DECLARE i INTEGER 1;
+        DECLARE hasMoreItems BOOLEAN TRUE;
+        
+        -- Recorrer todos los productos de la respuesta
+        WHILE hasMoreItems DO
+            -- Verificar si existe el elemento actual
+            IF FIELDTYPE(InputRoot.JSON.Data.Item[i]) IS NOT NULL THEN
+                DECLARE currentPrice DECIMAL 0;
+                DECLARE currentCategory CHARACTER '';
+                
+                -- Verificar si el precio existe
+                IF FIELDTYPE(InputRoot.JSON.Data.Item[i].price) IS NOT NULL THEN
+                    SET currentPrice = CAST(InputRoot.JSON.Data.Item[i].price AS DECIMAL);
+                END IF;
+                
+                -- Verificar si la categoría existe
+                IF FIELDTYPE(InputRoot.JSON.Data.Item[i].category) IS NOT NULL THEN
+                    SET currentCategory = InputRoot.JSON.Data.Item[i].category;
+                END IF;
+                
+                -- Verificar si el producto cumple con los criterios de filtrado
+                DECLARE includeProduct BOOLEAN TRUE;
+                
+                -- Si estamos filtrando por categoría
+                IF chCategory <> '' THEN
+                    -- Verificar si la categoría coincide
+                    IF UPPER(TRIM(currentCategory)) <> UPPER(TRIM(chCategory)) THEN
+                        SET includeProduct = FALSE;
+                    END IF;
+                END IF;
+                
+                -- Verificar si el precio está en el rango
+                IF currentPrice < minPrice OR currentPrice > maxPrice THEN
+                    SET includeProduct = FALSE;
+                END IF;
+                
+                -- Si el producto cumple con los criterios, añadirlo al resultado
+                IF includeProduct THEN
+                    -- Añadir el producto al array de productos filtrados
+                    SET OutputRoot.JSON.Data.filteredProducts.Item[j] = InputRoot.JSON.Data.Item[i];
+                    SET j = j + 1;
+                END IF;
+                
+                -- Avanzar al siguiente producto
+                SET i = i + 1;
+            ELSE
+                -- No hay más elementos
+                SET hasMoreItems = FALSE;
+            END IF;
+        END WHILE;
+        
+        -- Añadir información de resumen
+        SET OutputRoot.JSON.Data.summary.totalFiltered = j - 1;
+        SET OutputRoot.JSON.Data.summary.filterCriteria.category = chCategory;
+        SET OutputRoot.JSON.Data.summary.filterCriteria.minPrice = minPrice;
+        SET OutputRoot.JSON.Data.summary.filterCriteria.maxPrice = maxPrice;
+        
+        RETURN TRUE;
+    END;
+END MODULE;
