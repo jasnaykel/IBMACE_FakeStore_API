@@ -21,33 +21,37 @@ CREATE COMPUTE MODULE CategoryToURLMapper
         -- Obtener la categoría del Environment
         DECLARE chcategory CHARACTER COALESCE(Environment.RequestEntrada.category, '');
         
-        -- Tabla dinámica de categorías y URLs
-        DECLARE categoryURLMap ROW;
-        SET categoryURLMap.mens_clothing = 'https://fakestoreapi.com/products/category/men%27s%20clothing';
-        SET categoryURLMap.womens_clothing = 'https://fakestoreapi.com/products/category/women%27s%20clothing';
-        SET categoryURLMap.jewelery = 'https://fakestoreapi.com/products/category/jewelery';
-        SET categoryURLMap.electronics = 'https://fakestoreapi.com/products/category/electronics';
+        -- Normalizar la categoría para comparación
+        DECLARE normalizedCategory CHARACTER LOWER(TRIM(chcategory));
         
-        -- Buscar la URL según la categoría
-        DECLARE targetURL CHARACTER;
+        -- Mapeo de categorías normalizadas a categorías exactas de la API
+        DECLARE mappedCategory CHARACTER;
         
-            -- Verificar si la categoría existe en el mapa y asignar la URL correspondiente
+        -- Hacer un mapeo básico para manejar variaciones comunes
+        IF normalizedCategory = 'mens_clothing' OR 
+           normalizedCategory = 'men_clothing' OR 
+           normalizedCategory = 'men clothing' OR 
+           normalizedCategory = 'mens clothing' THEN
+            SET mappedCategory = 'men''s clothing';
+        ELSEIF normalizedCategory = 'womens_clothing' OR 
+               normalizedCategory = 'women_clothing' OR 
+               normalizedCategory = 'women clothing' OR 
+               normalizedCategory = 'womens clothing' THEN
+            SET mappedCategory = 'women''s clothing';
+        ELSEIF normalizedCategory = 'jewelery' OR 
+               normalizedCategory = 'jewelry' THEN
+            SET mappedCategory = 'jewelery';
+        ELSEIF normalizedCategory = 'electronics' OR 
+               normalizedCategory = 'electronic' THEN
+            SET mappedCategory = 'electronics';
+        ELSE
+            -- Si no hay mapeo específico, usar la categoría original
+            SET mappedCategory = chcategory;
+        END IF;
         
-        CASE chcategory
-            WHEN 'mens_clothing' THEN
-                SET targetURL = categoryURLMap.mens_clothing;
-            WHEN 'womens_clothing' THEN
-                SET targetURL = categoryURLMap.womens_clothing;
-            WHEN 'jewelery' THEN
-                SET targetURL = categoryURLMap.jewelery;
-            WHEN 'electronics' THEN
-                SET targetURL = categoryURLMap.electronics;
-            ELSE
-                SET targetURL = 'https://fakestoreapi.com/products';
-        END CASE;
-        
-        -- Guardar la URL y la categoría original en Environment para uso posterior
-        SET Environment.TargetURL = targetURL;
+        -- Construir la URL dinámicamente
+        SET Environment.TargetURL = 'https://fakestoreapi.com/products/category/' || URLENCODE(mappedCategory);
+        SET Environment.MappedCategory = mappedCategory;
         SET Environment.OriginalCategory = chcategory;
         
         RETURN TRUE;
@@ -56,18 +60,14 @@ END MODULE;
 CREATE COMPUTE MODULE ConfigureHTTPRequest
     CREATE FUNCTION Main() RETURNS BOOLEAN
     BEGIN
-        -- Crear estructura de salida JSON
+        -- Crear estructura de salida JSON vacía
         CREATE LASTCHILD OF OutputRoot DOMAIN 'JSON';
         CREATE FIELD OutputRoot.JSON.Data;
         
-        -- Referencia al Environment local
-        DECLARE refLocalEnv REFERENCE TO OutputLocalEnvironment;
-        
         -- Configurar parámetros de la solicitud HTTP
-        -- Usa la URL que fue determinada en el módulo anterior
-        SET refLocalEnv.Destination.HTTP.RequestURL = Environment.TargetURL;
-        SET refLocalEnv.Destination.HTTP.Timeout = 15;
-        SET refLocalEnv.Destination.HTTP.RequestLine.Method = 'GET';
+        SET OutputLocalEnvironment.Destination.HTTP.RequestURL = Environment.TargetURL;
+        SET OutputLocalEnvironment.Destination.HTTP.Timeout = 15;
+        SET OutputLocalEnvironment.Destination.HTTP.RequestLine.Method = 'GET';
         
         RETURN TRUE;
     END;
