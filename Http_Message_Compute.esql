@@ -1,49 +1,74 @@
 CREATE COMPUTE MODULE Http_Message_Compute
     CREATE FUNCTION Main() RETURNS BOOLEAN
     BEGIN
-        -- Guardar los parámetros de filtrado en Environment
+        -- Extraer datos de entrada y guardarlos en Environment
         SET Environment.RequestEntrada = InputRoot.JSON.Data;
+        
+        -- Validar que los datos de entrada tengan formato correcto
+        IF EXISTS(InputRoot.JSON.Data[]) THEN
+            SET Environment.ValidationStatus = 'VALID';
+        ELSE
+            SET Environment.ValidationStatus = 'INVALID';
+            --  crear un mensaje de error Pendiente 
+        END IF;
         
         RETURN TRUE;
     END;
 END MODULE;
-CREATE COMPUTE MODULE Http_Consulta_Productos
-   CREATE FUNCTION Main() RETURNS BOOLEAN
-   BEGIN
-      -- Obtener la categoría del Environment
-      DECLARE chcategory CHARACTER COALESCE(Environment.RequestEntrada.category, '');
-      
-      -- Crear estructura de salida JSON
-      CREATE LASTCHILD OF OutputRoot DOMAIN 'JSON';
-      CREATE FIELD OutputRoot.JSON.Data;
-      
-      -- Referencia al Environment local
-      DECLARE refLocalEnv REFERENCE To OutputLocalEnvironment;
-      
-      -- Construir la URL correctamente
-      IF chcategory = 'men''s clothing' THEN
-         -- URL codificada manualmente para "men's clothing"
-         SET refLocalEnv.Destination.HTTP.RequestURL = 'https://fakestoreapi.com/products/category/men%27s%20clothing';
-      ELSEIF chcategory = 'women''s clothing' THEN
-         -- URL codificada manualmente para "women's clothing"
-         SET refLocalEnv.Destination.HTTP.RequestURL = 'https://fakestoreapi.com/products/category/women%27s%20clothing';
-      ELSEIF chcategory = 'jewelery' THEN
-         SET refLocalEnv.Destination.HTTP.RequestURL = 'https://fakestoreapi.com/products/category/jewelery';
-      ELSEIF chcategory = 'electronics' THEN
-         SET refLocalEnv.Destination.HTTP.RequestURL = 'https://fakestoreapi.com/products/category/electronics';
-      ELSE
-         -- Si no es una categoría conocida, obtener todos los productos
-         SET refLocalEnv.Destination.HTTP.RequestURL = 'https://fakestoreapi.com/products';
-      END IF;
-      
-      -- Configurar timeout y método
-      SET refLocalEnv.Destination.HTTP.Timeout = 15;
-      SET refLocalEnv.Destination.HTTP.RequestLine.Method = 'GET';
-      
-      -- Guardar la categoría original para uso posterior
-      SET Environment.OriginalCategory = chcategory;
-      
-      RETURN TRUE;
-   END;
+CREATE COMPUTE MODULE CategoryToURLMapper
+    CREATE FUNCTION Main() RETURNS BOOLEAN
+    BEGIN
+        -- Obtener la categoría del Environment
+        DECLARE chcategory CHARACTER COALESCE(Environment.RequestEntrada.category, '');
+        
+        -- Tabla dinámica de categorías y URLs
+        DECLARE categoryURLMap ROW;
+        SET categoryURLMap.mens_clothing = 'https://fakestoreapi.com/products/category/men%27s%20clothing';
+        SET categoryURLMap.womens_clothing = 'https://fakestoreapi.com/products/category/women%27s%20clothing';
+        SET categoryURLMap.jewelery = 'https://fakestoreapi.com/products/category/jewelery';
+        SET categoryURLMap.electronics = 'https://fakestoreapi.com/products/category/electronics';
+        
+        -- Buscar la URL según la categoría
+        DECLARE targetURL CHARACTER;
+        
+            -- Verificar si la categoría existe en el mapa y asignar la URL correspondiente
+        
+        CASE chcategory
+            WHEN 'mens_clothing' THEN
+                SET targetURL = categoryURLMap.mens_clothing;
+            WHEN 'womens_clothing' THEN
+                SET targetURL = categoryURLMap.womens_clothing;
+            WHEN 'jewelery' THEN
+                SET targetURL = categoryURLMap.jewelery;
+            WHEN 'electronics' THEN
+                SET targetURL = categoryURLMap.electronics;
+            ELSE
+                SET targetURL = 'https://fakestoreapi.com/products';
+        END CASE;
+        
+        -- Guardar la URL y la categoría original en Environment para uso posterior
+        SET Environment.TargetURL = targetURL;
+        SET Environment.OriginalCategory = chcategory;
+        
+        RETURN TRUE;
+    END;
 END MODULE;
-
+CREATE COMPUTE MODULE ConfigureHTTPRequest
+    CREATE FUNCTION Main() RETURNS BOOLEAN
+    BEGIN
+        -- Crear estructura de salida JSON
+        CREATE LASTCHILD OF OutputRoot DOMAIN 'JSON';
+        CREATE FIELD OutputRoot.JSON.Data;
+        
+        -- Referencia al Environment local
+        DECLARE refLocalEnv REFERENCE TO OutputLocalEnvironment;
+        
+        -- Configurar parámetros de la solicitud HTTP
+        -- Usa la URL que fue determinada en el módulo anterior
+        SET refLocalEnv.Destination.HTTP.RequestURL = Environment.TargetURL;
+        SET refLocalEnv.Destination.HTTP.Timeout = 15;
+        SET refLocalEnv.Destination.HTTP.RequestLine.Method = 'GET';
+        
+        RETURN TRUE;
+    END;
+END MODULE;
