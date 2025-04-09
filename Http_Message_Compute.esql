@@ -72,3 +72,71 @@ CREATE COMPUTE MODULE ConfigureHTTPRequest
         RETURN TRUE;
     END;
 END MODULE;
+CREATE COMPUTE MODULE FilterProductsByPrice
+    CREATE FUNCTION Main() RETURNS BOOLEAN
+    BEGIN
+        -- Copiar propiedades
+        SET OutputRoot.Properties = InputRoot.Properties;
+        
+        -- Crear estructura JSON para la salida
+        CREATE LASTCHILD OF OutputRoot DOMAIN 'JSON';
+        CREATE FIELD OutputRoot.JSON.Data;
+        
+        -- Verificar si hay un precio especificado
+        IF EXISTS(Environment.RequestEntrada.price[]) THEN
+            DECLARE targetPrice INTEGER Environment.RequestEntrada.price;
+            DECLARE found BOOLEAN FALSE;
+            
+            -- Crear una referencia al primer elemento de datos
+            DECLARE dataRef REFERENCE TO InputRoot.JSON.Data;
+            
+            -- Verificar qué tipo de estructura tenemos
+            IF EXISTS(dataRef.Item[]) THEN
+                -- Estructura con Items numerados
+                DECLARE i INTEGER 1;
+                DECLARE j INTEGER 1;
+                
+                -- Crear una referencia al primer Item
+                DECLARE itemRef REFERENCE TO dataRef.Item[i];
+                
+                -- Usar LASTMOVE correctamente con la referencia
+                WHILE LASTMOVE(itemRef) DO
+                    -- Comparar el precio
+                    IF itemRef.price = targetPrice THEN
+                        -- Copiar el item que coincide
+                        SET OutputRoot.JSON.Data.Item[j] = itemRef;
+                        SET j = j + 1;
+                        SET found = TRUE;
+                    END IF;
+                    
+                    -- Incrementar el índice y mover la referencia al siguiente item
+                    SET i = i + 1;
+                    MOVE itemRef TO dataRef.Item[i];
+                END WHILE;
+            ELSEIF CARDINALITY(dataRef.*[]) > 0 THEN
+                -- Estructura de array
+                DECLARE j INTEGER 1;
+                
+                FOR arrayItem AS dataRef.*[] DO
+                    -- Comparar el precio
+                    IF arrayItem.price = targetPrice THEN
+                        -- Copiar el item que coincide
+                        SET OutputRoot.JSON.Data.Item[j] = arrayItem;
+                        SET j = j + 1;
+                        SET found = TRUE;
+                    END IF;
+                END FOR;
+            END IF;
+            
+            -- Si no se encontraron coincidencias
+            IF NOT found THEN
+                SET OutputRoot.JSON.Data.message = 'No products found with price ' || CAST(targetPrice AS CHARACTER);
+            END IF;
+        ELSE
+            -- Si no hay precio especificado, devolver todos los productos
+            SET OutputRoot.JSON.Data = InputRoot.JSON.Data;
+        END IF;
+        
+        RETURN TRUE;
+    END;
+END MODULE;
