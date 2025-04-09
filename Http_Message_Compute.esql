@@ -26,31 +26,38 @@ CREATE COMPUTE MODULE CategoryToURLMapper
         
         -- Mapeo de categorías normalizadas a categorías exactas de la API
         DECLARE mappedCategory CHARACTER;
-        
-        -- Hacer un mapeo básico para manejar variaciones comunes
-        IF normalizedCategory = 'mens_clothing' OR 
-           normalizedCategory = 'men_clothing' OR 
-           normalizedCategory = 'men clothing' OR 
-           normalizedCategory = 'mens clothing' THEN
-            SET mappedCategory = 'men''s clothing';
-        ELSEIF normalizedCategory = 'womens_clothing' OR 
-               normalizedCategory = 'women_clothing' OR 
-               normalizedCategory = 'women clothing' OR 
-               normalizedCategory = 'womens clothing' THEN
-            SET mappedCategory = 'women''s clothing';
-        ELSEIF normalizedCategory = 'jewelery' OR 
-               normalizedCategory = 'jewelry' THEN
-            SET mappedCategory = 'jewelery';
-        ELSEIF normalizedCategory = 'electronics' OR 
-               normalizedCategory = 'electronic' THEN
-            SET mappedCategory = 'electronics';
+         -- Verificar si se proporcionó una categoría
+        IF LENGTH(chcategory) > 0 THEN
+            -- Hacer un mapeo básico para manejar variaciones comunes
+            IF normalizedCategory = 'mens_clothing' OR
+                normalizedCategory = 'men_clothing' OR
+                normalizedCategory = 'men clothing' OR
+                normalizedCategory = 'mens clothing' THEN
+                SET mappedCategory = 'men''s clothing';
+            ELSEIF normalizedCategory = 'womens_clothing' OR
+                normalizedCategory = 'women_clothing' OR
+                normalizedCategory = 'women clothing' OR
+                normalizedCategory = 'womens clothing' THEN
+                SET mappedCategory = 'women''s clothing';
+            ELSEIF normalizedCategory = 'jewelery' OR
+                normalizedCategory = 'jewelry' THEN
+                SET mappedCategory = 'jewelery';
+            ELSEIF normalizedCategory = 'electronics' OR
+                normalizedCategory = 'electronic' THEN
+                SET mappedCategory = 'electronics';
+            ELSE
+                -- Si no hay mapeo específico, usar la categoría original
+                SET mappedCategory = chcategory;
+            END IF;
+            
+            -- Construir la URL para filtrar por categoría
+            SET Environment.TargetURL = 'https://fakestoreapi.com/products/category/' || URLENCODE(mappedCategory);
         ELSE
-            -- Si no hay mapeo específico, usar la categoría original
-            SET mappedCategory = chcategory;
+            -- Si no se proporcionó categoría, usar la URL base para obtener todos los productos
+            SET Environment.TargetURL = 'https://fakestoreapi.com/products';
+            SET mappedCategory = '';
         END IF;
         
-        -- Construir la URL dinámicamente
-        SET Environment.TargetURL = 'https://fakestoreapi.com/products/category/' || URLENCODE(mappedCategory);
         SET Environment.MappedCategory = mappedCategory;
         SET Environment.OriginalCategory = chcategory;
         
@@ -90,7 +97,6 @@ CREATE COMPUTE MODULE FilterProductsByPrice
             -- Crear una referencia al primer elemento de datos
             DECLARE dataRef REFERENCE TO InputRoot.JSON.Data;
             
-            -- Verificar qué tipo de estructura tenemos
             IF EXISTS(dataRef.Item[]) THEN
                 -- Estructura con Items numerados
                 DECLARE i INTEGER 1;
@@ -101,24 +107,20 @@ CREATE COMPUTE MODULE FilterProductsByPrice
                 
                 -- Usar LASTMOVE correctamente con la referencia
                 WHILE LASTMOVE(itemRef) DO
-                    -- Comparar el precio
                     IF itemRef.price = targetPrice THEN
-                        -- Copiar el item que coincide
+                        -- Copia  item que coincid
                         SET OutputRoot.JSON.Data.Item[j] = itemRef;
                         SET j = j + 1;
                         SET found = TRUE;
                     END IF;
                     
-                    -- Incrementar el índice y mover la referencia al siguiente item
                     SET i = i + 1;
                     MOVE itemRef TO dataRef.Item[i];
                 END WHILE;
             ELSEIF CARDINALITY(dataRef.*[]) > 0 THEN
-                -- Estructura de array
                 DECLARE j INTEGER 1;
                 
                 FOR arrayItem AS dataRef.*[] DO
-                    -- Comparar el precio
                     IF arrayItem.price = targetPrice THEN
                         -- Copiar el item que coincide
                         SET OutputRoot.JSON.Data.Item[j] = arrayItem;
@@ -128,13 +130,10 @@ CREATE COMPUTE MODULE FilterProductsByPrice
                 END FOR;
             END IF;
             
-            -- Si no se encontraron coincidencias
-            IF NOT found THEN
+            IF NOT found THEN --message
                 SET OutputRoot.JSON.Data.message = 'No products found with price ' || CAST(targetPrice AS CHARACTER);
             END IF;
-        ELSE
-            -- Si no hay precio especificado, devolver todos los productos
-            SET OutputRoot.JSON.Data = InputRoot.JSON.Data;
+  
         END IF;
         
         RETURN TRUE;
