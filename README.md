@@ -53,4 +53,4 @@ Configura los parámetros de filtrado en el JSON de entrada.
 Lanza la solicitud HTTP y recibe la respuesta con los productos filtrados.
 
 🛠️ Tecnologías utilizadas
-🔹 IBM App Connect Enterprise (ACE) 🔹 Git (versionado) 🔹 FakeStoreAPI (consulta de datos de productos) 🔹 ESQL para transformaciones de datos
+🔹 IBM App Connect Enterprise (ACE 12) 🔹 Git (2.37) 🔹 FakeStoreAPI (https://fakestoreapi.com/products) 🔹 ESQL para transformaciones de datos
