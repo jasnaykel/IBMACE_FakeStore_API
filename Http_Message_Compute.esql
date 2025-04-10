@@ -1,141 +1,15 @@
 CREATE COMPUTE MODULE Http_Message_Compute
     CREATE FUNCTION Main() RETURNS BOOLEAN
     BEGIN
-        -- Extraer datos de entrada y guardarlos en Environment
-        SET Environment.RequestEntrada = InputRoot.JSON.Data;
-        
-        -- Validar que los datos de entrada tengan formato correcto
-        IF EXISTS(InputRoot.JSON.Data[]) THEN
-            SET Environment.ValidationStatus = 'VALID';
+        -- Verificar si existe el nodo JSON.Data usando CARDINALITY
+        IF CARDINALITY(InputRoot.JSON.Data.*[]) > 0 THEN
+            -- Copiar el JSON de entrada al JSON de salida
+            SET OutputRoot.JSON.Data = InputRoot.JSON.Data;
         ELSE
-            SET Environment.ValidationStatus = 'INVALID';
-            --  crear un mensaje de error Pendiente 
+            -- Manejar el caso donde el nodo no existe
+            THROW USER EXCEPTION CATALOG 'UserDefined' MESSAGE 1001 VALUES('Entrada JSON no válida, nodo Data no encontrado');
         END IF;
-        
-        RETURN TRUE;
-    END;
-END MODULE;
-CREATE COMPUTE MODULE CategoryToURLMapper
-    CREATE FUNCTION Main() RETURNS BOOLEAN
-    BEGIN
-        -- Obtener la categoría del Environment
-        DECLARE chcategory CHARACTER COALESCE(Environment.RequestEntrada.category, '');
-        
-        -- Normalizar la categoría para comparación
-        DECLARE normalizedCategory CHARACTER LOWER(TRIM(chcategory));
-        
-        -- Mapeo de categorías normalizadas a categorías exactas de la API
-        DECLARE mappedCategory CHARACTER;
-         -- Verificar si se proporcionó una categoría
-        IF LENGTH(chcategory) > 0 THEN
-            -- Hacer un mapeo básico para manejar variaciones comunes
-            IF normalizedCategory = 'mens_clothing' OR
-                normalizedCategory = 'men_clothing' OR
-                normalizedCategory = 'men clothing' OR
-                normalizedCategory = 'mens clothing' THEN
-                SET mappedCategory = 'men''s clothing';
-            ELSEIF normalizedCategory = 'womens_clothing' OR
-                normalizedCategory = 'women_clothing' OR
-                normalizedCategory = 'women clothing' OR
-                normalizedCategory = 'womens clothing' THEN
-                SET mappedCategory = 'women''s clothing';
-            ELSEIF normalizedCategory = 'jewelery' OR
-                normalizedCategory = 'jewelry' THEN
-                SET mappedCategory = 'jewelery';
-            ELSEIF normalizedCategory = 'electronics' OR
-                normalizedCategory = 'electronic' THEN
-                SET mappedCategory = 'electronics';
-            ELSE
-                -- Si no hay mapeo específico, usar la categoría original
-                SET mappedCategory = chcategory;
-            END IF;
-            
-            -- Construir la URL para filtrar por categoría
-            SET Environment.TargetURL = 'https://fakestoreapi.com/products/category/' || URLENCODE(mappedCategory);
-        ELSE
-            -- Si no se proporcionó categoría, usar la URL base para obtener todos los productos
-            SET Environment.TargetURL = 'https://fakestoreapi.com/products';
-            SET mappedCategory = '';
-        END IF;
-        
-        SET Environment.MappedCategory = mappedCategory;
-        SET Environment.OriginalCategory = chcategory;
-        
-        RETURN TRUE;
-    END;
-END MODULE;
-CREATE COMPUTE MODULE ConfigureHTTPRequest
-    CREATE FUNCTION Main() RETURNS BOOLEAN
-    BEGIN
-        -- Crear estructura de salida JSON vacía
-        CREATE LASTCHILD OF OutputRoot DOMAIN 'JSON';
-        CREATE FIELD OutputRoot.JSON.Data;
-        
-        -- Configurar parámetros de la solicitud HTTP
-        SET OutputLocalEnvironment.Destination.HTTP.RequestURL = Environment.TargetURL;
-        SET OutputLocalEnvironment.Destination.HTTP.Timeout = 15;
-        SET OutputLocalEnvironment.Destination.HTTP.RequestLine.Method = 'GET';
-        
-        RETURN TRUE;
-    END;
-END MODULE;
-CREATE COMPUTE MODULE FilterProductsByPrice
-    CREATE FUNCTION Main() RETURNS BOOLEAN
-    BEGIN
-        -- Copiar propiedades
-        SET OutputRoot.Properties = InputRoot.Properties;
-        
-        -- Crear estructura JSON para la salida
-        CREATE LASTCHILD OF OutputRoot DOMAIN 'JSON';
-        CREATE FIELD OutputRoot.JSON.Data;
-        
-        -- Verificar si hay un precio especificado
-        IF EXISTS(Environment.RequestEntrada.price[]) THEN
-            DECLARE targetPrice INTEGER Environment.RequestEntrada.price;
-            DECLARE found BOOLEAN FALSE;
-            
-            -- Crear una referencia al primer elemento de datos
-            DECLARE dataRef REFERENCE TO InputRoot.JSON.Data;
-            
-            IF EXISTS(dataRef.Item[]) THEN
-                -- Estructura con Items numerados
-                DECLARE i INTEGER 1;
-                DECLARE j INTEGER 1;
-                
-                -- Crear una referencia al primer Item
-                DECLARE itemRef REFERENCE TO dataRef.Item[i];
-                
-                -- Usar LASTMOVE correctamente con la referencia
-                WHILE LASTMOVE(itemRef) DO
-                    IF itemRef.price = targetPrice THEN
-                        -- Copia  item que coincid
-                        SET OutputRoot.JSON.Data.Item[j] = itemRef;
-                        SET j = j + 1;
-                        SET found = TRUE;
-                    END IF;
-                    
-                    SET i = i + 1;
-                    MOVE itemRef TO dataRef.Item[i];
-                END WHILE;
-            ELSEIF CARDINALITY(dataRef.*[]) > 0 THEN
-                DECLARE j INTEGER 1;
-                
-                FOR arrayItem AS dataRef.*[] DO
-                    IF arrayItem.price = targetPrice THEN
-                        -- Copiar el item que coincide
-                        SET OutputRoot.JSON.Data.Item[j] = arrayItem;
-                        SET j = j + 1;
-                        SET found = TRUE;
-                    END IF;
-                END FOR;
-            END IF;
-            
-            IF NOT found THEN --message
-                SET OutputRoot.JSON.Data.message = 'No products found with price ' || CAST(targetPrice AS CHARACTER);
-            END IF;
-  
-        END IF;
-        
+
         RETURN TRUE;
     END;
 END MODULE;
