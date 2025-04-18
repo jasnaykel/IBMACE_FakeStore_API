@@ -5,11 +5,18 @@ CREATE COMPUTE MODULE Http_Message_Compute
         SET Environment.RequestEntrada = InputRoot.JSON.Data;
         
         -- Validar que los datos de entrada tengan formato correcto
-        IF EXISTS(InputRoot.JSON.Data[]) THEN
+        IF EXISTS(InputRoot.JSON.Data.requestType[]) AND
+           EXISTS(InputRoot.JSON.Data.parameters[]) THEN
             SET Environment.ValidationStatus = 'VALID';
         ELSE
             SET Environment.ValidationStatus = 'INVALID';
-            --  crear un mensaje de error Pendiente 
+            -- Crear un mensaje de error
+            CREATE LASTCHILD OF OutputRoot DOMAIN 'JSON';
+            CREATE FIELD OutputRoot.JSON.Data;
+            SET OutputRoot.JSON.Data.responseInfo.status = 'error';
+            SET OutputRoot.JSON.Data.responseInfo.message = 'Invalid request format';
+            SET OutputRoot.JSON.Data.responseInfo.timestamp = CURRENT_TIMESTAMP;
+            RETURN FALSE;
         END IF;
         
         RETURN TRUE;
@@ -18,48 +25,29 @@ END MODULE;
 CREATE COMPUTE MODULE CategoryToURLMapper
     CREATE FUNCTION Main() RETURNS BOOLEAN
     BEGIN
-        -- Obtener la categoría del Environment
-        DECLARE chcategory CHARACTER COALESCE(Environment.RequestEntrada.category, '');
+        -- Determinar qué operación SOAP invocar basado en el requestType y searchType
+        DECLARE requestType CHARACTER COALESCE(Environment.RequestEntrada.requestType, '');
+        DECLARE searchType CHARACTER COALESCE(Environment.RequestEntrada.parameters.searchType, '');
         
-        -- Normalizar la categoría para comparación
-        DECLARE normalizedCategory CHARACTER LOWER(TRIM(chcategory));
-        
-        -- Mapeo de categorías normalizadas a categorías exactas de la API
-        DECLARE mappedCategory CHARACTER;
-         -- Verificar si se proporcionó una categoría
-        IF LENGTH(chcategory) > 0 THEN
-            -- Hacer un mapeo básico para manejar variaciones comunes
-            IF normalizedCategory = 'mens_clothing' OR
-                normalizedCategory = 'men_clothing' OR
-                normalizedCategory = 'men clothing' OR
-                normalizedCategory = 'mens clothing' THEN
-                SET mappedCategory = 'men''s clothing';
-            ELSEIF normalizedCategory = 'womens_clothing' OR
-                normalizedCategory = 'women_clothing' OR
-                normalizedCategory = 'women clothing' OR
-                normalizedCategory = 'womens clothing' THEN
-                SET mappedCategory = 'women''s clothing';
-            ELSEIF normalizedCategory = 'jewelery' OR
-                normalizedCategory = 'jewelry' THEN
-                SET mappedCategory = 'jewelery';
-            ELSEIF normalizedCategory = 'electronics' OR
-                normalizedCategory = 'electronic' THEN
-                SET mappedCategory = 'electronics';
-            ELSE
-                -- Si no hay mapeo específico, usar la categoría original
-                SET mappedCategory = chcategory;
+        -- Guardar la operación SOAP en el Environment para usarla más tarde
+        IF requestType = 'countryInfo' THEN
+            IF searchType = 'byCode' THEN
+                SET Environment.SOAPOperation = 'FullCountryInfo';
+                SET Environment.CountryCode = Environment.RequestEntrada.parameters.countryCode;
+            ELSEIF searchType = 'byName' THEN
+                SET Environment.SOAPOperation = 'CountryISOCode';
+                SET Environment.CountryName = Environment.RequestEntrada.parameters.countryName;
             END IF;
-            
-            -- Construir la URL para filtrar por categoría
-            SET Environment.TargetURL = 'https://fakestoreapi.com/products/category/' || URLENCODE(mappedCategory);
-        ELSE
-            -- Si no se proporcionó categoría, usar la URL base para obtener todos los productos
-            SET Environment.TargetURL = 'https://fakestoreapi.com/products';
-            SET mappedCategory = '';
+        ELSEIF requestType = 'listCountries' THEN
+            IF searchType = 'byCode' THEN
+                SET Environment.SOAPOperation = 'ListOfCountryNamesByCode';
+            ELSE
+                SET Environment.SOAPOperation = 'ListOfCountryNamesByName';
+            END IF;
+        ELSEIF requestType = 'currencyInfo' THEN
+            SET Environment.SOAPOperation = 'CurrencyName';
+            SET Environment.CurrencyCode = Environment.RequestEntrada.parameters.currencyCode;
         END IF;
-        
-        SET Environment.MappedCategory = mappedCategory;
-        SET Environment.OriginalCategory = chcategory;
         
         RETURN TRUE;
     END;
@@ -67,74 +55,73 @@ END MODULE;
 CREATE COMPUTE MODULE ConfigureHTTPRequest
     CREATE FUNCTION Main() RETURNS BOOLEAN
     BEGIN
-        -- Crear estructura de salida JSON vacía
-        CREATE LASTCHILD OF OutputRoot DOMAIN 'JSON';
-        CREATE FIELD OutputRoot.JSON.Data;
+      -- Guardar la operación SOAP en el Environment para usarla más tarde
+        DECLARE requestType CHARACTER Environment.RequestEntrada.requestType;
         
-        -- Configurar parámetros de la solicitud HTTP
-        SET OutputLocalEnvironment.Destination.HTTP.RequestURL = Environment.TargetURL;
-        SET OutputLocalEnvironment.Destination.HTTP.Timeout = 15;
-        SET OutputLocalEnvironment.Destination.HTTP.RequestLine.Method = 'GET';
-        
-        RETURN TRUE;
-    END;
-END MODULE;
-CREATE COMPUTE MODULE FilterProductsByPrice
-    CREATE FUNCTION Main() RETURNS BOOLEAN
-    BEGIN
-        -- Copiar propiedades
-        SET OutputRoot.Properties = InputRoot.Properties;
-        
-        -- Crear estructura JSON para la salida
-        CREATE LASTCHILD OF OutputRoot DOMAIN 'JSON';
-        CREATE FIELD OutputRoot.JSON.Data;
-        
-        -- Verificar si hay un precio especificado
-        IF EXISTS(Environment.RequestEntrada.price[]) THEN
-            DECLARE targetPrice INTEGER Environment.RequestEntrada.price;
-            DECLARE found BOOLEAN FALSE;
-            
-            -- Crear una referencia al primer elemento de datos
-            DECLARE dataRef REFERENCE TO InputRoot.JSON.Data;
-            
-            IF EXISTS(dataRef.Item[]) THEN
-                -- Estructura con Items numerados
-                DECLARE i INTEGER 1;
-                DECLARE j INTEGER 1;
-                
-                -- Crear una referencia al primer Item
-                DECLARE itemRef REFERENCE TO dataRef.Item[i];
-                
-                -- Usar LASTMOVE correctamente con la referencia
-                WHILE LASTMOVE(itemRef) DO
-                    IF itemRef.price = targetPrice THEN
-                        -- Copia  item que coincid
-                        SET OutputRoot.JSON.Data.Item[j] = itemRef;
-                        SET j = j + 1;
-                        SET found = TRUE;
-                    END IF;
-                    
-                    SET i = i + 1;
-                    MOVE itemRef TO dataRef.Item[i];
-                END WHILE;
-            ELSEIF CARDINALITY(dataRef.*[]) > 0 THEN
-                DECLARE j INTEGER 1;
-                
-                FOR arrayItem AS dataRef.*[] DO
-                    IF arrayItem.price = targetPrice THEN
-                        -- Copiar el item que coincide
-                        SET OutputRoot.JSON.Data.Item[j] = arrayItem;
-                        SET j = j + 1;
-                        SET found = TRUE;
-                    END IF;
-                END FOR;
-            END IF;
-            
-            IF NOT found THEN --message
-                SET OutputRoot.JSON.Data.message = 'No products found with price ' || CAST(targetPrice AS CHARACTER);
-            END IF;
-  
+        -- Determinar la operación SOAP basada en el tipo de solicitud
+        IF requestType = 'countryInfo' AND Environment.RequestEntrada.parameters.searchType = 'byCode' THEN
+            SET Environment.SOAPOperation = 'FullCountryInfo';
+        ELSEIF requestType = 'countryInfo' AND Environment.RequestEntrada.parameters.searchType = 'byName' THEN
+            SET Environment.SOAPOperation = 'CountryISOCode';
+        ELSEIF requestType = 'listCountries' AND Environment.RequestEntrada.parameters.searchType = 'byCode' THEN
+            SET Environment.SOAPOperation = 'ListOfCountryNamesByCode';
+        ELSEIF requestType = 'listCountries' AND Environment.RequestEntrada.parameters.searchType = 'byName' THEN
+            SET Environment.SOAPOperation = 'ListOfCountryNamesByName';
+        ELSEIF requestType = 'currencyInfo' THEN
+            SET Environment.SOAPOperation = 'CurrencyName';
         END IF;
+        
+        -- Crear estructura SOAP para la salida
+        CREATE LASTCHILD OF OutputRoot DOMAIN 'XMLNSC';
+        
+        -- Crear el sobre SOAP con declaraciones de espacios de nombres correctas
+        DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+        DECLARE ns NAMESPACE 'http://www.oorsprong.org/websamples.countryinfo';
+        
+        -- Crear el sobre SOAP usando la sintaxis de espacio de nombres
+        CREATE FIELD OutputRoot.XMLNSC.{soapenv}:Envelope;
+        SET OutputRoot.XMLNSC.{soapenv}:Envelope.(XMLNSC.NamespaceDecl).soapenv = soapenv;
+        SET OutputRoot.XMLNSC.{soapenv}:Envelope.(XMLNSC.NamespaceDecl).ns = ns;
+        
+        -- Crear el cuerpo SOAP
+        CREATE FIELD OutputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body;
+        
+        -- Crear la solicitud SOAP según la operación
+        IF Environment.SOAPOperation = 'FullCountryInfo' THEN
+            CREATE FIELD OutputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:FullCountryInfo;
+            SET OutputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:FullCountryInfo.{ns}:sCountryISOCode = 
+                Environment.RequestEntrada.parameters.countryCode;
+                
+        ELSEIF Environment.SOAPOperation = 'CountryISOCode' THEN
+            -- Guardar el nombre del país para usarlo más tarde
+            SET Environment.CountryName = Environment.RequestEntrada.parameters.countryName;
+            
+            CREATE FIELD OutputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:CountryISOCode;
+            SET OutputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:CountryISOCode.{ns}:sCountryName = 
+                Environment.CountryName;
+                
+        ELSEIF Environment.SOAPOperation = 'ListOfCountryNamesByCode' THEN
+            CREATE FIELD OutputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:ListOfCountryNamesByCode;
+            
+        ELSEIF Environment.SOAPOperation = 'ListOfCountryNamesByName' THEN
+            CREATE FIELD OutputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:ListOfCountryNamesByName;
+            
+        ELSEIF Environment.SOAPOperation = 'CurrencyName' THEN
+            -- Guardar el código de moneda para usarlo más tarde
+            SET Environment.CurrencyCode = Environment.RequestEntrada.parameters.currencyCode;
+            
+            CREATE FIELD OutputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:CurrencyName;
+            SET OutputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:CurrencyName.{ns}:sCurrencyISOCode = 
+                Environment.CurrencyCode;
+        END IF;
+        
+        -- Configurar parámetros de la solicitud SOAP
+        SET OutputLocalEnvironment.Destination.SOAP.Request.Transport.HTTP.WebServiceURL = 
+            'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso';
+        SET OutputLocalEnvironment.Destination.SOAP.Request.Transport.HTTP.Timeout = 30;
+        
+        -- Configurar la operación SOAP en el entorno local
+        SET OutputLocalEnvironment.Destination.SOAP.Request.Operation = Environment.SOAPOperation;
         
         RETURN TRUE;
     END;

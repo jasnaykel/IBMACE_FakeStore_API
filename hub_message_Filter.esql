@@ -1,8 +1,12 @@
 CREATE FILTER MODULE hub_message_Filter
     CREATE FUNCTION Main() RETURNS BOOLEAN
     BEGIN
-        -- Devuelve TRUE si hay un precio especificado en la solicitud
-        -- Esto hará que el mensaje vaya al módulo FilterProductsByPrice
-        RETURN EXISTS(Environment.RequestEntrada.price[]);
+         -- Devuelve TRUE si hay un precio especificado en la solicitud
+        -- O si es una solicitud para el servicio CountryInfo
+        RETURN EXISTS(Environment.RequestEntrada.price[]) OR 
+               EXISTS(Environment.RequestEntrada.requestType[]) AND 
+               (Environment.RequestEntrada.requestType = 'countryInfo' OR 
+                Environment.RequestEntrada.requestType = 'listCountries' OR 
+                Environment.RequestEntrada.requestType = 'currencyInfo');
     END;
 END MODULE;
