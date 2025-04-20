@@ -1,389 +1,93 @@
-
-
-
-
-CREATE COMPUTE MODULE FilterProductsByPrice
-	CREATE FUNCTION Main() RETURNS BOOLEAN
-	BEGIN
-		-- Copiar propiedades
-		SET OutputRoot.Properties = InputRoot.Properties;
-		-- Crear estructura JSON para la salida
-		CREATE LASTCHILD OF OutputRoot DOMAIN 'JSON';
-		CREATE FIELD OutputRoot.JSON.Data;
-		-- Establecer información básica de respuesta
-		SET OutputRoot.JSON.Data.responseInfo.status = 'success';
-		SET OutputRoot.JSON.Data.responseInfo.timestamp = CURRENT_TIMESTAMP;
-		-- Obtener la operación SOAP del Environment
-		DECLARE operation CHARACTER Environment.SOAPOperation;
-		-- Procesar la respuesta según la operación
-		IF operation = 'FullCountryInfo' THEN
-			CALL ProcessFullCountryInfo();
-		ELSEIF operation = 'CountryISOCode' THEN
-			CALL ProcessCountryISOCode();
-		ELSEIF operation = 'ListOfCountryNamesByCode' OR operation = 'ListOfCountryNamesByName' THEN
-			CALL ProcessCountryList(operation);
-		ELSEIF operation = 'CurrencyName' THEN
-			CALL ProcessCurrencyName();
-		ELSE
-			SET OutputRoot.JSON.Data.responseInfo.status = 'error';
-			SET OutputRoot.JSON.Data.responseInfo.message = 'Operación no soportada: ' || COALESCE(operation, 'No definida');
-		END IF;
-
-		RETURN TRUE;
-	END;
-
-	CREATE PROCEDURE ProcessFullCountryInfo()
-	BEGIN
-		-- Variables para almacenar los datos del país
-		DECLARE countryName, countryCode, capitalCity, continentCode, currencyCode, phoneCode, flagUrl CHARACTER;
-		-- Extraer datos de la respuesta SOAP
-		IF EXISTS(InputRoot.SOAP_Domain_Msg[]) THEN
-			-- Acceder directamente a los elementos usando índices
-			IF CARDINALITY(InputRoot.SOAP_Domain_Msg.Body.*[]) > 0 THEN
-				DECLARE respRef REFERENCE TO InputRoot.SOAP_Domain_Msg.Body.*[1];
-
-				IF LASTMOVE(respRef) AND CARDINALITY(respRef.*[]) > 0 THEN
-					DECLARE resultRef REFERENCE TO respRef.*[1];
-
-					IF LASTMOVE(resultRef) THEN
-						-- Extraer datos usando índices para mayor compatibilidad
-						-- Normalmente sería: sName, sISOCode, sCapitalCity, etc.
-						-- Pero usamos índices para evitar problemas con espacios de nombres
-						-- Iterar por todos los campos del resultado
-						DECLARE i INTEGER 1;
-						DECLARE fieldRef REFERENCE TO resultRef.*[i];
-
-						SET countryName = CAST(resultRef.*:sName AS CHARACTER);
-						IF countryName IS NULL THEN
-							SET countryName = CAST(resultRef.*:{'m:sName'} AS CHARACTER);
-						END IF;
-						IF countryName IS NULL THEN
-							SET countryName = CAST(resultRef.sName AS CHARACTER);
-						END IF;
-						-- Extraer código ISO
-						SET countryCode = CAST(resultRef.*:sISOCode AS CHARACTER);
-						IF countryCode IS NULL THEN
-							SET countryCode = CAST(resultRef.*:{'m:sISOCode'} AS CHARACTER);
-						END IF;
-						IF countryCode IS NULL THEN
-							SET countryCode = CAST(resultRef.sISOCode AS CHARACTER);
-						END IF;
-						-- Extraer capital
-						SET capitalCity = CAST(resultRef.*:sCapitalCity AS CHARACTER);
-						IF capitalCity IS NULL THEN
-							SET capitalCity = CAST(resultRef.*:{'m:sCapitalCity'} AS CHARACTER);
-						END IF;
-						IF capitalCity IS NULL THEN
-							SET capitalCity = CAST(resultRef.sCapitalCity AS CHARACTER);
-						END IF;
-						-- Extraer código de continente
-						SET continentCode = CAST(resultRef.*:sContinentCode AS CHARACTER);
-						IF continentCode IS NULL THEN
-							SET continentCode = CAST(resultRef.*:{'m:sContinentCode'} AS CHARACTER);
-						END IF;
-						IF continentCode IS NULL THEN
-							SET continentCode = CAST(resultRef.sContinentCode AS CHARACTER);
-						END IF;
-						-- Extraer código de moneda
-						SET currencyCode = CAST(resultRef.*:sCurrencyISOCode AS CHARACTER);
-						IF currencyCode IS NULL THEN
-							SET currencyCode = CAST(resultRef.*:{'m:sCurrencyISOCode'} AS CHARACTER);
-						END IF;
-						IF currencyCode IS NULL THEN
-							SET currencyCode = CAST(resultRef.sCurrencyISOCode AS CHARACTER);
-						END IF;
-						-- Extraer código telefónico
-						SET phoneCode = CAST(resultRef.*:sPhoneCode AS CHARACTER);
-						IF phoneCode IS NULL THEN
-							SET phoneCode = CAST(resultRef.*:{'m:sPhoneCode'} AS CHARACTER);
-						END IF;
-						IF phoneCode IS NULL THEN
-							SET phoneCode = CAST(resultRef.sPhoneCode AS CHARACTER);
-						END IF;
-						-- Extraer URL de la bandera
-						SET flagUrl = CAST(resultRef.*:sCountryFlag AS CHARACTER);
-						IF flagUrl IS NULL THEN
-							SET flagUrl = CAST(resultRef.*:{'m:sCountryFlag'} AS CHARACTER);
-						END IF;
-						IF flagUrl IS NULL THEN
-							SET flagUrl = CAST(resultRef.sCountryFlag AS CHARACTER);
-						END IF;
-					END IF;
-				END IF;
-			END IF;
-		ELSEIF EXISTS(InputRoot.XMLNSC[]) THEN
-			-- Acceder a los elementos en formato XMLNSC
-			DECLARE bodyRef REFERENCE TO InputRoot.XMLNSC.*:Envelope.*:Body;
-
-			IF LASTMOVE(bodyRef) AND CARDINALITY(bodyRef.*[]) > 0 THEN
-				DECLARE respRef REFERENCE TO bodyRef.*[1];
-
-				IF LASTMOVE(respRef) AND CARDINALITY(respRef.*[]) > 0 THEN
-					DECLARE resultRef REFERENCE TO respRef.*[1];
-
-					IF LASTMOVE(resultRef) THEN
-						-- Extraer datos usando índices para mayor compatibilidad
-						DECLARE i INTEGER 1;
-						DECLARE fieldRef REFERENCE TO resultRef.*[i];
-
-						SET countryName = CAST(resultRef.*:sName AS CHARACTER);
-						IF countryName IS NULL THEN
-							SET countryName = CAST(resultRef.*:{'m:sName'} AS CHARACTER);
-						END IF;
-						IF countryName IS NULL THEN
-							SET countryName = CAST(resultRef.sName AS CHARACTER);
-						END IF;
-						-- Extraer código ISO
-						SET countryCode = CAST(resultRef.*:sISOCode AS CHARACTER);
-						IF countryCode IS NULL THEN
-							SET countryCode = CAST(resultRef.*:{'m:sISOCode'} AS CHARACTER);
-						END IF;
-						IF countryCode IS NULL THEN
-							SET countryCode = CAST(resultRef.sISOCode AS CHARACTER);
-						END IF;
-						-- Extraer capital
-						SET capitalCity = CAST(resultRef.*:sCapitalCity AS CHARACTER);
-						IF capitalCity IS NULL THEN
-							SET capitalCity = CAST(resultRef.*:{'m:sCapitalCity'} AS CHARACTER);
-						END IF;
-						IF capitalCity IS NULL THEN
-							SET capitalCity = CAST(resultRef.sCapitalCity AS CHARACTER);
-						END IF;
-						-- Extraer código de continente
-						SET continentCode = CAST(resultRef.*:sContinentCode AS CHARACTER);
-						IF continentCode IS NULL THEN
-							SET continentCode = CAST(resultRef.*:{'m:sContinentCode'} AS CHARACTER);
-						END IF;
-						IF continentCode IS NULL THEN
-							SET continentCode = CAST(resultRef.sContinentCode AS CHARACTER);
-						END IF;
-						-- Extraer código de moneda
-						SET currencyCode = CAST(resultRef.*:sCurrencyISOCode AS CHARACTER);
-						IF currencyCode IS NULL THEN
-							SET currencyCode = CAST(resultRef.*:{'m:sCurrencyISOCode'} AS CHARACTER);
-						END IF;
-						IF currencyCode IS NULL THEN
-							SET currencyCode = CAST(resultRef.sCurrencyISOCode AS CHARACTER);
-						END IF;
-						-- Extraer código telefónico
-						SET phoneCode = CAST(resultRef.*:sPhoneCode AS CHARACTER);
-						IF phoneCode IS NULL THEN
-							SET phoneCode = CAST(resultRef.*:{'m:sPhoneCode'} AS CHARACTER);
-						END IF;
-						IF phoneCode IS NULL THEN
-							SET phoneCode = CAST(resultRef.sPhoneCode AS CHARACTER);
-						END IF;
-						-- Extraer URL de la bandera
-						SET flagUrl = CAST(resultRef.*:sCountryFlag AS CHARACTER);
-						IF flagUrl IS NULL THEN
-							SET flagUrl = CAST(resultRef.*:{'m:sCountryFlag'} AS CHARACTER);
-						END IF;
-						IF flagUrl IS NULL THEN
-							SET flagUrl = CAST(resultRef.sCountryFlag AS CHARACTER);
-						END IF;
-					END IF;
-				END IF;
-			END IF;
-		END IF;
-		-- Establecer los datos en la respuesta JSON
-		SET OutputRoot.JSON.Data.countryData.basicInfo.name = countryName;
-		SET OutputRoot.JSON.Data.countryData.basicInfo.code = countryCode;
-		SET OutputRoot.JSON.Data.countryData.basicInfo.capital = capitalCity;
-
-		SET OutputRoot.JSON.Data.countryData.details.continent.code = continentCode;
-		SET OutputRoot.JSON.Data.countryData.details.currency.code = currencyCode;
-		SET OutputRoot.JSON.Data.countryData.details.phoneCode = phoneCode;
-		SET OutputRoot.JSON.Data.countryData.details.flagUrl = flagUrl;
-	END;
-
-	CREATE PROCEDURE ProcessCountryISOCode()
-	BEGIN
-		-- Variable para almacenar el código ISO
-		DECLARE isoCode CHARACTER;
-		-- Extraer datos de la respuesta SOAP
-		IF EXISTS(InputRoot.SOAP_Domain_Msg[]) THEN
-			-- Acceder directamente al resultado usando índices
-			IF CARDINALITY(InputRoot.SOAP_Domain_Msg.Body.*[]) > 0 THEN
-				DECLARE respRef REFERENCE TO InputRoot.SOAP_Domain_Msg.Body.*[1];
-
-				IF LASTMOVE(respRef) AND CARDINALITY(respRef.*[]) > 0 THEN
-					-- El resultado es directamente el valor del código ISO
-					SET isoCode = CAST(respRef.*[1] AS CHARACTER);
-				END IF;
-			END IF;
-		ELSEIF EXISTS(InputRoot.XMLNSC[]) THEN
-			-- Acceder al resultado en formato XMLNSC
-			DECLARE bodyRef REFERENCE TO InputRoot.XMLNSC.*:Envelope.*:Body;
-
-			IF LASTMOVE(bodyRef) AND CARDINALITY(bodyRef.*[]) > 0 THEN
-				DECLARE respRef REFERENCE TO bodyRef.*[1];
-
-				IF LASTMOVE(respRef) AND CARDINALITY(respRef.*[]) > 0 THEN
-					-- El resultado es directamente el valor del código ISO
-					SET isoCode = CAST(respRef.*[1] AS CHARACTER);
-				END IF;
-			END IF;
-		END IF;
-		-- Establecer los datos en la respuesta JSON
-		SET OutputRoot.JSON.Data.countryData.basicInfo.code = isoCode;
-		SET OutputRoot.JSON.Data.countryData.basicInfo.searchedBy = 'name';
-		SET OutputRoot.JSON.Data.countryData.basicInfo.searchTerm = Environment.CountryName;
-	END;
-
-	CREATE PROCEDURE ProcessCountryList(IN operation CHARACTER)
-	BEGIN
-		-- Crear campo para países
-		CREATE FIELD OutputRoot.JSON.Data.countries;
-		-- Variables para el bucle
-		DECLARE countryCount INTEGER 0;
-		-- Extraer datos de la respuesta SOAP
-		IF EXISTS(InputRoot.SOAP_Domain_Msg[]) THEN
-			-- Acceder al resultado usando índices
-			IF CARDINALITY(InputRoot.SOAP_Domain_Msg.Body.*[]) > 0 THEN
-				DECLARE respRef REFERENCE TO InputRoot.SOAP_Domain_Msg.Body.*[1];
-
-				IF LASTMOVE(respRef) AND CARDINALITY(respRef.*[]) > 0 THEN
-					DECLARE resultRef REFERENCE TO respRef.*[1];
-
-					IF LASTMOVE(resultRef) THEN
-						-- Procesar los países en el resultado
-						-- Los países están en un array de tCountryCodeAndName
-						-- Intentar acceder directamente al array
-						DECLARE countryArrayRef REFERENCE TO resultRef.*[1];
-
-						IF LASTMOVE(countryArrayRef) THEN
-							-- Iterar por los países en el array
-							DECLARE i INTEGER 1;
-							DECLARE countryRef REFERENCE TO countryArrayRef.*[i];
-
-							WHILE LASTMOVE(countryRef) DO
-								-- Incrementar contador
-								SET countryCount = countryCount + 1;
-								-- Extraer datos del país
-								DECLARE countryCode, countryName CHARACTER;
-								-- Los datos están en campos sISOCode y sName
-								-- Intentar acceder por nombre primero
-								SET countryCode = CAST(countryRef.*:sISOCode AS CHARACTER);
-								SET countryName = CAST(countryRef.*:sName AS CHARACTER);
-								-- Si no funciona, intentar con índices
-								IF countryCode IS NULL THEN
-									SET countryCode = CAST(countryRef.*[1] AS CHARACTER);
-								END IF;
-
-								IF countryName IS NULL THEN
-									SET countryName = CAST(countryRef.*[2] AS CHARACTER);
-								END IF;
-								-- Agregar país al array de salida
-								SET OutputRoot.JSON.Data.countries.Item[countryCount].code = countryCode;
-								SET OutputRoot.JSON.Data.countries.Item[countryCount].name = countryName;
-								-- Moverse al siguiente país
-								SET i = i + 1;
-								MOVE countryRef TO countryArrayRef.*[i];
-							END WHILE;
-						END IF;
-					END IF;
-				END IF;
-			END IF;
-		ELSEIF EXISTS(InputRoot.XMLNSC[]) THEN
-			-- Acceder al resultado en formato XMLNSC
-			DECLARE bodyRef REFERENCE TO InputRoot.XMLNSC.*:Envelope.*:Body;
-
-			IF LASTMOVE(bodyRef) AND CARDINALITY(bodyRef.*[]) > 0 THEN
-				DECLARE respRef REFERENCE TO bodyRef.*[1];
-
-				IF LASTMOVE(respRef) AND CARDINALITY(respRef.*[]) > 0 THEN
-					DECLARE resultRef REFERENCE TO respRef.*[1];
-
-					IF LASTMOVE(resultRef) THEN
-						-- Procesar los países en el resultado
-						-- Los países están en un array de tCountryCodeAndName
-						-- Intentar acceder directamente al array
-						DECLARE countryArrayRef REFERENCE TO resultRef.*[1];
-
-						IF LASTMOVE(countryArrayRef) THEN
-							-- Iterar por los países en el array
-							DECLARE i INTEGER 1;
-							DECLARE countryRef REFERENCE TO countryArrayRef.*[i];
-
-							WHILE LASTMOVE(countryRef) DO
-								-- Incrementar contador
-								SET countryCount = countryCount + 1;
-								-- Extraer datos del país
-								DECLARE countryCode, countryName CHARACTER;
-								-- Los datos están en campos sISOCode y sName
-								-- Intentar acceder por nombre primero
-								SET countryCode = CAST(countryRef.*:sISOCode AS CHARACTER);
-								SET countryName = CAST(countryRef.*:sName AS CHARACTER);
-								-- Si no funciona, intentar con índices
-								IF countryCode IS NULL THEN
-									SET countryCode = CAST(countryRef.*[1] AS CHARACTER);
-								END IF;
-
-								IF countryName IS NULL THEN
-									SET countryName = CAST(countryRef.*[2] AS CHARACTER);
-								END IF;
-								-- Agregar país al array de salida
-								SET OutputRoot.JSON.Data.countries.Item[countryCount].code = countryCode;
-								SET OutputRoot.JSON.Data.countries.Item[countryCount].name = countryName;
-								-- Moverse al siguiente país
-								SET i = i + 1;
-								MOVE countryRef TO countryArrayRef.*[i];
-							END WHILE;
-						END IF;
-					END IF;
-				END IF;
-			END IF;
-		END IF;
-		-- Establecer información adicional en la respuesta
-		SET OutputRoot.JSON.Data.listInfo.totalCount = countryCount;
-		-- Determinar por qué campo se ordenó
-		IF operation = 'ListOfCountryNamesByCode' THEN
-			SET OutputRoot.JSON.Data.listInfo.sortedBy = 'code';
-		ELSE
-			SET OutputRoot.JSON.Data.listInfo.sortedBy = 'name';
-		END IF;
-	END;    
-
-
-	CREATE PROCEDURE ProcessCurrencyName()
-	BEGIN
-		-- Procesar respuesta de CurrencyName
-		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
-		DECLARE ns NAMESPACE 'http://www.oorsprong.org/websamples.countryinfo';
-
-		DECLARE currencyName CHARACTER;
-		-- Método 1: Usando SOAP_Domain_Msg con prefijo m:
-		IF EXISTS(InputRoot.SOAP_Domain_Msg[]) THEN
-			SET currencyName = CAST(InputRoot.SOAP_Domain_Msg.Body.{'m:CurrencyNameResponse'}.{'m:CurrencyNameResult'} AS CHARACTER);
-		END IF;
-		-- Método 2: Usando SOAP_Domain_Msg sin prefijo
-		IF currencyName IS NULL AND EXISTS(InputRoot.SOAP_Domain_Msg[]) THEN
-			SET currencyName = CAST(InputRoot.SOAP_Domain_Msg.Body.CurrencyNameResponse.CurrencyNameResult AS CHARACTER);
-		END IF;
-		-- Método 3: Usando SOAP_Domain_Msg con comodines
-		IF currencyName IS NULL AND EXISTS(InputRoot.SOAP_Domain_Msg[]) THEN
-			SET currencyName = CAST(InputRoot.SOAP_Domain_Msg.Body.*:CurrencyNameResponse.*:CurrencyNameResult AS CHARACTER);
-		END IF;
-		-- Método 4: Usando XMLNSC con espacios de nombres explícitos
-		IF currencyName IS NULL AND EXISTS(InputRoot.XMLNSC[]) THEN
-			SET currencyName = CAST(InputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:CurrencyNameResponse.{ns}:CurrencyNameResult AS CHARACTER);
-		END IF;
-		-- Método 5: Usando XMLNSC con comodines
-		IF currencyName IS NULL AND EXISTS(InputRoot.XMLNSC[]) THEN
-			SET currencyName = CAST(InputRoot.XMLNSC.*:Envelope.*:Body.*:CurrencyNameResponse.*:CurrencyNameResult AS CHARACTER);
-		END IF;
-		-- Método 6: Acceso directo al primer hijo del Body
-		IF currencyName IS NULL AND EXISTS(InputRoot.SOAP_Domain_Msg[]) THEN
-			DECLARE bodyRef REFERENCE TO InputRoot.SOAP_Domain_Msg.Body;
-			IF LASTMOVE(bodyRef) AND CARDINALITY(bodyRef.*[]) > 0 THEN
-				DECLARE respRef REFERENCE TO bodyRef.*[1];
-				IF LASTMOVE(respRef) AND CARDINALITY(respRef.*[]) > 0 THEN
-					SET currencyName = CAST(respRef.*[1] AS CHARACTER);
-				END IF;
-			END IF;
-		END IF;
-		-- Establecer los datos de la moneda en la respuesta
-		SET OutputRoot.JSON.Data.currencyData.code = Environment.CurrencyCode;
-		SET OutputRoot.JSON.Data.currencyData.name = currencyName;
-	END;
+CREATE COMPUTE MODULE TransformSOAPtoJSON
+    CREATE FUNCTION Main() RETURNS BOOLEAN
+    BEGIN
+        -- Crear estructura JSON para la salida
+        CREATE LASTCHILD OF OutputRoot DOMAIN 'JSON';
+        CREATE FIELD OutputRoot.JSON.Data;
+        
+        -- Información de respuesta estándar
+        SET OutputRoot.JSON.Data.responseInfo.status = 'success';
+        SET OutputRoot.JSON.Data.responseInfo.timestamp = CURRENT_TIMESTAMP;
+        
+        -- Definir espacios de nombres
+        DECLARE ns NAMESPACE 'http://www.oorsprong.org/websamples.countryinfo';
+        
+        -- Extraer datos del país de la respuesta SOAP
+        IF EXISTS(InputRoot.SOAP.Body.{ns}:FullCountryInfoResponse.{ns}:FullCountryInfoResult[]) THEN
+            -- Extraer datos básicos
+            SET OutputRoot.JSON.Data.countryData.basicInfo.code = 
+                CAST(InputRoot.SOAP.Body.{ns}:FullCountryInfoResponse.{ns}:FullCountryInfoResult.{ns}:sISOCode AS CHARACTER);
+            SET OutputRoot.JSON.Data.countryData.basicInfo.name = 
+                CAST(InputRoot.SOAP.Body.{ns}:FullCountryInfoResponse.{ns}:FullCountryInfoResult.{ns}:sName AS CHARACTER);
+            SET OutputRoot.JSON.Data.countryData.basicInfo.capital = 
+                CAST(InputRoot.SOAP.Body.{ns}:FullCountryInfoResponse.{ns}:FullCountryInfoResult.{ns}:sCapitalCity AS CHARACTER);
+            
+            -- Extraer detalles
+            SET OutputRoot.JSON.Data.countryData.details.phoneCode = 
+                CAST(InputRoot.SOAP.Body.{ns}:FullCountryInfoResponse.{ns}:FullCountryInfoResult.{ns}:sPhoneCode AS CHARACTER);
+            SET OutputRoot.JSON.Data.countryData.details.continent.code = 
+                CAST(InputRoot.SOAP.Body.{ns}:FullCountryInfoResponse.{ns}:FullCountryInfoResult.{ns}:sContinentCode AS CHARACTER);
+            SET OutputRoot.JSON.Data.countryData.details.currency.code = 
+                CAST(InputRoot.SOAP.Body.{ns}:FullCountryInfoResponse.{ns}:FullCountryInfoResult.{ns}:sCurrencyISOCode AS CHARACTER);
+            SET OutputRoot.JSON.Data.countryData.details.flagUrl = 
+                CAST(InputRoot.SOAP.Body.{ns}:FullCountryInfoResponse.{ns}:FullCountryInfoResult.{ns}:sCountryFlag AS CHARACTER);
+            
+            -- Extraer información del idioma si existe
+            IF EXISTS(InputRoot.SOAP.Body.{ns}:FullCountryInfoResponse.{ns}:FullCountryInfoResult.{ns}:Languages.{ns}:tLanguage[]) THEN
+                SET OutputRoot.JSON.Data.countryData.details.language.code = 
+                    CAST(InputRoot.SOAP.Body.{ns}:FullCountryInfoResponse.{ns}:FullCountryInfoResult.{ns}:Languages.{ns}:tLanguage.{ns}:sISOCode AS CHARACTER);
+                SET OutputRoot.JSON.Data.countryData.details.language.name = 
+                    CAST(InputRoot.SOAP.Body.{ns}:FullCountryInfoResponse.{ns}:FullCountryInfoResult.{ns}:Languages.{ns}:tLanguage.{ns}:sName AS CHARACTER);
+            END IF;
+        ELSE
+            -- Intentar con estructura alternativa (XMLNSC)
+            DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+            
+            IF EXISTS(InputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:FullCountryInfoResponse.{ns}:FullCountryInfoResult[]) THEN
+                -- Extraer datos básicos
+                SET OutputRoot.JSON.Data.countryData.basicInfo.code = 
+                    CAST(InputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:FullCountryInfoResponse.{ns}:FullCountryInfoResult.{ns}:sISOCode AS CHARACTER);
+                SET OutputRoot.JSON.Data.countryData.basicInfo.name = 
+                    CAST(InputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:FullCountryInfoResponse.{ns}:FullCountryInfoResult.{ns}:sName AS CHARACTER);
+                SET OutputRoot.JSON.Data.countryData.basicInfo.capital = 
+                    CAST(InputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:FullCountryInfoResponse.{ns}:FullCountryInfoResult.{ns}:sCapitalCity AS CHARACTER);
+                
+                -- Extraer detalles
+                SET OutputRoot.JSON.Data.countryData.details.phoneCode = 
+                    CAST(InputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:FullCountryInfoResponse.{ns}:FullCountryInfoResult.{ns}:sPhoneCode AS CHARACTER);
+                SET OutputRoot.JSON.Data.countryData.details.continent.code = 
+                    CAST(InputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:FullCountryInfoResponse.{ns}:FullCountryInfoResult.{ns}:sContinentCode AS CHARACTER);
+                SET OutputRoot.JSON.Data.countryData.details.currency.code = 
+                    CAST(InputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:FullCountryInfoResponse.{ns}:FullCountryInfoResult.{ns}:sCurrencyISOCode AS CHARACTER);
+                SET OutputRoot.JSON.Data.countryData.details.flagUrl = 
+                    CAST(InputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:FullCountryInfoResponse.{ns}:FullCountryInfoResult.{ns}:sCountryFlag AS CHARACTER);
+                
+                -- Extraer información del idioma si existe
+                IF EXISTS(InputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:FullCountryInfoResponse.{ns}:FullCountryInfoResult.{ns}:Languages.{ns}:tLanguage[]) THEN
+                    SET OutputRoot.JSON.Data.countryData.details.language.code = 
+                        CAST(InputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:FullCountryInfoResponse.{ns}:FullCountryInfoResult.{ns}:Languages.{ns}:tLanguage.{ns}:sISOCode AS CHARACTER);
+                    SET OutputRoot.JSON.Data.countryData.details.language.name = 
+                        CAST(InputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:FullCountryInfoResponse.{ns}:FullCountryInfoResult.{ns}:Languages.{ns}:tLanguage.{ns}:sName AS CHARACTER);
+                END IF;
+            ELSE
+                -- Si no se encuentra la estructura esperada, proporcionar información de depuración
+                SET OutputRoot.JSON.Data.error.message = 'No se pudo encontrar la estructura esperada en la respuesta SOAP';
+                SET OutputRoot.JSON.Data.error.availableDomains = '';
+                
+                IF EXISTS(InputRoot.SOAP[]) THEN
+                    SET OutputRoot.JSON.Data.error.availableDomains = OutputRoot.JSON.Data.error.availableDomains || ' SOAP';
+                END IF;
+                
+                IF EXISTS(InputRoot.XMLNSC[]) THEN
+                    SET OutputRoot.JSON.Data.error.availableDomains = OutputRoot.JSON.Data.error.availableDomains || ' XMLNSC';
+                END IF;
+                
+                IF EXISTS(InputRoot.SOAP_Domain_Msg[]) THEN
+                    SET OutputRoot.JSON.Data.error.availableDomains = OutputRoot.JSON.Data.error.availableDomains || ' SOAP_Domain_Msg';
+                END IF;
+            END IF;
+        END IF;
+        
+        RETURN TRUE;
+    END;
 END MODULE;
