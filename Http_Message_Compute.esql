@@ -49,6 +49,9 @@ CREATE COMPUTE MODULE CategoryToURLMapper
             SET Environment.CurrencyCode = Environment.RequestEntrada.parameters.currencyCode;
         ELSEIF requestType = 'countryLanguage' THEN
             SET Environment.SOAPOperation = 'ListOfLanguagesByName';
+        ELSEIF requestType = 'capitalCity' THEN
+            SET Environment.SOAPOperation = 'CapitalCity';
+            SET Environment.CountryCode = Environment.RequestEntrada.parameters.countryCode;
         END IF;
         
         RETURN TRUE;
@@ -71,8 +74,11 @@ CREATE COMPUTE MODULE ConfigureHTTPRequest
             SET Environment.SOAPOperation = 'ListOfCountryNamesByName';
         ELSEIF requestType = 'currencyInfo' THEN
             SET Environment.SOAPOperation = 'CurrencyName';
-        ELSEIF requestType = 'countryLanguage' THEN
+         ELSEIF requestType = 'countryLanguage' THEN
             SET Environment.SOAPOperation = 'ListOfLanguagesByName';
+        ELSEIF requestType = 'capitalCity' THEN
+            SET Environment.SOAPOperation = 'CapitalCity';
+            SET Environment.CountryCode = Environment.RequestEntrada.parameters.countryCode;       
         END IF;
         
         -- Crear estructura SOAP para la salida
@@ -117,7 +123,13 @@ CREATE COMPUTE MODULE ConfigureHTTPRequest
             CREATE FIELD OutputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:CurrencyName;
             SET OutputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:CurrencyName.{ns}:sCurrencyISOCode = 
                 Environment.CurrencyCode;
-                
+        ELSEIF Environment.SOAPOperation = 'CapitalCity' THEN
+            -- Guardar el código del país para usarlo más tarde
+            SET Environment.CountryCode = Environment.RequestEntrada.parameters.countryCode;
+            
+            CREATE FIELD OutputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:CapitalCity;
+            SET OutputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:CapitalCity.{ns}:sCountryISOCode = 
+                Environment.CountryCode;        
         ELSEIF Environment.SOAPOperation = 'ListOfLanguagesByName' THEN
             CREATE FIELD OutputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:ListOfLanguagesByName;
         END IF;

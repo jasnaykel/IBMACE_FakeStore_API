@@ -34,6 +34,8 @@ CREATE COMPUTE MODULE TransformSOAPtoJSON
 			CALL ProcessCurrencyInfo();
         WHEN 'countryLanguage' THEN
 			CALL ProcessCountryLanguage();
+        WHEN 'capitalCity' THEN
+			CALL ProcessCapitalCity();
 		ELSE
 			SET OutputRoot.JSON.Data.error.message = 'Tipo de solicitud no soportado: ' || requestType;
 		END CASE;
@@ -303,6 +305,35 @@ CREATE COMPUTE MODULE TransformSOAPtoJSON
 		-- Establecer el contador de idiomas
 		SET OutputRoot.JSON.Data.languages.count = languageCount;
 	END;
+    CREATE PROCEDURE ProcessCapitalCity() BEGIN
+		-- Definir espacios de nombres
+		DECLARE ns NAMESPACE 'http://www.oorsprong.org/websamples.countryinfo';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+		
+		-- Extraer información de la capital del país de la respuesta SOAP
+		IF EXISTS(InputRoot.SOAP.Body.ns:CapitalCityResponse.ns:CapitalCityResult[]) THEN
+			-- Extraer el nombre de la capital
+			SET OutputRoot.JSON.Data.capitalInfo.countryCode = Environment.CountryCode;
+			SET OutputRoot.JSON.Data.capitalInfo.capitalName = 
+				CAST(InputRoot.SOAP.Body.ns:CapitalCityResponse.ns:CapitalCityResult AS CHARACTER);
+		ELSEIF EXISTS(InputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.ns:CapitalCityResponse.ns:CapitalCityResult[]) THEN
+			-- Extraer el nombre de la capital (estructura alternativa)
+			SET OutputRoot.JSON.Data.capitalInfo.countryCode = Environment.CountryCode;
+			SET OutputRoot.JSON.Data.capitalInfo.capitalName = 
+				CAST(InputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.ns:CapitalCityResponse.ns:CapitalCityResult AS CHARACTER);
+		ELSE
+			-- Si no se encuentra la estructura esperada, proporcionar información de depuración
+			SET OutputRoot.JSON.Data.error.message = 'No se pudo encontrar la información de la capital en la respuesta SOAP';
+			SET OutputRoot.JSON.Data.error.availableDomains = '';
 
+			IF EXISTS(InputRoot.SOAP[]) THEN
+				SET OutputRoot.JSON.Data.error.availableDomains = OutputRoot.JSON.Data.error.availableDomains || ' SOAP';
+			END IF;
+
+			IF EXISTS(InputRoot.XMLNSC[]) THEN
+				SET OutputRoot.JSON.Data.error.availableDomains = OutputRoot.JSON.Data.error.availableDomains || ' XMLNSC';
+			END IF;
+		END IF;
+	END;
 
 END MODULE;
