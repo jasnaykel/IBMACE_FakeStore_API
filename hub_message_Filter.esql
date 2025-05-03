@@ -14,6 +14,7 @@ CREATE FILTER MODULE hub_message_Filter
                EXISTS(Environment.RequestEntrada.requestType[]) AND 
                (Environment.RequestEntrada.requestType = 'countryInfo' OR 
                 Environment.RequestEntrada.requestType = 'listCountries' OR 
-                Environment.RequestEntrada.requestType = 'currencyInfo');
+                Environment.RequestEntrada.requestType = 'currencyInfo' OR 
+                Environment.RequestEntrada.requestType = 'countryLanguage');
     END;
 END MODULE;

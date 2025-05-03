@@ -32,6 +32,8 @@ CREATE COMPUTE MODULE TransformSOAPtoJSON
 			CALL ProcessListCountries();
         WHEN 'currencyInfo' THEN
 			CALL ProcessCurrencyInfo();
+        WHEN 'countryLanguage' THEN
+			CALL ProcessCountryLanguage();
 		ELSE
 			SET OutputRoot.JSON.Data.error.message = 'Tipo de solicitud no soportado: ' || requestType;
 		END CASE;
@@ -242,4 +244,65 @@ CREATE COMPUTE MODULE TransformSOAPtoJSON
 			END IF;
 		END IF;
         END;
+        -- transformacion para procesar inf sobre los idiomas de un paiss 
+        CREATE PROCEDURE ProcessCountryLanguage() BEGIN
+		-- Definir espacios de nombres
+		DECLARE ns NAMESPACE 'http://www.oorsprong.org/websamples.countryinfo';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+		
+		-- Extraer información de idiomas del país de la respuesta SOAP
+		IF EXISTS(InputRoot.SOAP.Body.ns:ListOfLanguagesByNameResponse.ns:ListOfLanguagesByNameResult[]) THEN
+			-- Referencia al array de idiomas
+			DECLARE languagesRef REFERENCE TO InputRoot.SOAP.Body.ns:ListOfLanguagesByNameResponse.ns:ListOfLanguagesByNameResult;
+			CALL ProcessLanguageList(languagesRef);
+		ELSEIF EXISTS(InputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.ns:ListOfLanguagesByNameResponse.ns:ListOfLanguagesByNameResult[]) THEN
+			-- Referencia al array de idiomas (estructura alternativa)
+			DECLARE languagesRef REFERENCE TO InputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.ns:ListOfLanguagesByNameResponse.ns:ListOfLanguagesByNameResult;
+			CALL ProcessLanguageList(languagesRef);
+		ELSE
+			-- Si no se encuentra la estructura esperada, proporcionar información de depuración
+			SET OutputRoot.JSON.Data.error.message = 'No se pudo encontrar la información de idiomas en la respuesta SOAP';
+			SET OutputRoot.JSON.Data.error.availableDomains = '';
+
+			IF EXISTS(InputRoot.SOAP[]) THEN
+				SET OutputRoot.JSON.Data.error.availableDomains = OutputRoot.JSON.Data.error.availableDomains || ' SOAP';
+			END IF;
+
+			IF EXISTS(InputRoot.XMLNSC[]) THEN
+				SET OutputRoot.JSON.Data.error.availableDomains = OutputRoot.JSON.Data.error.availableDomains || ' XMLNSC';
+			END IF;
+		END IF;
+	END;
+	
+	CREATE PROCEDURE ProcessLanguageList(IN languagesRef REFERENCE) BEGIN
+		DECLARE i INTEGER 1;
+		DECLARE languageCount INTEGER 0;
+		DECLARE ns NAMESPACE 'http://www.oorsprong.org/websamples.countryinfo';
+		DECLARE languageListRef REFERENCE TO languagesRef;
+		
+		-- Inicializar el array de idiomas en la respuesta JSON
+		CREATE FIELD OutputRoot.JSON.Data.languages;
+		CREATE FIELD OutputRoot.JSON.Data.languages.items;
+		
+		-- Verificar si existen idiomas
+		IF EXISTS(languagesRef.ns:tLanguage[]) THEN
+			-- Iterar a través de todos los idiomas
+			MOVE languageListRef TO languagesRef;
+			
+			-- Usar un bucle FOR para iterar a través de los idiomas
+			FOR languageItem AS languageListRef.ns:tLanguage[] DO
+				-- Extraer código y nombre del idioma
+				SET OutputRoot.JSON.Data.languages.items[i].code = CAST(languageItem.ns:sISOCode AS CHARACTER);
+				SET OutputRoot.JSON.Data.languages.items[i].name = CAST(languageItem.ns:sName AS CHARACTER);
+				
+				SET languageCount = languageCount + 1;
+				SET i = i + 1;
+			END FOR;
+		END IF;
+		
+		-- Establecer el contador de idiomas
+		SET OutputRoot.JSON.Data.languages.count = languageCount;
+	END;
+
+
 END MODULE;

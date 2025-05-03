@@ -47,6 +47,8 @@ CREATE COMPUTE MODULE CategoryToURLMapper
         ELSEIF requestType = 'currencyInfo' THEN
             SET Environment.SOAPOperation = 'CurrencyName';
             SET Environment.CurrencyCode = Environment.RequestEntrada.parameters.currencyCode;
+        ELSEIF requestType = 'countryLanguage' THEN
+            SET Environment.SOAPOperation = 'ListOfLanguagesByName';
         END IF;
         
         RETURN TRUE;
@@ -69,6 +71,8 @@ CREATE COMPUTE MODULE ConfigureHTTPRequest
             SET Environment.SOAPOperation = 'ListOfCountryNamesByName';
         ELSEIF requestType = 'currencyInfo' THEN
             SET Environment.SOAPOperation = 'CurrencyName';
+        ELSEIF requestType = 'countryLanguage' THEN
+            SET Environment.SOAPOperation = 'ListOfLanguagesByName';
         END IF;
         
         -- Crear estructura SOAP para la salida
@@ -113,6 +117,9 @@ CREATE COMPUTE MODULE ConfigureHTTPRequest
             CREATE FIELD OutputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:CurrencyName;
             SET OutputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:CurrencyName.{ns}:sCurrencyISOCode = 
                 Environment.CurrencyCode;
+                
+        ELSEIF Environment.SOAPOperation = 'ListOfLanguagesByName' THEN
+            CREATE FIELD OutputRoot.XMLNSC.{soapenv}:Envelope.{soapenv}:Body.{ns}:ListOfLanguagesByName;
         END IF;
         
         -- Configurar parámetros de la solicitud SOAP
