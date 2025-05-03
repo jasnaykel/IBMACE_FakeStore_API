@@ -1,120 +1,151 @@
 CREATE COMPUTE MODULE ImprovedErrorHandler
     CREATE FUNCTION Main() RETURNS BOOLEAN
     BEGIN
-        -- Variables para el error
-        DECLARE errorCode INTEGER 500; -- Código por defecto
-        DECLARE errorType CHARACTER 'InternalServerError';
-        DECLARE errorMessage CHARACTER 'Error interno del servidor';
-        DECLARE errorDetails CHARACTER '';
+        DECLARE errorCode INTEGER;
+        DECLARE errorStatus CHARACTER;
+        DECLARE errorMessage CHARACTER;
+        DECLARE errorDetail CHARACTER;
+        DECLARE refToException REFERENCE TO InputExceptionList;
+        DECLARE exceptionFound BOOLEAN FALSE;
         
-        -- Intentar extraer información de error de la respuesta si existe
-        IF EXISTS(InputRoot.JSON[]) AND EXISTS(InputRoot.JSON.Data.error[]) THEN
-            -- Ya hay un error en formato JSON, extraer información
-            SET errorCode = CAST(COALESCE(InputRoot.JSON.Data.error.code, 500) AS INTEGER);
-            SET errorType = COALESCE(InputRoot.JSON.Data.error.status, 'InternalServerError');
-            SET errorMessage = COALESCE(InputRoot.JSON.Data.error.message, 'Error en el procesamiento de la solicitud');
-            
-            -- Extraer detalles si existen
-            IF EXISTS(InputRoot.JSON.Data.error.detail[]) THEN
-                SET errorDetails = InputRoot.JSON.Data.error.detail;
-            END IF;
+        -- Verificar si hay un parámetro de prueba de error
+        DECLARE testErrorCode CHARACTER;
+        SET testErrorCode = InputLocalEnvironment.HTTP.Input.QueryString.errorCode;
+        
+        IF testErrorCode IS NOT NULL THEN
+            -- Si se proporciona un código de error de prueba, úsalo
+            SET errorCode = CAST(testErrorCode AS INTEGER);
+            SET exceptionFound = TRUE;
         ELSE
-            -- Intentar determinar el tipo de error basado en información disponible
+            -- Primero verificar si hay un error tipificado en Environment
             IF EXISTS(Environment.Error[]) THEN
-                -- Si hay información de error en Environment, usarla
+                SET exceptionFound = TRUE;
+                
+                -- Mapear tipos de error a códigos HTTP
                 CASE Environment.Error.Type
-                    WHEN 'SOAPError' THEN
-                        SET errorCode = 502;
-                        SET errorType = 'BadGateway';
-                        SET errorMessage = 'Error en la comunicación con servicio externo';
-                        SET errorDetails = COALESCE(Environment.Error.Message, 'Error en la comunicación con el servicio');
-                    
-                    WHEN 'HTTPError' THEN
-                        SET errorCode = 502;
-                        SET errorType = 'BadGateway';
-                        SET errorMessage = 'Error en la comunicación con servicio externo';
-                        SET errorDetails = COALESCE(Environment.Error.Message, 'Error en la comunicación con el servicio');
-                    
-                    WHEN 'TimeoutError' THEN
-                        SET errorCode = 504;
-                        SET errorType = 'GatewayTimeout';
-                        SET errorMessage = 'Tiempo de espera excedido';
-                        SET errorDetails = 'El servicio no respondió en el tiempo esperado';
-                    
                     WHEN 'ValidationError' THEN
                         SET errorCode = 400;
-                        SET errorType = 'BadRequest';
-                        SET errorMessage = 'Error de validación';
-                        SET errorDetails = COALESCE(Environment.Error.Message, 'Los datos proporcionados no son válidos');
-                    
-                    WHEN 'AuthenticationError' THEN
-                        SET errorCode = 401;
-                        SET errorType = 'Unauthorized';
-                        SET errorMessage = 'Error de autenticación';
-                        SET errorDetails = 'Credenciales inválidas o faltantes';
-                    
-                    WHEN 'AuthorizationError' THEN
-                        SET errorCode = 403;
-                        SET errorType = 'Forbidden';
-                        SET errorMessage = 'Error de autorización';
-                        SET errorDetails = 'No tiene permisos para acceder a este recurso';
-                    
+                        SET errorDetail = COALESCE(Environment.Error.Message, 'Error de validación');
                     WHEN 'NotFoundError' THEN
                         SET errorCode = 404;
-                        SET errorType = 'NotFound';
-                        SET errorMessage = 'Recurso no encontrado';
-                        SET errorDetails = 'El recurso solicitado no existe';
-                    
+                        SET errorDetail = COALESCE(Environment.Error.Message, 'Recurso no encontrado');
+                    WHEN 'TimeoutError' THEN
+                        SET errorCode = 504;
+                        SET errorDetail = COALESCE(Environment.Error.Message, 'Tiempo de espera agotado');
+                    WHEN 'SOAPError' THEN
+                        SET errorCode = 502;
+                        SET errorDetail = COALESCE(Environment.Error.Message, 'Error en servicio SOAP');
                     WHEN 'ServiceUnavailableError' THEN
                         SET errorCode = 503;
-                        SET errorType = 'ServiceUnavailable';
-                        SET errorMessage = 'Servicio no disponible';
-                        SET errorDetails = 'El servicio no está disponible temporalmente';
-                    
-                    ELSE
-                        -- Error genérico
+                        SET errorDetail = COALESCE(Environment.Error.Message, 'Servicio no disponible');
+                    WHEN 'InternalError' THEN
                         SET errorCode = 500;
-                        SET errorType = 'InternalServerError';
-                        SET errorMessage = 'Error interno del servidor';
-                        SET errorDetails = COALESCE(Environment.Error.Message, 'Se produjo un error al procesar la solicitud');
+                        SET errorDetail = COALESCE(Environment.Error.Message, 'Error interno del servidor');
+                    ELSE
+                        SET errorCode = 500;
+                        SET errorDetail = COALESCE(Environment.Error.Message, 'Error desconocido');
                 END CASE;
+            ELSE
+                -- Buscar excepciones en el mensaje
+                MOVE refToException TO InputExceptionList.[1];
+                IF LASTMOVE(refToException) THEN
+                    SET exceptionFound = TRUE;
+                    
+                    -- Extraer información de la excepción
+                    SET errorCode = COALESCE(refToException.Number, 500);
+                    SET errorDetail = COALESCE(refToException.Text, '');
+                    
+                    -- Verificar si es un error de ruta no encontrada
+                    IF CONTAINS(errorDetail, 'not found') OR CONTAINS(errorDetail, 'No route') THEN
+                        SET errorCode = 404;
+                    -- Verificar si es un error de JSON
+                    ELSEIF CONTAINS(errorDetail, 'JSON') THEN
+                        SET errorCode = 400;
+                    -- Verificar si es un error de timeout
+                    ELSEIF CONTAINS(errorDetail, 'timeout') OR CONTAINS(errorDetail, 'timed out') THEN
+                        SET errorCode = 504;
+                    -- Verificar si es un error de SOAP
+                    ELSEIF CONTAINS(errorDetail, 'SOAP') OR CONTAINS(errorDetail, 'web service') THEN
+                        SET errorCode = 502;
+                    END IF;
+                ELSE
+                    -- Verificar si es un error de ruta desde el entorno
+                    IF InputLocalEnvironment.HTTP.Input.Path IS NOT NULL AND 
+                       (InputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 404 OR 
+                        CONTAINS(InputLocalEnvironment.HTTP.Input.Path, 'recurso_inexistente')) THEN
+                        SET errorCode = 404;
+                        SET exceptionFound = TRUE;
+                    ELSE
+                        SET errorCode = 500;
+                    END IF;
+                END IF;
             END IF;
         END IF;
+        
+        -- Mapear códigos de error a mensajes apropiados
+        CASE errorCode
+            WHEN 400 THEN
+                SET errorStatus = 'BadRequest';
+                SET errorMessage = 'Solicitud incorrecta';
+                SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 400;
+            WHEN 401 THEN
+                SET errorStatus = 'Unauthorized';
+                SET errorMessage = 'No autorizado';
+                SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 401;
+            WHEN 403 THEN
+                SET errorStatus = 'Forbidden';
+                SET errorMessage = 'Acceso prohibido';
+                SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 403;
+            WHEN 404 THEN
+                SET errorStatus = 'NotFound';
+                SET errorMessage = 'Recurso no encontrado';
+                SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 404;
+            WHEN 405 THEN
+                SET errorStatus = 'MethodNotAllowed';
+                SET errorMessage = 'Método no permitido';
+                SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 405;
+            WHEN 429 THEN
+                SET errorStatus = 'TooManyRequests';
+                SET errorMessage = 'Demasiadas solicitudes';
+                SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 429;
+            WHEN 502 THEN
+                SET errorStatus = 'BadGateway';
+                SET errorMessage = 'Error en servicio externo';
+                SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 502;
+            WHEN 503 THEN
+                SET errorStatus = 'ServiceUnavailable';
+                SET errorMessage = 'Servicio no disponible';
+                SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 503;
+            WHEN 504 THEN
+                SET errorStatus = 'GatewayTimeout';
+                SET errorMessage = 'Tiempo de espera agotado';
+                SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 504;
+            ELSE
+                -- Error 500 por defecto u otros errores no especificados
+                SET errorCode = 500;
+                SET errorStatus = 'InternalServerError';
+                SET errorMessage = 'Error interno del servidor';
+                SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 500;
+        END CASE;
         
         -- Crear respuesta JSON con información del error
         CREATE LASTCHILD OF OutputRoot DOMAIN 'JSON';
         CREATE FIELD OutputRoot.JSON.Data;
         
-        -- Información estándar de la respuesta
-        SET OutputRoot.JSON.Data.responseInfo.status = 'error';
-        SET OutputRoot.JSON.Data.responseInfo.timestamp = CURRENT_TIMESTAMP;
+        -- Estructura de error
+        SET OutputRoot.JSON.Data.error.code = errorCode;
+        SET OutputRoot.JSON.Data.error.status = errorStatus;
+        SET OutputRoot.JSON.Data.error.message = errorMessage;
         
-        -- Información específica del error
-        SET OutputRoot.JSON.Data.error.codigo = CAST(errorCode AS CHARACTER);
-        SET OutputRoot.JSON.Data.error.tipo = errorType;
-        SET OutputRoot.JSON.Data.error.mensaje = errorMessage;
-        
-        -- Agregar detalles si existen
-        IF errorDetails <> '' THEN
-            SET OutputRoot.JSON.Data.error.detalles = errorDetails;
+        -- Solo incluir detalles en entorno de desarrollo o si es relevante
+        IF errorDetail IS NOT NULL AND errorDetail <> '' THEN
+            SET OutputRoot.JSON.Data.error.detail = errorDetail;
         END IF;
         
-        -- Agregar información de rastreo para depuración
-        SET OutputRoot.JSON.Data.error.rastreo.timestamp = CURRENT_TIMESTAMP;
+        SET OutputRoot.JSON.Data.error.timestamp = CURRENT_TIMESTAMP;
         
-        -- Agregar información de la solicitud original si está disponible
-        IF EXISTS(Environment.RequestEntrada[]) THEN
-            SET OutputRoot.JSON.Data.error.solicitudOriginal.tipo = 
-                COALESCE(Environment.RequestEntrada.requestType, 'No especificado');
-                
-            IF EXISTS(Environment.RequestEntrada.parameters[]) THEN
-                SET OutputRoot.JSON.Data.error.solicitudOriginal.parametros = 
-                    Environment.RequestEntrada.parameters;
-            END IF;
-        END IF;
-        
-        -- Establecer código HTTP de error
-        SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = errorCode;
+        -- Asegurar que los headers estén configurados correctamente
+        SET OutputLocalEnvironment.Destination.HTTP.Headers."Content-Type" = 'application/json';
         
         RETURN TRUE;
     END;

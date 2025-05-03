@@ -1,6 +1,18 @@
 CREATE COMPUTE MODULE TransformSOAPtoJSON
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
+        -- Verificar si hay un error en Environment
+        IF EXISTS(Environment.Error[]) THEN
+            -- Si ya hay un error configurado, no hacer nada y dejar que el manejador de errores lo procese
+            RETURN FALSE;
+        END IF;
+        
+        -- Verificar si hay una respuesta SOAP válida
+        IF NOT EXISTS(InputRoot.SOAP.Body[]) AND NOT EXISTS(InputRoot.XMLNSC[]) THEN
+            SET Environment.Error.Type = 'SOAPError';
+            SET Environment.Error.Message = 'Respuesta SOAP vacía o inválida';
+            RETURN FALSE;
+        END IF;
 		-- Crear estructura JSON para la salida
 		CREATE LASTCHILD OF OutputRoot DOMAIN 'JSON';
 		CREATE FIELD OutputRoot.JSON.Data;
@@ -21,7 +33,16 @@ CREATE COMPUTE MODULE TransformSOAPtoJSON
 		ELSE
 			SET OutputRoot.JSON.Data.error.message = 'Tipo de solicitud no soportado: ' || requestType;
 		END CASE;
-
+        -- Verificar si se generó un error durante el procesamiento
+        IF EXISTS(OutputRoot.JSON.Data.error[]) THEN
+            -- Convertir el error interno en un error de Environment para el manejador
+            SET Environment.Error.Type = 'SOAPError';
+            SET Environment.Error.Message = COALESCE(OutputRoot.JSON.Data.error.message, 'Error al procesar la respuesta SOAP');
+            RETURN FALSE;
+        END IF;
+        
+        -- Configurar el código de respuesta HTTP
+        SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 200;
 		RETURN TRUE;
 	END;
 

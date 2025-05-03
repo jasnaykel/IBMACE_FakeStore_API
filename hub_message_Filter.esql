@@ -1,7 +1,14 @@
+
 CREATE FILTER MODULE hub_message_Filter
     CREATE FUNCTION Main() RETURNS BOOLEAN
     BEGIN
-         -- Devuelve TRUE si hay un precio especificado en la solicitud
+        -- Verificar si hay un error en Environment
+        IF EXISTS(Environment.Error[]) THEN
+            -- Si hay un error, devolver FALSE para ir al flujo de error
+            RETURN FALSE;
+        END IF;
+        
+        -- Devuelve TRUE si hay un precio especificado en la solicitud
         -- O si es una solicitud para el servicio CountryInfo
         RETURN EXISTS(Environment.RequestEntrada.price[]) OR 
                EXISTS(Environment.RequestEntrada.requestType[]) AND 

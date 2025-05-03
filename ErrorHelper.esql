@@ -1,0 +1,45 @@
+
+-- Función principal para lanzar errores genéricos
+CREATE FUNCTION ThrowError(INOUT pEnvironment REFERENCE, IN errorType CHARACTER, IN errorMessage CHARACTER) RETURNS BOOLEAN
+BEGIN
+    -- Configurar información de error en Environment
+    SET pEnvironment.Error.Type = errorType;
+    SET pEnvironment.Error.Message = errorMessage;
+    
+    -- Lanzar excepción para que sea capturada por el manejador de errores
+    THROW USER EXCEPTION MESSAGE 2001 VALUES(errorMessage);
+    
+    RETURN FALSE;
+END;
+
+-- Funciones específicas para errores comunes (4xx)
+CREATE FUNCTION ThrowBadRequest(INOUT pEnvironment REFERENCE, IN message CHARACTER) RETURNS BOOLEAN
+BEGIN
+    RETURN ThrowError(pEnvironment, 'ValidationError', message);
+END;
+
+CREATE FUNCTION ThrowNotFound(INOUT pEnvironment REFERENCE, IN message CHARACTER) RETURNS BOOLEAN
+BEGIN
+    RETURN ThrowError(pEnvironment, 'NotFoundError', message);
+END;
+
+-- Funciones específicas para errores de servidor (5xx)
+CREATE FUNCTION ThrowInternalError(INOUT pEnvironment REFERENCE, IN message CHARACTER) RETURNS BOOLEAN
+BEGIN
+    RETURN ThrowError(pEnvironment, 'InternalError', message);
+END;
+
+CREATE FUNCTION ThrowServiceUnavailable(INOUT pEnvironment REFERENCE, IN message CHARACTER) RETURNS BOOLEAN
+BEGIN
+    RETURN ThrowError(pEnvironment, 'ServiceUnavailableError', message);
+END;
+
+CREATE FUNCTION ThrowGatewayTimeout(INOUT pEnvironment REFERENCE, IN message CHARACTER) RETURNS BOOLEAN
+BEGIN
+    RETURN ThrowError(pEnvironment, 'TimeoutError', message);
+END;
+
+CREATE FUNCTION ThrowBadGateway(INOUT pEnvironment REFERENCE, IN message CHARACTER) RETURNS BOOLEAN
+BEGIN
+    RETURN ThrowError(pEnvironment, 'SOAPError', message);
+END;
