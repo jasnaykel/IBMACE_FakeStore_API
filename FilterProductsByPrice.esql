@@ -30,6 +30,8 @@ CREATE COMPUTE MODULE TransformSOAPtoJSON
 			CALL ProcessCountryInfo();
 		WHEN 'listCountries' THEN
 			CALL ProcessListCountries();
+        WHEN 'currencyInfo' THEN
+			CALL ProcessCurrencyInfo();
 		ELSE
 			SET OutputRoot.JSON.Data.error.message = 'Tipo de solicitud no soportado: ' || requestType;
 		END CASE;
@@ -210,4 +212,34 @@ CREATE COMPUTE MODULE TransformSOAPtoJSON
 		-- Establecer el contador de países
 		SET OutputRoot.JSON.Data.countries.count = countryCount;
 	END;
+    CREATE PROCEDURE ProcessCurrencyInfo() BEGIN
+		-- Definir espacios de nombres
+		DECLARE ns NAMESPACE 'http://www.oorsprong.org/websamples.countryinfo';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+		
+		-- Extraer información de moneda de la respuesta SOAP
+		IF EXISTS(InputRoot.SOAP.Body.ns:CurrencyNameResponse.ns:CurrencyNameResult[]) THEN
+			-- Extraer el nombre de la moneda
+			SET OutputRoot.JSON.Data.currencyData.code = Environment.CurrencyCode;
+			SET OutputRoot.JSON.Data.currencyData.name = 
+				CAST(InputRoot.SOAP.Body.ns:CurrencyNameResponse.ns:CurrencyNameResult AS CHARACTER);
+		ELSEIF EXISTS(InputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.ns:CurrencyNameResponse.ns:CurrencyNameResult[]) THEN
+			-- Extraer el nombre de la moneda (estructura alternativa)
+			SET OutputRoot.JSON.Data.currencyData.code = Environment.CurrencyCode;
+			SET OutputRoot.JSON.Data.currencyData.name = 
+				CAST(InputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.ns:CurrencyNameResponse.ns:CurrencyNameResult AS CHARACTER);
+		ELSE
+			-- Si no se encuentra la estructura esperada, proporcionar información de depuración
+			SET OutputRoot.JSON.Data.error.message = 'No se pudo encontrar la información de moneda en la respuesta SOAP';
+			SET OutputRoot.JSON.Data.error.availableDomains = '';
+
+			IF EXISTS(InputRoot.SOAP[]) THEN
+				SET OutputRoot.JSON.Data.error.availableDomains = OutputRoot.JSON.Data.error.availableDomains || ' SOAP';
+			END IF;
+
+			IF EXISTS(InputRoot.XMLNSC[]) THEN
+				SET OutputRoot.JSON.Data.error.availableDomains = OutputRoot.JSON.Data.error.availableDomains || ' XMLNSC';
+			END IF;
+		END IF;
+        END;
 END MODULE;
