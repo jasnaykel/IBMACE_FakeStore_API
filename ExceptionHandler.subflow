@@ -6,21 +6,25 @@
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/App_Service_Hub/icons/full/obj16/ExceptionHandler.gif"/>
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/App_Service_Hub/icons/full/obj30/ExceptionHandler.gif"/>
     <composition>
-      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="526,229" filePath="D:\jasna\Mis cosas\IBM_ACE\ACET12\ACET12\workspace\App_Service_Hub\log_http_prueba.log" pattern="===== EXCEPCIÓN DETECTADA =====&#xD;&#xA;Timestamp: ${CURRENT_TIMESTAMP}&#xD;&#xA;===== DATOS DE EXCEPCIÓN =====&#xD;&#xA;${ExceptionList}">
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="649,229" filePath="D:\jasna\Mis cosas\IBM_ACE\ACET12\ACET12\workspace\App_Service_Hub\log_http_prueba.log" pattern="===== EXCEPCIÓN DETECTADA (SALIDA) =====&#xD;&#xA;Timestamp: ${CURRENT_TIMESTAMP}&#xD;&#xA;ExceptionList: ${ExceptionList}">
         <translation xmi:type="utility:ConstantString" string="Trace"/>
       </nodes>
-      <nodes xmi:type="eflow:FCMSource" xmi:id="InTerminal.Input1" location="46,224">
+      <nodes xmi:type="eflow:FCMSource" xmi:id="InTerminal.Input1" location="5,235">
         <translation xmi:type="utility:TranslatableString" key="InTerminal.Input1" bundleName="ExceptionHandler" pluginId="App_Service_Hub"/>
       </nodes>
-      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output1" location="768,231">
+      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output1" location="928,228">
         <translation xmi:type="utility:TranslatableString" key="OutTerminal.Output1" bundleName="ExceptionHandler" pluginId="App_Service_Hub"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="291,228" computeExpression="esql://routine/#ExceptionHandler_Compute.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="422,230" computeExpression="esql://routine/#ExceptionHandler_Compute.Main" computeMode="destinationAndMessage" treatWarningsAsErrors="true">
         <translation xmi:type="utility:ConstantString" string="Compute"/>
       </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="190,235" filePath="D:\jasna\Mis cosas\IBM_ACE\ACET12\ACET12\workspace\App_Service_Hub\log_http_prueba.log" pattern="===== EXCEPCIÓN DETECTADA (ENTRADA) =====&#xD;&#xA;Timestamp: ${CURRENT_TIMESTAMP}&#xD;&#xA;ExceptionList: ${ExceptionList}">
+        <translation xmi:type="utility:ConstantString" string="Trace1"/>
+      </nodes>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="OutTerminal.Output1" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_2" sourceNode="InTerminal.Input1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_3" sourceNode="InTerminal.Input1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
     </composition>
     <propertyOrganizer/>
     <stickyBoard/>

@@ -1,0 +1,17 @@
+CREATE COMPUTE MODULE InitializeCorrelationId
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- Generar ID de correlación único
+		SET Environment.Variables.correlationId = UUIDASCHAR;
+		
+		-- Copiar el mensaje de entrada a la salida
+		SET OutputRoot = InputRoot;
+		
+		-- Agregar el ID a los encabezados HTTP para seguimiento
+		IF FIELDTYPE(OutputRoot.HTTPInputHeader) IS NOT NULL THEN
+			SET OutputRoot.HTTPInputHeader."X-Correlation-ID" = Environment.Variables.correlationId;
+		END IF;
+		
+		RETURN TRUE;
+	END;
+END MODULE;
