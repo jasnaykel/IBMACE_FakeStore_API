@@ -1,0 +1,57 @@
+CREATE COMPUTE MODULE ExceptionHandler_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+	-- Crear estructura de respuesta de error estándar
+  CREATE LASTCHILD OF OutputRoot DOMAIN('JSON');
+  CREATE LASTCHILD OF OutputRoot.JSON NAME 'Data';
+  
+  -- Información básica del error
+  SET OutputRoot.JSON.Data.error = TRUE;
+  SET OutputRoot.JSON.Data.timestamp = CURRENT_TIMESTAMP;
+  
+  -- Obtener información de la excepción
+  DECLARE exc REFERENCE TO InputExceptionList.*[<];
+  IF LASTMOVE(exc) THEN
+    -- Categorizar el error
+    CASE 
+      WHEN exc.Label = 'TimeoutException' THEN
+        SET OutputRoot.JSON.Data.codigo = '504';
+        SET OutputRoot.JSON.Data.tipo = 'TIMEOUT';
+        SET OutputRoot.JSON.Data.mensaje = 'La operación ha excedido el tiempo máximo de espera';
+      WHEN exc.Label = 'SocketException' OR exc.Label = 'SocketTimeoutException' THEN
+        SET OutputRoot.JSON.Data.codigo = '503';
+        SET OutputRoot.JSON.Data.tipo = 'CONNECTIVITY';
+        SET OutputRoot.JSON.Data.mensaje = 'Error de conectividad con el servicio externo';
+      WHEN exc.Label = 'SOAPException' THEN
+        SET OutputRoot.JSON.Data.codigo = '502';
+        SET OutputRoot.JSON.Data.tipo = 'SOAP_ERROR';
+        SET OutputRoot.JSON.Data.mensaje = 'Error en la invocación del servicio SOAP';
+      ELSE
+        SET OutputRoot.JSON.Data.codigo = '500';
+        SET OutputRoot.JSON.Data.tipo = 'SYSTEM_ERROR';
+        SET OutputRoot.JSON.Data.mensaje = 'Error interno del servidor';
+    END CASE;
+    
+    -- Detalles técnicos
+    SET OutputRoot.JSON.Data.detalles = exc.Text;
+    SET OutputRoot.JSON.Data.inserts = exc.Insert;
+    
+    -- Agregar ID de correlación para trazabilidad
+    IF Environment.Variables.correlationId IS NULL THEN
+      SET Environment.Variables.correlationId = UUIDASCHAR;
+    END IF;
+    SET OutputRoot.JSON.Data.correlationId = Environment.Variables.correlationId;
+  ELSE
+    -- Si no hay excepción específica
+    SET OutputRoot.JSON.Data.codigo = '500';
+    SET OutputRoot.JSON.Data.tipo = 'UNKNOWN_ERROR';
+    SET OutputRoot.JSON.Data.mensaje = 'Error desconocido';
+    SET OutputRoot.JSON.Data.correlationId = UUIDASCHAR;
+  END IF;
+  
+  -- Establecer código HTTP en el encabezado
+  SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = OutputRoot.JSON.Data.codigo;
+  
+  RETURN TRUE;
+	END;
+END MODULE;
