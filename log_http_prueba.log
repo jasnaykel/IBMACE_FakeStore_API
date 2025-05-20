@@ -1,0 +1,3956 @@
+
+-------------------------- IN HTTP------------------------2025-05-06 22:44:50.895113
+------
+CorrelationID: '1014b950-c55e-4308-bace-c83368994e74'
+Environment:
+-------------------
+( ['MQROOT' : 0x2343b31f7f0]
+  (0x01000000:Name):Variables = (
+    (0x03000000:NameValue):correlationId = '1014b950-c55e-4308-bace-c83368994e74' (CHARACTER)
+  )
+)
+-------------------
+-- Root:
+------------------------
+( ['WSRoot' : 0x23642c9dbd0]
+  (0x01000000:Name  ):Properties      = ( ['WSPROPERTYPARSER' : 0x2364327fdc0]
+    (0x03000000:NameValue):MessageSet             = '' (CHARACTER)
+    (0x03000000:NameValue):MessageType            = '' (CHARACTER)
+    (0x03000000:NameValue):MessageFormat          = '' (CHARACTER)
+    (0x03000000:NameValue):Encoding               = 546 (INTEGER)
+    (0x03000000:NameValue):CodedCharSetId         = 1208 (INTEGER)
+    (0x03000000:NameValue):Transactional          = FALSE (BOOLEAN)
+    (0x03000000:NameValue):Persistence            = FALSE (BOOLEAN)
+    (0x03000000:NameValue):CreationTime           = GMTTIMESTAMP '2025-05-06 20:44:50.894001' (GMTTIMESTAMP)
+    (0x03000000:NameValue):ExpirationTime         = -1 (INTEGER)
+    (0x03000000:NameValue):Priority               = 0 (INTEGER)
+    (0x03000000:NameValue):ReplyIdentifier        = X'000000000000000000000000000000000000000000000000' (BLOB)
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = 'application/json' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourcePassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceIssuedBy = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedPassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedIssuedBy = '' (CHARACTER)
+  )
+  (0x01000000:Name  ):HTTPInputHeader = ( ['WSINPHDR' : 0x2343b31f170]
+    (0x03000000:NameValue):Content-Type            = 'application/json' (CHARACTER)
+    (0x03000000:NameValue):User-Agent              = 'PostmanRuntime/7.43.4' (CHARACTER)
+    (0x03000000:NameValue):Accept                  = '*/*' (CHARACTER)
+    (0x03000000:NameValue):Cache-Control           = 'no-cache' (CHARACTER)
+    (0x03000000:NameValue):Postman-Token           = 'c1bf3070-85d8-4ff6-bebb-0eb8d9bffd52' (CHARACTER)
+    (0x03000000:NameValue):Host                    = 'localhost:7080' (CHARACTER)
+    (0x03000000:NameValue):Accept-Encoding         = 'gzip, deflate, br' (CHARACTER)
+    (0x03000000:NameValue):Connection              = 'keep-alive' (CHARACTER)
+    (0x03000000:NameValue):Content-Length          = '89' (CHARACTER)
+    (0x03000000:NameValue):X-Original-HTTP-Command = 'GET http://localhost:7080/path/http_service_hub HTTP/1.1' (CHARACTER)
+    (0x03000000:NameValue):X-Server-Name           = 'localhost' (CHARACTER)
+    (0x03000000:NameValue):X-Server-Port           = '7080' (CHARACTER)
+    (0x03000000:NameValue):X-Remote-Addr           = '127.0.0.1' (CHARACTER)
+    (0x03000000:NameValue):X-Remote-Host           = 'localhost' (CHARACTER)
+    (0x03000000:NameValue):X-Scheme                = 'http' (CHARACTER)
+    (0x03000000:NameValue):X-Correlation-ID        = '1014b950-c55e-4308-bace-c83368994e74' (CHARACTER)
+  )
+  (0x01000000:Object):JSON            = ( ['json' : 0x22fb0645840]
+    (0x01000000:Object):Data = (
+      (0x03000000:NameValue):requestType = 'currencyInfo' (CHARACTER)
+      (0x01000000:Object   ):parameters  = (
+        (0x03000000:NameValue):currencyCode = 'EUR' (CHARACTER)
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x2343b31f7f0]
+  (0x01000000:Name):Variables = (
+    (0x03000000:NameValue):correlationId = '1014b950-c55e-4308-bace-c83368994e74' (CHARACTER)
+  )
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+
+
+------------------------
+-- 
+--------------------------Oupt------------------------2025-05-06 22:44:50.895589
+------CorrelationID: '1014b950-c55e-4308-bace-c83368994e74'
+Environment:
+-------------------
+( ['MQROOT' : 0x2343b31f7f0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = '1014b950-c55e-4308-bace-c83368994e74' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'currencyInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):currencyCode = 'EUR' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'CurrencyName' (CHARACTER)
+  (0x03000000:NameValue):CurrencyCode     = 'EUR' (CHARACTER)
+)
+-------------------
+-- Root:
+------------------------
+( ['WSRoot' : 0x23642fafcd0]
+  (0x01000000:Name  ):Properties = ( ['MQPROPERTYPARSER' : 0x2364394d030]
+    (0x03000000:NameValue):MessageSet             = NULL
+    (0x03000000:NameValue):MessageType            = NULL
+    (0x03000000:NameValue):MessageFormat          = NULL
+    (0x03000000:NameValue):Encoding               = NULL
+    (0x03000000:NameValue):CodedCharSetId         = NULL
+    (0x03000000:NameValue):Transactional          = NULL
+    (0x03000000:NameValue):Persistence            = NULL
+    (0x03000000:NameValue):CreationTime           = NULL
+    (0x03000000:NameValue):ExpirationTime         = NULL
+    (0x03000000:NameValue):Priority               = NULL
+    (0x03000000:NameValue):ReplyIdentifier        = NULL
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = NULL
+    (0x03000000:NameValue):IdentitySourceType     = NULL
+    (0x03000000:NameValue):IdentitySourceToken    = NULL
+    (0x03000000:NameValue):IdentitySourcePassword = NULL
+    (0x03000000:NameValue):IdentitySourceIssuedBy = NULL
+    (0x03000000:NameValue):IdentityMappedType     = NULL
+    (0x03000000:NameValue):IdentityMappedToken    = NULL
+    (0x03000000:NameValue):IdentityMappedPassword = NULL
+    (0x03000000:NameValue):IdentityMappedIssuedBy = NULL
+  )
+  (0x01000000:Folder):XMLNSC     = ( ['xmlnsc' : 0x2343af8df70]
+    (0x01000000:Folder)http://schemas.xmlsoap.org/soap/envelope/:Envelope = (
+      (0x03000102:NamespaceDecl):                                              = NULL
+      (
+        (0x03000000:PCDataField):soapenv = 'http://schemas.xmlsoap.org/soap/envelope/' (CHARACTER)
+        (0x03000000:PCDataField):ns      = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+      )
+      (0x01000000:Folder       )http://schemas.xmlsoap.org/soap/envelope/:Body = (
+        (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:CurrencyName = (
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCurrencyISOCode = 'EUR' (CHARACTER)
+        )
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x2343b31f7f0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = '1014b950-c55e-4308-bace-c83368994e74' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'currencyInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):currencyCode = 'EUR' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'CurrencyName' (CHARACTER)
+  (0x03000000:NameValue):CurrencyCode     = 'EUR' (CHARACTER)
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+( ['MQROOT' : 0x23642faefd0]
+  (0x01000000:Name):Destination = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name     ):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+            (0x03000000:NameValue):Timeout       = 30 (INTEGER)
+          )
+        )
+        (0x03000000:NameValue):Operation = 'CurrencyName' (CHARACTER)
+      )
+    )
+  )
+)
+
+------------------------
+-- 
+--------------------------Oupt response------------------------2025-05-06 22:44:51.275213
+------CorrelationID: '1014b950-c55e-4308-bace-c83368994e74'
+Environment:
+-------------------
+( ['MQROOT' : 0x2343b31f7f0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = '1014b950-c55e-4308-bace-c83368994e74' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'currencyInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):currencyCode = 'EUR' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'CurrencyName' (CHARACTER)
+  (0x03000000:NameValue):CurrencyCode     = 'EUR' (CHARACTER)
+)
+-------------------
+-- Root:
+------------------------
+( ['SOAPRoot' : 0x2364137a360]
+  (0x01000000:Name  ):Properties         = ( ['SOAPPROPERTYPARSER' : 0x236432282a0]
+    (0x03000000:NameValue):MessageSet             = '' (CHARACTER)
+    (0x03000000:NameValue):MessageType            = '' (CHARACTER)
+    (0x03000000:NameValue):MessageFormat          = '' (CHARACTER)
+    (0x03000000:NameValue):Encoding               = 546 (INTEGER)
+    (0x03000000:NameValue):CodedCharSetId         = 1208 (INTEGER)
+    (0x03000000:NameValue):Transactional          = FALSE (BOOLEAN)
+    (0x03000000:NameValue):Persistence            = FALSE (BOOLEAN)
+    (0x03000000:NameValue):CreationTime           = GMTTIMESTAMP '2025-05-06 20:44:50.895' (GMTTIMESTAMP)
+    (0x03000000:NameValue):ExpirationTime         = -1 (INTEGER)
+    (0x03000000:NameValue):Priority               = 0 (INTEGER)
+    (0x03000000:NameValue):ReplyIdentifier        = X'000000000000000000000000000000000000000000000000' (BLOB)
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourcePassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceIssuedBy = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedPassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedIssuedBy = '' (CHARACTER)
+  )
+  (0x01000000:Name  ):HTTPResponseHeader = ( ['WSRSPHDR' : 0x2343785fb90]
+    (0x03000000:NameValue):X-Original-HTTP-Status-Line = 'HTTP/1.1 200 OK' (CHARACTER)
+    (0x03000000:NameValue):X-Original-HTTP-Status-Code = 200 (INTEGER)
+    (0x03000000:NameValue):Cache-Control               = 'private, max-age=0' (CHARACTER)
+    (0x03000000:NameValue):Content-Type                = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):Server                      = 'Microsoft-IIS/10.0' (CHARACTER)
+    (0x03000000:NameValue):Web-Service                 = 'DataFlex 19.1' (CHARACTER)
+    (0x03000000:NameValue):Date                        = 'Tue, 06 May 2025 19:13:37 GMT' (CHARACTER)
+    (0x03000000:NameValue):Content-Length              = '335' (CHARACTER)
+  )
+  (0x01000000:Folder):SOAP               = ( ['SOAP' : 0x2343bc5bfa0]
+    (0x01000000:Folder):Context = ( ['xmlnsc' : 0x2343af8d170]
+      (0x03000100:Attribute  ):operation         = 'CurrencyName' (CHARACTER)
+      (0x03000100:Attribute  ):operationType     = 'REQUEST_RESPONSE' (CHARACTER)
+      (0x03000100:Attribute  ):portType          = 'CountryInfoServiceSoapType' (CHARACTER)
+      (0x03000100:Attribute  ):portTypeNamespace = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+      (0x03000100:Attribute  ):port              = 'CountryInfoServiceSoap' (CHARACTER)
+      (0x03000100:Attribute  ):service           = 'CountryInfoService' (CHARACTER)
+      (0x03000100:Attribute  ):fileName          = 'CountryInfoService.wsdl' (CHARACTER)
+      (0x03000000:PCDataField):SOAP_Version      = '1.1' (CHARACTER)
+      (0x01000000:Folder     ):Namespace         = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:soap = 'http://schemas.xmlsoap.org/soap/envelope/' (CHARACTER)
+      )
+      (0x01000000:Folder     ):_XmlDeclaration   = (
+        (0x03000100:Attribute):Version  = '1.0' (CHARACTER)
+        (0x03000100:Attribute):Encoding = 'utf-8' (CHARACTER)
+      )
+    )
+    (0x01000000:Folder):Header  = 
+    (0x01000000:Folder):Body    = ( ['xmlnsc' : 0x2343af8d170]
+      (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:CurrencyNameResponse = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:m                                    = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+        (0x03000000:PCDataField  )http://www.oorsprong.org/websamples.countryinfo:CurrencyNameResult = 'Euro' (CHARACTER)
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x2343b31f7f0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = '1014b950-c55e-4308-bace-c83368994e74' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'currencyInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):currencyCode = 'EUR' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'CurrencyName' (CHARACTER)
+  (0x03000000:NameValue):CurrencyCode     = 'EUR' (CHARACTER)
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+( ['MQROOT' : 0x23642faefd0]
+  (0x01000000:Name):Destination        = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name     ):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+            (0x03000000:NameValue):Timeout       = 30 (INTEGER)
+          )
+        )
+        (0x03000000:NameValue):Operation = 'CurrencyName' (CHARACTER)
+      )
+    )
+  )
+  (0x01000000:Name):WrittenDestination = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+          )
+        )
+      )
+    )
+  )
+)
+
+------------------------
+-- 
+-------------------------- SOAP RESPONSE ------------------------2025-05-06 22:44:51.275970
+------
+Environment:
+-------------------
+( ['MQROOT' : 0x2343b31f7f0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = '1014b950-c55e-4308-bace-c83368994e74' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'currencyInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):currencyCode = 'EUR' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'CurrencyName' (CHARACTER)
+  (0x03000000:NameValue):CurrencyCode     = 'EUR' (CHARACTER)
+)
+-------------------
+-- Root:
+------------------------
+( ['SOAPRoot' : 0x2364137a360]
+  (0x01000000:Name  ):Properties         = ( ['SOAPPROPERTYPARSER' : 0x236432282a0]
+    (0x03000000:NameValue):MessageSet             = '' (CHARACTER)
+    (0x03000000:NameValue):MessageType            = '' (CHARACTER)
+    (0x03000000:NameValue):MessageFormat          = '' (CHARACTER)
+    (0x03000000:NameValue):Encoding               = 546 (INTEGER)
+    (0x03000000:NameValue):CodedCharSetId         = 1208 (INTEGER)
+    (0x03000000:NameValue):Transactional          = FALSE (BOOLEAN)
+    (0x03000000:NameValue):Persistence            = FALSE (BOOLEAN)
+    (0x03000000:NameValue):CreationTime           = GMTTIMESTAMP '2025-05-06 20:44:50.895' (GMTTIMESTAMP)
+    (0x03000000:NameValue):ExpirationTime         = -1 (INTEGER)
+    (0x03000000:NameValue):Priority               = 0 (INTEGER)
+    (0x03000000:NameValue):ReplyIdentifier        = X'000000000000000000000000000000000000000000000000' (BLOB)
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourcePassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceIssuedBy = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedPassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedIssuedBy = '' (CHARACTER)
+  )
+  (0x01000000:Name  ):HTTPResponseHeader = ( ['WSRSPHDR' : 0x2343785fb90]
+    (0x03000000:NameValue):X-Original-HTTP-Status-Line = 'HTTP/1.1 200 OK' (CHARACTER)
+    (0x03000000:NameValue):X-Original-HTTP-Status-Code = 200 (INTEGER)
+    (0x03000000:NameValue):Cache-Control               = 'private, max-age=0' (CHARACTER)
+    (0x03000000:NameValue):Content-Type                = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):Server                      = 'Microsoft-IIS/10.0' (CHARACTER)
+    (0x03000000:NameValue):Web-Service                 = 'DataFlex 19.1' (CHARACTER)
+    (0x03000000:NameValue):Date                        = 'Tue, 06 May 2025 19:13:37 GMT' (CHARACTER)
+    (0x03000000:NameValue):Content-Length              = '335' (CHARACTER)
+  )
+  (0x01000000:Folder):SOAP               = ( ['SOAP' : 0x2343bc5bfa0]
+    (0x01000000:Folder):Context = ( ['xmlnsc' : 0x2343af8d170]
+      (0x03000100:Attribute  ):operation         = 'CurrencyName' (CHARACTER)
+      (0x03000100:Attribute  ):operationType     = 'REQUEST_RESPONSE' (CHARACTER)
+      (0x03000100:Attribute  ):portType          = 'CountryInfoServiceSoapType' (CHARACTER)
+      (0x03000100:Attribute  ):portTypeNamespace = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+      (0x03000100:Attribute  ):port              = 'CountryInfoServiceSoap' (CHARACTER)
+      (0x03000100:Attribute  ):service           = 'CountryInfoService' (CHARACTER)
+      (0x03000100:Attribute  ):fileName          = 'CountryInfoService.wsdl' (CHARACTER)
+      (0x03000000:PCDataField):SOAP_Version      = '1.1' (CHARACTER)
+      (0x01000000:Folder     ):Namespace         = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:soap = 'http://schemas.xmlsoap.org/soap/envelope/' (CHARACTER)
+      )
+      (0x01000000:Folder     ):_XmlDeclaration   = (
+        (0x03000100:Attribute):Version  = '1.0' (CHARACTER)
+        (0x03000100:Attribute):Encoding = 'utf-8' (CHARACTER)
+      )
+    )
+    (0x01000000:Folder):Header  = 
+    (0x01000000:Folder):Body    = ( ['xmlnsc' : 0x2343af8d170]
+      (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:CurrencyNameResponse = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:m                                    = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+        (0x03000000:PCDataField  )http://www.oorsprong.org/websamples.countryinfo:CurrencyNameResult = 'Euro' (CHARACTER)
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x2343b31f7f0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = '1014b950-c55e-4308-bace-c83368994e74' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'currencyInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):currencyCode = 'EUR' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'CurrencyName' (CHARACTER)
+  (0x03000000:NameValue):CurrencyCode     = 'EUR' (CHARACTER)
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+( ['MQROOT' : 0x23642faefd0]
+  (0x01000000:Name):Destination        = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name     ):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+            (0x03000000:NameValue):Timeout       = 30 (INTEGER)
+          )
+        )
+        (0x03000000:NameValue):Operation = 'CurrencyName' (CHARACTER)
+      )
+    )
+  )
+  (0x01000000:Name):WrittenDestination = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+          )
+        )
+      )
+    )
+  )
+)
+
+------------------------
+-- 
+--------------------------oupt reply------------------------2025-05-06 22:44:51.276342
+------CorrelationID: '1014b950-c55e-4308-bace-c83368994e74'
+Environment:
+-------------------
+( ['MQROOT' : 0x2343b31f7f0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = '1014b950-c55e-4308-bace-c83368994e74' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'currencyInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):currencyCode = 'EUR' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'CurrencyName' (CHARACTER)
+  (0x03000000:NameValue):CurrencyCode     = 'EUR' (CHARACTER)
+)
+-------------------
+-- Root:
+------------------------
+( ['SOAPRoot' : 0x2364137a6a0]
+  (0x01000000:Name  ):Properties = ( ['MQPROPERTYPARSER' : 0x23641f40f10]
+    (0x03000000:NameValue):MessageSet             = NULL
+    (0x03000000:NameValue):MessageType            = NULL
+    (0x03000000:NameValue):MessageFormat          = NULL
+    (0x03000000:NameValue):Encoding               = NULL
+    (0x03000000:NameValue):CodedCharSetId         = NULL
+    (0x03000000:NameValue):Transactional          = NULL
+    (0x03000000:NameValue):Persistence            = NULL
+    (0x03000000:NameValue):CreationTime           = NULL
+    (0x03000000:NameValue):ExpirationTime         = NULL
+    (0x03000000:NameValue):Priority               = NULL
+    (0x03000000:NameValue):ReplyIdentifier        = NULL
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = NULL
+    (0x03000000:NameValue):IdentitySourceType     = NULL
+    (0x03000000:NameValue):IdentitySourceToken    = NULL
+    (0x03000000:NameValue):IdentitySourcePassword = NULL
+    (0x03000000:NameValue):IdentitySourceIssuedBy = NULL
+    (0x03000000:NameValue):IdentityMappedType     = NULL
+    (0x03000000:NameValue):IdentityMappedToken    = NULL
+    (0x03000000:NameValue):IdentityMappedPassword = NULL
+    (0x03000000:NameValue):IdentityMappedIssuedBy = NULL
+  )
+  (0x01000000:Object):JSON       = ( ['json' : 0x22fb0647d60]
+    (0x01000000:Object):Data = (
+      (0x01000000:Object):responseInfo = (
+        (0x03000000:NameValue):status    = 'success' (CHARACTER)
+        (0x03000000:NameValue):timestamp = TIMESTAMP '2025-05-06 22:44:51.276256' (TIMESTAMP)
+      )
+      (0x01000000:Object):currencyData = (
+        (0x03000000:NameValue):code = 'EUR' (CHARACTER)
+        (0x03000000:NameValue):name = 'Euro' (CHARACTER)
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x2343b31f7f0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = '1014b950-c55e-4308-bace-c83368994e74' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'currencyInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):currencyCode = 'EUR' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'CurrencyName' (CHARACTER)
+  (0x03000000:NameValue):CurrencyCode     = 'EUR' (CHARACTER)
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+( ['MQROOT' : 0x2364137ad20]
+  (0x01000000:Name):Destination = (
+    (0x01000000:Name):HTTP = (
+      (0x03000000:NameValue):ReplyStatusCode = 200 (INTEGER)
+    )
+  )
+)
+
+------------------------
+-- 
+-------------------------- IN HTTP------------------------2025-05-19 17:50:12.718881
+------
+CorrelationID: 'bcd18c32-4117-4069-a979-515774bf339d'
+Environment:
+-------------------
+( ['MQROOT' : 0x2343b31d4a0]
+  (0x01000000:Name):Variables = (
+    (0x03000000:NameValue):correlationId = 'bcd18c32-4117-4069-a979-515774bf339d' (CHARACTER)
+  )
+)
+-------------------
+-- Root:
+------------------------
+( ['WSRoot' : 0x23437000080]
+  (0x01000000:Name  ):Properties      = ( ['WSPROPERTYPARSER' : 0x23644576070]
+    (0x03000000:NameValue):MessageSet             = '' (CHARACTER)
+    (0x03000000:NameValue):MessageType            = '' (CHARACTER)
+    (0x03000000:NameValue):MessageFormat          = '' (CHARACTER)
+    (0x03000000:NameValue):Encoding               = 546 (INTEGER)
+    (0x03000000:NameValue):CodedCharSetId         = 1208 (INTEGER)
+    (0x03000000:NameValue):Transactional          = FALSE (BOOLEAN)
+    (0x03000000:NameValue):Persistence            = FALSE (BOOLEAN)
+    (0x03000000:NameValue):CreationTime           = GMTTIMESTAMP '2025-05-19 15:50:12.631' (GMTTIMESTAMP)
+    (0x03000000:NameValue):ExpirationTime         = -1 (INTEGER)
+    (0x03000000:NameValue):Priority               = 0 (INTEGER)
+    (0x03000000:NameValue):ReplyIdentifier        = X'000000000000000000000000000000000000000000000000' (BLOB)
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = 'application/json' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourcePassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceIssuedBy = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedPassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedIssuedBy = '' (CHARACTER)
+  )
+  (0x01000000:Name  ):HTTPInputHeader = ( ['WSINPHDR' : 0x2343b31e1a0]
+    (0x03000000:NameValue):Content-Type            = 'application/json' (CHARACTER)
+    (0x03000000:NameValue):User-Agent              = 'PostmanRuntime/7.43.4' (CHARACTER)
+    (0x03000000:NameValue):Accept                  = '*/*' (CHARACTER)
+    (0x03000000:NameValue):Cache-Control           = 'no-cache' (CHARACTER)
+    (0x03000000:NameValue):Postman-Token           = 'd617271e-acf9-4b63-bf44-e0d77fd998a1' (CHARACTER)
+    (0x03000000:NameValue):Host                    = 'localhost:7080' (CHARACTER)
+    (0x03000000:NameValue):Accept-Encoding         = 'gzip, deflate, br' (CHARACTER)
+    (0x03000000:NameValue):Connection              = 'keep-alive' (CHARACTER)
+    (0x03000000:NameValue):Content-Length          = '89' (CHARACTER)
+    (0x03000000:NameValue):X-Original-HTTP-Command = 'GET http://localhost:7080/path/http_service_hub HTTP/1.1' (CHARACTER)
+    (0x03000000:NameValue):X-Server-Name           = 'localhost' (CHARACTER)
+    (0x03000000:NameValue):X-Server-Port           = '7080' (CHARACTER)
+    (0x03000000:NameValue):X-Remote-Addr           = '127.0.0.1' (CHARACTER)
+    (0x03000000:NameValue):X-Remote-Host           = 'localhost' (CHARACTER)
+    (0x03000000:NameValue):X-Scheme                = 'http' (CHARACTER)
+    (0x03000000:NameValue):X-Correlation-ID        = 'bcd18c32-4117-4069-a979-515774bf339d' (CHARACTER)
+  )
+  (0x01000000:Object):JSON            = ( ['json' : 0x22fb0647a00]
+    (0x01000000:Object):Data = (
+      (0x03000000:NameValue):requestType = 'currencyInfo' (CHARACTER)
+      (0x01000000:Object   ):parameters  = (
+        (0x03000000:NameValue):currencyCode = 'EUR' (CHARACTER)
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x2343b31d4a0]
+  (0x01000000:Name):Variables = (
+    (0x03000000:NameValue):correlationId = 'bcd18c32-4117-4069-a979-515774bf339d' (CHARACTER)
+  )
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+
+
+------------------------
+-- 
+--------------------------Oupt------------------------2025-05-19 17:50:12.743146
+------CorrelationID: 'bcd18c32-4117-4069-a979-515774bf339d'
+Environment:
+-------------------
+( ['MQROOT' : 0x2343b31d4a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = 'bcd18c32-4117-4069-a979-515774bf339d' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'currencyInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):currencyCode = 'EUR' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'CurrencyName' (CHARACTER)
+  (0x03000000:NameValue):CurrencyCode     = 'EUR' (CHARACTER)
+)
+-------------------
+-- Root:
+------------------------
+( ['WSRoot' : 0x236437e8110]
+  (0x01000000:Name  ):Properties = ( ['MQPROPERTYPARSER' : 0x23642f72810]
+    (0x03000000:NameValue):MessageSet             = NULL
+    (0x03000000:NameValue):MessageType            = NULL
+    (0x03000000:NameValue):MessageFormat          = NULL
+    (0x03000000:NameValue):Encoding               = NULL
+    (0x03000000:NameValue):CodedCharSetId         = NULL
+    (0x03000000:NameValue):Transactional          = NULL
+    (0x03000000:NameValue):Persistence            = NULL
+    (0x03000000:NameValue):CreationTime           = NULL
+    (0x03000000:NameValue):ExpirationTime         = NULL
+    (0x03000000:NameValue):Priority               = NULL
+    (0x03000000:NameValue):ReplyIdentifier        = NULL
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = NULL
+    (0x03000000:NameValue):IdentitySourceType     = NULL
+    (0x03000000:NameValue):IdentitySourceToken    = NULL
+    (0x03000000:NameValue):IdentitySourcePassword = NULL
+    (0x03000000:NameValue):IdentitySourceIssuedBy = NULL
+    (0x03000000:NameValue):IdentityMappedType     = NULL
+    (0x03000000:NameValue):IdentityMappedToken    = NULL
+    (0x03000000:NameValue):IdentityMappedPassword = NULL
+    (0x03000000:NameValue):IdentityMappedIssuedBy = NULL
+  )
+  (0x01000000:Folder):XMLNSC     = ( ['xmlnsc' : 0x2343af8df70]
+    (0x01000000:Folder)http://schemas.xmlsoap.org/soap/envelope/:Envelope = (
+      (0x03000102:NamespaceDecl):                                              = NULL
+      (
+        (0x03000000:PCDataField):soapenv = 'http://schemas.xmlsoap.org/soap/envelope/' (CHARACTER)
+        (0x03000000:PCDataField):ns      = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+      )
+      (0x01000000:Folder       )http://schemas.xmlsoap.org/soap/envelope/:Body = (
+        (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:CurrencyName = (
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCurrencyISOCode = 'EUR' (CHARACTER)
+        )
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x2343b31d4a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = 'bcd18c32-4117-4069-a979-515774bf339d' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'currencyInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):currencyCode = 'EUR' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'CurrencyName' (CHARACTER)
+  (0x03000000:NameValue):CurrencyCode     = 'EUR' (CHARACTER)
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+( ['MQROOT' : 0x236437e8ad0]
+  (0x01000000:Name):Destination = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name     ):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+            (0x03000000:NameValue):Timeout       = 30 (INTEGER)
+          )
+        )
+        (0x03000000:NameValue):Operation = 'CurrencyName' (CHARACTER)
+      )
+    )
+  )
+)
+
+------------------------
+-- 
+--------------------------Oupt response------------------------2025-05-19 17:50:13.423730
+------CorrelationID: 'bcd18c32-4117-4069-a979-515774bf339d'
+Environment:
+-------------------
+( ['MQROOT' : 0x2343b31d4a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = 'bcd18c32-4117-4069-a979-515774bf339d' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'currencyInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):currencyCode = 'EUR' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'CurrencyName' (CHARACTER)
+  (0x03000000:NameValue):CurrencyCode     = 'EUR' (CHARACTER)
+)
+-------------------
+-- Root:
+------------------------
+( ['SOAPRoot' : 0x2343bbb6360]
+  (0x01000000:Name  ):Properties         = ( ['SOAPPROPERTYPARSER' : 0x2343aee1f80]
+    (0x03000000:NameValue):MessageSet             = '' (CHARACTER)
+    (0x03000000:NameValue):MessageType            = '' (CHARACTER)
+    (0x03000000:NameValue):MessageFormat          = '' (CHARACTER)
+    (0x03000000:NameValue):Encoding               = 546 (INTEGER)
+    (0x03000000:NameValue):CodedCharSetId         = 1208 (INTEGER)
+    (0x03000000:NameValue):Transactional          = FALSE (BOOLEAN)
+    (0x03000000:NameValue):Persistence            = FALSE (BOOLEAN)
+    (0x03000000:NameValue):CreationTime           = GMTTIMESTAMP '2025-05-19 15:50:12.749' (GMTTIMESTAMP)
+    (0x03000000:NameValue):ExpirationTime         = -1 (INTEGER)
+    (0x03000000:NameValue):Priority               = 0 (INTEGER)
+    (0x03000000:NameValue):ReplyIdentifier        = X'000000000000000000000000000000000000000000000000' (BLOB)
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourcePassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceIssuedBy = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedPassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedIssuedBy = '' (CHARACTER)
+  )
+  (0x01000000:Name  ):HTTPResponseHeader = ( ['WSRSPHDR' : 0x23437099470]
+    (0x03000000:NameValue):X-Original-HTTP-Status-Line = 'HTTP/1.1 200 OK' (CHARACTER)
+    (0x03000000:NameValue):X-Original-HTTP-Status-Code = 200 (INTEGER)
+    (0x03000000:NameValue):Cache-Control               = 'private, max-age=0' (CHARACTER)
+    (0x03000000:NameValue):Content-Type                = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):Server                      = 'Microsoft-IIS/10.0' (CHARACTER)
+    (0x03000000:NameValue):Web-Service                 = 'DataFlex 19.1' (CHARACTER)
+    (0x03000000:NameValue):Date                        = 'Mon, 19 May 2025 14:18:08 GMT' (CHARACTER)
+    (0x03000000:NameValue):Content-Length              = '335' (CHARACTER)
+  )
+  (0x01000000:Folder):SOAP               = ( ['SOAP' : 0x234359a7e40]
+    (0x01000000:Folder):Context = ( ['xmlnsc' : 0x2343af8d170]
+      (0x03000100:Attribute  ):operation         = 'CurrencyName' (CHARACTER)
+      (0x03000100:Attribute  ):operationType     = 'REQUEST_RESPONSE' (CHARACTER)
+      (0x03000100:Attribute  ):portType          = 'CountryInfoServiceSoapType' (CHARACTER)
+      (0x03000100:Attribute  ):portTypeNamespace = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+      (0x03000100:Attribute  ):port              = 'CountryInfoServiceSoap' (CHARACTER)
+      (0x03000100:Attribute  ):service           = 'CountryInfoService' (CHARACTER)
+      (0x03000100:Attribute  ):fileName          = 'CountryInfoService.wsdl' (CHARACTER)
+      (0x03000000:PCDataField):SOAP_Version      = '1.1' (CHARACTER)
+      (0x01000000:Folder     ):Namespace         = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:soap = 'http://schemas.xmlsoap.org/soap/envelope/' (CHARACTER)
+      )
+      (0x01000000:Folder     ):_XmlDeclaration   = (
+        (0x03000100:Attribute):Version  = '1.0' (CHARACTER)
+        (0x03000100:Attribute):Encoding = 'utf-8' (CHARACTER)
+      )
+    )
+    (0x01000000:Folder):Header  = 
+    (0x01000000:Folder):Body    = ( ['xmlnsc' : 0x2343af8d170]
+      (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:CurrencyNameResponse = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:m                                    = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+        (0x03000000:PCDataField  )http://www.oorsprong.org/websamples.countryinfo:CurrencyNameResult = 'Euro' (CHARACTER)
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x2343b31d4a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = 'bcd18c32-4117-4069-a979-515774bf339d' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'currencyInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):currencyCode = 'EUR' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'CurrencyName' (CHARACTER)
+  (0x03000000:NameValue):CurrencyCode     = 'EUR' (CHARACTER)
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+( ['MQROOT' : 0x236437e8ad0]
+  (0x01000000:Name):Destination        = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name     ):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+            (0x03000000:NameValue):Timeout       = 30 (INTEGER)
+          )
+        )
+        (0x03000000:NameValue):Operation = 'CurrencyName' (CHARACTER)
+      )
+    )
+  )
+  (0x01000000:Name):WrittenDestination = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+          )
+        )
+      )
+    )
+  )
+)
+
+------------------------
+-- 
+-------------------------- SOAP RESPONSE ------------------------2025-05-19 17:50:13.465848
+------
+Environment:
+-------------------
+( ['MQROOT' : 0x2343b31d4a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = 'bcd18c32-4117-4069-a979-515774bf339d' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'currencyInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):currencyCode = 'EUR' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'CurrencyName' (CHARACTER)
+  (0x03000000:NameValue):CurrencyCode     = 'EUR' (CHARACTER)
+)
+-------------------
+-- Root:
+------------------------
+( ['SOAPRoot' : 0x2343bbb6360]
+  (0x01000000:Name  ):Properties         = ( ['SOAPPROPERTYPARSER' : 0x2343aee1f80]
+    (0x03000000:NameValue):MessageSet             = '' (CHARACTER)
+    (0x03000000:NameValue):MessageType            = '' (CHARACTER)
+    (0x03000000:NameValue):MessageFormat          = '' (CHARACTER)
+    (0x03000000:NameValue):Encoding               = 546 (INTEGER)
+    (0x03000000:NameValue):CodedCharSetId         = 1208 (INTEGER)
+    (0x03000000:NameValue):Transactional          = FALSE (BOOLEAN)
+    (0x03000000:NameValue):Persistence            = FALSE (BOOLEAN)
+    (0x03000000:NameValue):CreationTime           = GMTTIMESTAMP '2025-05-19 15:50:12.749' (GMTTIMESTAMP)
+    (0x03000000:NameValue):ExpirationTime         = -1 (INTEGER)
+    (0x03000000:NameValue):Priority               = 0 (INTEGER)
+    (0x03000000:NameValue):ReplyIdentifier        = X'000000000000000000000000000000000000000000000000' (BLOB)
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourcePassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceIssuedBy = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedPassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedIssuedBy = '' (CHARACTER)
+  )
+  (0x01000000:Name  ):HTTPResponseHeader = ( ['WSRSPHDR' : 0x23437099470]
+    (0x03000000:NameValue):X-Original-HTTP-Status-Line = 'HTTP/1.1 200 OK' (CHARACTER)
+    (0x03000000:NameValue):X-Original-HTTP-Status-Code = 200 (INTEGER)
+    (0x03000000:NameValue):Cache-Control               = 'private, max-age=0' (CHARACTER)
+    (0x03000000:NameValue):Content-Type                = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):Server                      = 'Microsoft-IIS/10.0' (CHARACTER)
+    (0x03000000:NameValue):Web-Service                 = 'DataFlex 19.1' (CHARACTER)
+    (0x03000000:NameValue):Date                        = 'Mon, 19 May 2025 14:18:08 GMT' (CHARACTER)
+    (0x03000000:NameValue):Content-Length              = '335' (CHARACTER)
+  )
+  (0x01000000:Folder):SOAP               = ( ['SOAP' : 0x234359a7e40]
+    (0x01000000:Folder):Context = ( ['xmlnsc' : 0x2343af8d170]
+      (0x03000100:Attribute  ):operation         = 'CurrencyName' (CHARACTER)
+      (0x03000100:Attribute  ):operationType     = 'REQUEST_RESPONSE' (CHARACTER)
+      (0x03000100:Attribute  ):portType          = 'CountryInfoServiceSoapType' (CHARACTER)
+      (0x03000100:Attribute  ):portTypeNamespace = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+      (0x03000100:Attribute  ):port              = 'CountryInfoServiceSoap' (CHARACTER)
+      (0x03000100:Attribute  ):service           = 'CountryInfoService' (CHARACTER)
+      (0x03000100:Attribute  ):fileName          = 'CountryInfoService.wsdl' (CHARACTER)
+      (0x03000000:PCDataField):SOAP_Version      = '1.1' (CHARACTER)
+      (0x01000000:Folder     ):Namespace         = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:soap = 'http://schemas.xmlsoap.org/soap/envelope/' (CHARACTER)
+      )
+      (0x01000000:Folder     ):_XmlDeclaration   = (
+        (0x03000100:Attribute):Version  = '1.0' (CHARACTER)
+        (0x03000100:Attribute):Encoding = 'utf-8' (CHARACTER)
+      )
+    )
+    (0x01000000:Folder):Header  = 
+    (0x01000000:Folder):Body    = ( ['xmlnsc' : 0x2343af8d170]
+      (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:CurrencyNameResponse = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:m                                    = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+        (0x03000000:PCDataField  )http://www.oorsprong.org/websamples.countryinfo:CurrencyNameResult = 'Euro' (CHARACTER)
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x2343b31d4a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = 'bcd18c32-4117-4069-a979-515774bf339d' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'currencyInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):currencyCode = 'EUR' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'CurrencyName' (CHARACTER)
+  (0x03000000:NameValue):CurrencyCode     = 'EUR' (CHARACTER)
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+( ['MQROOT' : 0x236437e8ad0]
+  (0x01000000:Name):Destination        = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name     ):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+            (0x03000000:NameValue):Timeout       = 30 (INTEGER)
+          )
+        )
+        (0x03000000:NameValue):Operation = 'CurrencyName' (CHARACTER)
+      )
+    )
+  )
+  (0x01000000:Name):WrittenDestination = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+          )
+        )
+      )
+    )
+  )
+)
+
+------------------------
+-- 
+--------------------------oupt reply------------------------2025-05-19 17:50:13.468180
+------CorrelationID: 'bcd18c32-4117-4069-a979-515774bf339d'
+Environment:
+-------------------
+( ['MQROOT' : 0x2343b31d4a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = 'bcd18c32-4117-4069-a979-515774bf339d' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'currencyInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):currencyCode = 'EUR' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'CurrencyName' (CHARACTER)
+  (0x03000000:NameValue):CurrencyCode     = 'EUR' (CHARACTER)
+)
+-------------------
+-- Root:
+------------------------
+( ['SOAPRoot' : 0x2343bbb6d20]
+  (0x01000000:Name  ):Properties = ( ['MQPROPERTYPARSER' : 0x236437a5050]
+    (0x03000000:NameValue):MessageSet             = NULL
+    (0x03000000:NameValue):MessageType            = NULL
+    (0x03000000:NameValue):MessageFormat          = NULL
+    (0x03000000:NameValue):Encoding               = NULL
+    (0x03000000:NameValue):CodedCharSetId         = NULL
+    (0x03000000:NameValue):Transactional          = NULL
+    (0x03000000:NameValue):Persistence            = NULL
+    (0x03000000:NameValue):CreationTime           = NULL
+    (0x03000000:NameValue):ExpirationTime         = NULL
+    (0x03000000:NameValue):Priority               = NULL
+    (0x03000000:NameValue):ReplyIdentifier        = NULL
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = NULL
+    (0x03000000:NameValue):IdentitySourceType     = NULL
+    (0x03000000:NameValue):IdentitySourceToken    = NULL
+    (0x03000000:NameValue):IdentitySourcePassword = NULL
+    (0x03000000:NameValue):IdentitySourceIssuedBy = NULL
+    (0x03000000:NameValue):IdentityMappedType     = NULL
+    (0x03000000:NameValue):IdentityMappedToken    = NULL
+    (0x03000000:NameValue):IdentityMappedPassword = NULL
+    (0x03000000:NameValue):IdentityMappedIssuedBy = NULL
+  )
+  (0x01000000:Object):JSON       = ( ['json' : 0x22fb06465c0]
+    (0x01000000:Object):Data = (
+      (0x01000000:Object):responseInfo = (
+        (0x03000000:NameValue):status    = 'success' (CHARACTER)
+        (0x03000000:NameValue):timestamp = TIMESTAMP '2025-05-19 17:50:13.467493' (TIMESTAMP)
+      )
+      (0x01000000:Object):currencyData = (
+        (0x03000000:NameValue):code = 'EUR' (CHARACTER)
+        (0x03000000:NameValue):name = 'Euro' (CHARACTER)
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x2343b31d4a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = 'bcd18c32-4117-4069-a979-515774bf339d' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'currencyInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):currencyCode = 'EUR' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'CurrencyName' (CHARACTER)
+  (0x03000000:NameValue):CurrencyCode     = 'EUR' (CHARACTER)
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+( ['MQROOT' : 0x2343bbb66a0]
+  (0x01000000:Name):Destination = (
+    (0x01000000:Name):HTTP = (
+      (0x03000000:NameValue):ReplyStatusCode = 200 (INTEGER)
+    )
+  )
+)
+
+------------------------
+-- 
+-------------------------- IN HTTP------------------------2025-05-19 18:00:52.731750
+------
+CorrelationID: 'b493787c-e2aa-47e5-86f5-469a637510d9'
+Environment:
+-------------------
+( ['MQROOT' : 0x2343b31d4a0]
+  (0x01000000:Name):Variables = (
+    (0x03000000:NameValue):correlationId = 'b493787c-e2aa-47e5-86f5-469a637510d9' (CHARACTER)
+  )
+)
+-------------------
+-- Root:
+------------------------
+( ['WSRoot' : 0x23437000080]
+  (0x01000000:Name  ):Properties      = ( ['WSPROPERTYPARSER' : 0x23644576070]
+    (0x03000000:NameValue):MessageSet             = '' (CHARACTER)
+    (0x03000000:NameValue):MessageType            = '' (CHARACTER)
+    (0x03000000:NameValue):MessageFormat          = '' (CHARACTER)
+    (0x03000000:NameValue):Encoding               = 546 (INTEGER)
+    (0x03000000:NameValue):CodedCharSetId         = 1208 (INTEGER)
+    (0x03000000:NameValue):Transactional          = FALSE (BOOLEAN)
+    (0x03000000:NameValue):Persistence            = FALSE (BOOLEAN)
+    (0x03000000:NameValue):CreationTime           = GMTTIMESTAMP '2025-05-19 16:00:52.730999' (GMTTIMESTAMP)
+    (0x03000000:NameValue):ExpirationTime         = -1 (INTEGER)
+    (0x03000000:NameValue):Priority               = 0 (INTEGER)
+    (0x03000000:NameValue):ReplyIdentifier        = X'000000000000000000000000000000000000000000000000' (BLOB)
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = 'application/json' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourcePassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceIssuedBy = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedPassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedIssuedBy = '' (CHARACTER)
+  )
+  (0x01000000:Name  ):HTTPInputHeader = ( ['WSINPHDR' : 0x2343b31e1a0]
+    (0x03000000:NameValue):Content-Type            = 'application/json' (CHARACTER)
+    (0x03000000:NameValue):User-Agent              = 'PostmanRuntime/7.43.4' (CHARACTER)
+    (0x03000000:NameValue):Accept                  = '*/*' (CHARACTER)
+    (0x03000000:NameValue):Cache-Control           = 'no-cache' (CHARACTER)
+    (0x03000000:NameValue):Postman-Token           = '5fe6e706-f8bd-40ab-8170-22f989a5935b' (CHARACTER)
+    (0x03000000:NameValue):Host                    = 'localhost:7080' (CHARACTER)
+    (0x03000000:NameValue):Accept-Encoding         = 'gzip, deflate, br' (CHARACTER)
+    (0x03000000:NameValue):Connection              = 'keep-alive' (CHARACTER)
+    (0x03000000:NameValue):Content-Length          = '44' (CHARACTER)
+    (0x03000000:NameValue):X-Original-HTTP-Command = 'GET http://localhost:7080/path/http_service_hub HTTP/1.1' (CHARACTER)
+    (0x03000000:NameValue):X-Server-Name           = 'localhost' (CHARACTER)
+    (0x03000000:NameValue):X-Server-Port           = '7080' (CHARACTER)
+    (0x03000000:NameValue):X-Remote-Addr           = '127.0.0.1' (CHARACTER)
+    (0x03000000:NameValue):X-Remote-Host           = 'localhost' (CHARACTER)
+    (0x03000000:NameValue):X-Scheme                = 'http' (CHARACTER)
+    (0x03000000:NameValue):X-Correlation-ID        = 'b493787c-e2aa-47e5-86f5-469a637510d9' (CHARACTER)
+  )
+  (0x01000000:Object):JSON            = ( ['json' : 0x22fb0647a00]
+    (0x01000000:Object):Data = (
+      (0x03000000:NameValue):requestType = 'listCountries' (CHARACTER)
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x2343b31d4a0]
+  (0x01000000:Name):Variables = (
+    (0x03000000:NameValue):correlationId = 'b493787c-e2aa-47e5-86f5-469a637510d9' (CHARACTER)
+  )
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+
+
+------------------------
+-- 
+-------------------------- IN HTTP------------------------2025-05-20 23:42:04.716691
+------
+CorrelationID: 'a3467db2-d97a-45cb-ab74-ccb4be8d027c'
+Environment:
+-------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name):Variables = (
+    (0x03000000:NameValue):correlationId = 'a3467db2-d97a-45cb-ab74-ccb4be8d027c' (CHARACTER)
+  )
+)
+-------------------
+-- Root:
+------------------------
+( ['WSRoot' : 0x234358cabd0]
+  (0x01000000:Name  ):Properties      = ( ['WSPROPERTYPARSER' : 0x236434c1190]
+    (0x03000000:NameValue):MessageSet             = '' (CHARACTER)
+    (0x03000000:NameValue):MessageType            = '' (CHARACTER)
+    (0x03000000:NameValue):MessageFormat          = '' (CHARACTER)
+    (0x03000000:NameValue):Encoding               = 546 (INTEGER)
+    (0x03000000:NameValue):CodedCharSetId         = 1208 (INTEGER)
+    (0x03000000:NameValue):Transactional          = FALSE (BOOLEAN)
+    (0x03000000:NameValue):Persistence            = FALSE (BOOLEAN)
+    (0x03000000:NameValue):CreationTime           = GMTTIMESTAMP '2025-05-20 21:42:04.715' (GMTTIMESTAMP)
+    (0x03000000:NameValue):ExpirationTime         = -1 (INTEGER)
+    (0x03000000:NameValue):Priority               = 0 (INTEGER)
+    (0x03000000:NameValue):ReplyIdentifier        = X'000000000000000000000000000000000000000000000000' (BLOB)
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = 'application/json' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourcePassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceIssuedBy = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedPassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedIssuedBy = '' (CHARACTER)
+  )
+  (0x01000000:Name  ):HTTPInputHeader = ( ['WSINPHDR' : 0x23643ad9120]
+    (0x03000000:NameValue):Content-Type            = 'application/json' (CHARACTER)
+    (0x03000000:NameValue):User-Agent              = 'PostmanRuntime/7.43.4' (CHARACTER)
+    (0x03000000:NameValue):Accept                  = '*/*' (CHARACTER)
+    (0x03000000:NameValue):Cache-Control           = 'no-cache' (CHARACTER)
+    (0x03000000:NameValue):Postman-Token           = '40264b16-3eb3-42b2-bff1-c7415c8b3df7' (CHARACTER)
+    (0x03000000:NameValue):Host                    = 'localhost:7080' (CHARACTER)
+    (0x03000000:NameValue):Accept-Encoding         = 'gzip, deflate, br' (CHARACTER)
+    (0x03000000:NameValue):Connection              = 'keep-alive' (CHARACTER)
+    (0x03000000:NameValue):Content-Length          = '85' (CHARACTER)
+    (0x03000000:NameValue):X-Original-HTTP-Command = 'GET http://localhost:7080/path/http_service_hub HTTP/1.1' (CHARACTER)
+    (0x03000000:NameValue):X-Query-String          = 'errorCode=400' (CHARACTER)
+    (0x03000000:NameValue):X-Server-Name           = 'localhost' (CHARACTER)
+    (0x03000000:NameValue):X-Server-Port           = '7080' (CHARACTER)
+    (0x03000000:NameValue):X-Remote-Addr           = '127.0.0.1' (CHARACTER)
+    (0x03000000:NameValue):X-Remote-Host           = 'localhost' (CHARACTER)
+    (0x03000000:NameValue):X-Scheme                = 'http' (CHARACTER)
+    (0x03000000:NameValue):X-Correlation-ID        = 'a3467db2-d97a-45cb-ab74-ccb4be8d027c' (CHARACTER)
+  )
+  (0x01000000:Object):JSON            = ( ['json' : 0x236444a31a0]
+    (0x01000000:Object):Data = (
+      (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+      (0x01000000:Object   ):parameters  = (
+        (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+        (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name):Variables = (
+    (0x03000000:NameValue):correlationId = 'a3467db2-d97a-45cb-ab74-ccb4be8d027c' (CHARACTER)
+  )
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+
+
+------------------------
+-- 
+--------------------------Oupt------------------------2025-05-20 23:42:04.717473
+------CorrelationID: 'a3467db2-d97a-45cb-ab74-ccb4be8d027c'
+Environment:
+-------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = 'a3467db2-d97a-45cb-ab74-ccb4be8d027c' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+      (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'FullCountryInfo' (CHARACTER)
+  (0x03000000:NameValue):CountryCode      = 'US' (CHARACTER)
+)
+-------------------
+-- Root:
+------------------------
+( ['WSRoot' : 0x23643ad7e10]
+  (0x01000000:Name  ):Properties = ( ['MQPROPERTYPARSER' : 0x23644ecb030]
+    (0x03000000:NameValue):MessageSet             = NULL
+    (0x03000000:NameValue):MessageType            = NULL
+    (0x03000000:NameValue):MessageFormat          = NULL
+    (0x03000000:NameValue):Encoding               = NULL
+    (0x03000000:NameValue):CodedCharSetId         = NULL
+    (0x03000000:NameValue):Transactional          = NULL
+    (0x03000000:NameValue):Persistence            = NULL
+    (0x03000000:NameValue):CreationTime           = NULL
+    (0x03000000:NameValue):ExpirationTime         = NULL
+    (0x03000000:NameValue):Priority               = NULL
+    (0x03000000:NameValue):ReplyIdentifier        = NULL
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = NULL
+    (0x03000000:NameValue):IdentitySourceType     = NULL
+    (0x03000000:NameValue):IdentitySourceToken    = NULL
+    (0x03000000:NameValue):IdentitySourcePassword = NULL
+    (0x03000000:NameValue):IdentitySourceIssuedBy = NULL
+    (0x03000000:NameValue):IdentityMappedType     = NULL
+    (0x03000000:NameValue):IdentityMappedToken    = NULL
+    (0x03000000:NameValue):IdentityMappedPassword = NULL
+    (0x03000000:NameValue):IdentityMappedIssuedBy = NULL
+  )
+  (0x01000000:Folder):XMLNSC     = ( ['xmlnsc' : 0x2343af8d170]
+    (0x01000000:Folder)http://schemas.xmlsoap.org/soap/envelope/:Envelope = (
+      (0x03000102:NamespaceDecl):                                              = NULL
+      (
+        (0x03000000:PCDataField):soapenv = 'http://schemas.xmlsoap.org/soap/envelope/' (CHARACTER)
+        (0x03000000:PCDataField):ns      = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+      )
+      (0x01000000:Folder       )http://schemas.xmlsoap.org/soap/envelope/:Body = (
+        (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:FullCountryInfo = (
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCountryISOCode = 'US' (CHARACTER)
+        )
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = 'a3467db2-d97a-45cb-ab74-ccb4be8d027c' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+      (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'FullCountryInfo' (CHARACTER)
+  (0x03000000:NameValue):CountryCode      = 'US' (CHARACTER)
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+( ['MQROOT' : 0x23643ad8150]
+  (0x01000000:Name):Destination = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name     ):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+            (0x03000000:NameValue):Timeout       = 30 (INTEGER)
+          )
+        )
+        (0x03000000:NameValue):Operation = 'FullCountryInfo' (CHARACTER)
+      )
+    )
+  )
+)
+
+------------------------
+-- 
+--------------------------Oupt response------------------------2025-05-20 23:42:05.416805
+------CorrelationID: 'a3467db2-d97a-45cb-ab74-ccb4be8d027c'
+Environment:
+-------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = 'a3467db2-d97a-45cb-ab74-ccb4be8d027c' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+      (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'FullCountryInfo' (CHARACTER)
+  (0x03000000:NameValue):CountryCode      = 'US' (CHARACTER)
+)
+-------------------
+-- Root:
+------------------------
+( ['SOAPRoot' : 0x23641536980]
+  (0x01000000:Name  ):Properties         = ( ['SOAPPROPERTYPARSER' : 0x236434ecaa0]
+    (0x03000000:NameValue):MessageSet             = '' (CHARACTER)
+    (0x03000000:NameValue):MessageType            = '' (CHARACTER)
+    (0x03000000:NameValue):MessageFormat          = '' (CHARACTER)
+    (0x03000000:NameValue):Encoding               = 546 (INTEGER)
+    (0x03000000:NameValue):CodedCharSetId         = 1208 (INTEGER)
+    (0x03000000:NameValue):Transactional          = FALSE (BOOLEAN)
+    (0x03000000:NameValue):Persistence            = FALSE (BOOLEAN)
+    (0x03000000:NameValue):CreationTime           = GMTTIMESTAMP '2025-05-20 21:42:04.717' (GMTTIMESTAMP)
+    (0x03000000:NameValue):ExpirationTime         = -1 (INTEGER)
+    (0x03000000:NameValue):Priority               = 0 (INTEGER)
+    (0x03000000:NameValue):ReplyIdentifier        = X'000000000000000000000000000000000000000000000000' (BLOB)
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourcePassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceIssuedBy = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedPassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedIssuedBy = '' (CHARACTER)
+  )
+  (0x01000000:Name  ):HTTPResponseHeader = ( ['WSRSPHDR' : 0x23642f92150]
+    (0x03000000:NameValue):X-Original-HTTP-Status-Line = 'HTTP/1.1 200 OK' (CHARACTER)
+    (0x03000000:NameValue):X-Original-HTTP-Status-Code = 200 (INTEGER)
+    (0x03000000:NameValue):Cache-Control               = 'private, max-age=0' (CHARACTER)
+    (0x03000000:NameValue):Content-Type                = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):Server                      = 'Microsoft-IIS/10.0' (CHARACTER)
+    (0x03000000:NameValue):Web-Service                 = 'DataFlex 19.1' (CHARACTER)
+    (0x03000000:NameValue):Date                        = 'Tue, 20 May 2025 20:09:55 GMT' (CHARACTER)
+    (0x03000000:NameValue):Content-Length              = '910' (CHARACTER)
+  )
+  (0x01000000:Folder):SOAP               = ( ['SOAP' : 0x23642107d60]
+    (0x01000000:Folder):Context = ( ['xmlnsc' : 0x2343af8df70]
+      (0x03000100:Attribute  ):operation         = 'FullCountryInfo' (CHARACTER)
+      (0x03000100:Attribute  ):operationType     = 'REQUEST_RESPONSE' (CHARACTER)
+      (0x03000100:Attribute  ):portType          = 'CountryInfoServiceSoapType' (CHARACTER)
+      (0x03000100:Attribute  ):portTypeNamespace = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+      (0x03000100:Attribute  ):port              = 'CountryInfoServiceSoap' (CHARACTER)
+      (0x03000100:Attribute  ):service           = 'CountryInfoService' (CHARACTER)
+      (0x03000100:Attribute  ):fileName          = 'CountryInfoService.wsdl' (CHARACTER)
+      (0x03000000:PCDataField):SOAP_Version      = '1.1' (CHARACTER)
+      (0x01000000:Folder     ):Namespace         = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:soap = 'http://schemas.xmlsoap.org/soap/envelope/' (CHARACTER)
+      )
+      (0x01000000:Folder     ):_XmlDeclaration   = (
+        (0x03000100:Attribute):Version  = '1.0' (CHARACTER)
+        (0x03000100:Attribute):Encoding = 'utf-8' (CHARACTER)
+      )
+    )
+    (0x01000000:Folder):Header  = 
+    (0x01000000:Folder):Body    = ( ['xmlnsc' : 0x2343af8df70]
+      (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:FullCountryInfoResponse = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:m                                       = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+        (0x01000000:Folder       )http://www.oorsprong.org/websamples.countryinfo:FullCountryInfoResult = (
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sISOCode         = 'US' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sName            = 'United States' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCapitalCity     = 'Washington' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sPhoneCode       = '1' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sContinentCode   = 'AM' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCurrencyISOCode = 'USD' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCountryFlag     = 'http://www.oorsprong.org/WebSamples.CountryInfo/Flags/USA.jpg' (CHARACTER)
+          (0x01000000:Folder     )http://www.oorsprong.org/websamples.countryinfo:Languages        = (
+            (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:tLanguage = (
+              (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sISOCode = 'eng' (CHARACTER)
+              (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sName    = 'English' (CHARACTER)
+            )
+          )
+        )
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = 'a3467db2-d97a-45cb-ab74-ccb4be8d027c' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+      (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'FullCountryInfo' (CHARACTER)
+  (0x03000000:NameValue):CountryCode      = 'US' (CHARACTER)
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+( ['MQROOT' : 0x23643ad8150]
+  (0x01000000:Name):Destination        = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name     ):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+            (0x03000000:NameValue):Timeout       = 30 (INTEGER)
+          )
+        )
+        (0x03000000:NameValue):Operation = 'FullCountryInfo' (CHARACTER)
+      )
+    )
+  )
+  (0x01000000:Name):WrittenDestination = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+          )
+        )
+      )
+    )
+  )
+)
+
+------------------------
+-- 
+-------------------------- SOAP RESPONSE ------------------------2025-05-20 23:42:05.424454
+------
+Environment:
+-------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = 'a3467db2-d97a-45cb-ab74-ccb4be8d027c' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+      (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'FullCountryInfo' (CHARACTER)
+  (0x03000000:NameValue):CountryCode      = 'US' (CHARACTER)
+)
+-------------------
+-- Root:
+------------------------
+( ['SOAPRoot' : 0x23641536980]
+  (0x01000000:Name  ):Properties         = ( ['SOAPPROPERTYPARSER' : 0x236434ecaa0]
+    (0x03000000:NameValue):MessageSet             = '' (CHARACTER)
+    (0x03000000:NameValue):MessageType            = '' (CHARACTER)
+    (0x03000000:NameValue):MessageFormat          = '' (CHARACTER)
+    (0x03000000:NameValue):Encoding               = 546 (INTEGER)
+    (0x03000000:NameValue):CodedCharSetId         = 1208 (INTEGER)
+    (0x03000000:NameValue):Transactional          = FALSE (BOOLEAN)
+    (0x03000000:NameValue):Persistence            = FALSE (BOOLEAN)
+    (0x03000000:NameValue):CreationTime           = GMTTIMESTAMP '2025-05-20 21:42:04.717' (GMTTIMESTAMP)
+    (0x03000000:NameValue):ExpirationTime         = -1 (INTEGER)
+    (0x03000000:NameValue):Priority               = 0 (INTEGER)
+    (0x03000000:NameValue):ReplyIdentifier        = X'000000000000000000000000000000000000000000000000' (BLOB)
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourcePassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceIssuedBy = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedPassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedIssuedBy = '' (CHARACTER)
+  )
+  (0x01000000:Name  ):HTTPResponseHeader = ( ['WSRSPHDR' : 0x23642f92150]
+    (0x03000000:NameValue):X-Original-HTTP-Status-Line = 'HTTP/1.1 200 OK' (CHARACTER)
+    (0x03000000:NameValue):X-Original-HTTP-Status-Code = 200 (INTEGER)
+    (0x03000000:NameValue):Cache-Control               = 'private, max-age=0' (CHARACTER)
+    (0x03000000:NameValue):Content-Type                = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):Server                      = 'Microsoft-IIS/10.0' (CHARACTER)
+    (0x03000000:NameValue):Web-Service                 = 'DataFlex 19.1' (CHARACTER)
+    (0x03000000:NameValue):Date                        = 'Tue, 20 May 2025 20:09:55 GMT' (CHARACTER)
+    (0x03000000:NameValue):Content-Length              = '910' (CHARACTER)
+  )
+  (0x01000000:Folder):SOAP               = ( ['SOAP' : 0x23642107d60]
+    (0x01000000:Folder):Context = ( ['xmlnsc' : 0x2343af8df70]
+      (0x03000100:Attribute  ):operation         = 'FullCountryInfo' (CHARACTER)
+      (0x03000100:Attribute  ):operationType     = 'REQUEST_RESPONSE' (CHARACTER)
+      (0x03000100:Attribute  ):portType          = 'CountryInfoServiceSoapType' (CHARACTER)
+      (0x03000100:Attribute  ):portTypeNamespace = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+      (0x03000100:Attribute  ):port              = 'CountryInfoServiceSoap' (CHARACTER)
+      (0x03000100:Attribute  ):service           = 'CountryInfoService' (CHARACTER)
+      (0x03000100:Attribute  ):fileName          = 'CountryInfoService.wsdl' (CHARACTER)
+      (0x03000000:PCDataField):SOAP_Version      = '1.1' (CHARACTER)
+      (0x01000000:Folder     ):Namespace         = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:soap = 'http://schemas.xmlsoap.org/soap/envelope/' (CHARACTER)
+      )
+      (0x01000000:Folder     ):_XmlDeclaration   = (
+        (0x03000100:Attribute):Version  = '1.0' (CHARACTER)
+        (0x03000100:Attribute):Encoding = 'utf-8' (CHARACTER)
+      )
+    )
+    (0x01000000:Folder):Header  = 
+    (0x01000000:Folder):Body    = ( ['xmlnsc' : 0x2343af8df70]
+      (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:FullCountryInfoResponse = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:m                                       = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+        (0x01000000:Folder       )http://www.oorsprong.org/websamples.countryinfo:FullCountryInfoResult = (
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sISOCode         = 'US' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sName            = 'United States' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCapitalCity     = 'Washington' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sPhoneCode       = '1' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sContinentCode   = 'AM' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCurrencyISOCode = 'USD' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCountryFlag     = 'http://www.oorsprong.org/WebSamples.CountryInfo/Flags/USA.jpg' (CHARACTER)
+          (0x01000000:Folder     )http://www.oorsprong.org/websamples.countryinfo:Languages        = (
+            (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:tLanguage = (
+              (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sISOCode = 'eng' (CHARACTER)
+              (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sName    = 'English' (CHARACTER)
+            )
+          )
+        )
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = 'a3467db2-d97a-45cb-ab74-ccb4be8d027c' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+      (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'FullCountryInfo' (CHARACTER)
+  (0x03000000:NameValue):CountryCode      = 'US' (CHARACTER)
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+( ['MQROOT' : 0x23643ad8150]
+  (0x01000000:Name):Destination        = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name     ):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+            (0x03000000:NameValue):Timeout       = 30 (INTEGER)
+          )
+        )
+        (0x03000000:NameValue):Operation = 'FullCountryInfo' (CHARACTER)
+      )
+    )
+  )
+  (0x01000000:Name):WrittenDestination = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+          )
+        )
+      )
+    )
+  )
+)
+
+------------------------
+-- 
+===== EXCEPCIÓN DETECTADA EN EXCEPTIONHANDLER =====
+Timestamp: 2025-05-20 23:42:05.427849
+ExceptionList: 
+CorrelationID: 'a3467db2-d97a-45cb-ab74-ccb4be8d027c'
+Root: ( ['SOAPRoot' : 0x23643b20410]
+  (0x01000000:Name  ):Properties = ( ['MQPROPERTYPARSER' : 0x2364344c490]
+    (0x03000000:NameValue):MessageSet             = NULL
+    (0x03000000:NameValue):MessageType            = NULL
+    (0x03000000:NameValue):MessageFormat          = NULL
+    (0x03000000:NameValue):Encoding               = NULL
+    (0x03000000:NameValue):CodedCharSetId         = NULL
+    (0x03000000:NameValue):Transactional          = NULL
+    (0x03000000:NameValue):Persistence            = NULL
+    (0x03000000:NameValue):CreationTime           = NULL
+    (0x03000000:NameValue):ExpirationTime         = NULL
+    (0x03000000:NameValue):Priority               = NULL
+    (0x03000000:NameValue):ReplyIdentifier        = NULL
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = NULL
+    (0x03000000:NameValue):IdentitySourceType     = NULL
+    (0x03000000:NameValue):IdentitySourceToken    = NULL
+    (0x03000000:NameValue):IdentitySourcePassword = NULL
+    (0x03000000:NameValue):IdentitySourceIssuedBy = NULL
+    (0x03000000:NameValue):IdentityMappedType     = NULL
+    (0x03000000:NameValue):IdentityMappedToken    = NULL
+    (0x03000000:NameValue):IdentityMappedPassword = NULL
+    (0x03000000:NameValue):IdentityMappedIssuedBy = NULL
+  )
+  (0x01000000:Object):JSON       = ( ['json' : 0x23641383a40]
+    (0x01000000:Object):Data = (
+      (0x03000000:NameValue):error         = TRUE (BOOLEAN)
+      (0x03000000:NameValue):timestamp     = TIMESTAMP '2025-05-20 23:42:05.425896' (TIMESTAMP)
+      (0x03000000:NameValue):codigo        = '500' (CHARACTER)
+      (0x03000000:NameValue):tipo          = 'UNKNOWN_ERROR' (CHARACTER)
+      (0x03000000:NameValue):mensaje       = 'Error desconocido' (CHARACTER)
+      (0x03000000:NameValue):correlationId = '7b4e590c-b71a-4343-8b40-0fa022b2bcc5' (CHARACTER)
+    )
+  )
+)
+-------------------------- IN HTTP------------------------2025-05-20 23:42:14.065125
+------
+CorrelationID: '935c6bf9-3eaf-42eb-9523-e7e365af62ea'
+Environment:
+-------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name):Variables = (
+    (0x03000000:NameValue):correlationId = '935c6bf9-3eaf-42eb-9523-e7e365af62ea' (CHARACTER)
+  )
+)
+-------------------
+-- Root:
+------------------------
+( ['WSRoot' : 0x234358cabd0]
+  (0x01000000:Name  ):Properties      = ( ['WSPROPERTYPARSER' : 0x236434c1190]
+    (0x03000000:NameValue):MessageSet             = '' (CHARACTER)
+    (0x03000000:NameValue):MessageType            = '' (CHARACTER)
+    (0x03000000:NameValue):MessageFormat          = '' (CHARACTER)
+    (0x03000000:NameValue):Encoding               = 546 (INTEGER)
+    (0x03000000:NameValue):CodedCharSetId         = 1208 (INTEGER)
+    (0x03000000:NameValue):Transactional          = FALSE (BOOLEAN)
+    (0x03000000:NameValue):Persistence            = FALSE (BOOLEAN)
+    (0x03000000:NameValue):CreationTime           = GMTTIMESTAMP '2025-05-20 21:42:14.064' (GMTTIMESTAMP)
+    (0x03000000:NameValue):ExpirationTime         = -1 (INTEGER)
+    (0x03000000:NameValue):Priority               = 0 (INTEGER)
+    (0x03000000:NameValue):ReplyIdentifier        = X'000000000000000000000000000000000000000000000000' (BLOB)
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = 'application/json' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourcePassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceIssuedBy = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedPassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedIssuedBy = '' (CHARACTER)
+  )
+  (0x01000000:Name  ):HTTPInputHeader = ( ['WSINPHDR' : 0x23643ad9120]
+    (0x03000000:NameValue):Content-Type            = 'application/json' (CHARACTER)
+    (0x03000000:NameValue):User-Agent              = 'PostmanRuntime/7.43.4' (CHARACTER)
+    (0x03000000:NameValue):Accept                  = '*/*' (CHARACTER)
+    (0x03000000:NameValue):Cache-Control           = 'no-cache' (CHARACTER)
+    (0x03000000:NameValue):Postman-Token           = 'd1a881d3-5b0f-435e-89d1-641bccd11bab' (CHARACTER)
+    (0x03000000:NameValue):Host                    = 'localhost:7080' (CHARACTER)
+    (0x03000000:NameValue):Accept-Encoding         = 'gzip, deflate, br' (CHARACTER)
+    (0x03000000:NameValue):Connection              = 'keep-alive' (CHARACTER)
+    (0x03000000:NameValue):Content-Length          = '86' (CHARACTER)
+    (0x03000000:NameValue):X-Original-HTTP-Command = 'GET http://localhost:7080/path/http_service_hub HTTP/1.1' (CHARACTER)
+    (0x03000000:NameValue):X-Server-Name           = 'localhost' (CHARACTER)
+    (0x03000000:NameValue):X-Server-Port           = '7080' (CHARACTER)
+    (0x03000000:NameValue):X-Remote-Addr           = '127.0.0.1' (CHARACTER)
+    (0x03000000:NameValue):X-Remote-Host           = 'localhost' (CHARACTER)
+    (0x03000000:NameValue):X-Scheme                = 'http' (CHARACTER)
+    (0x03000000:NameValue):X-Correlation-ID        = '935c6bf9-3eaf-42eb-9523-e7e365af62ea' (CHARACTER)
+  )
+  (0x01000000:Object):JSON            = ( ['json' : 0x236444a31a0]
+    (0x01000000:Object):Data = (
+      (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+      (0x01000000:Object   ):parameters  = (
+        (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+        (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name):Variables = (
+    (0x03000000:NameValue):correlationId = '935c6bf9-3eaf-42eb-9523-e7e365af62ea' (CHARACTER)
+  )
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+
+
+------------------------
+-- 
+--------------------------Oupt------------------------2025-05-20 23:42:14.065585
+------CorrelationID: '935c6bf9-3eaf-42eb-9523-e7e365af62ea'
+Environment:
+-------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = '935c6bf9-3eaf-42eb-9523-e7e365af62ea' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+      (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'FullCountryInfo' (CHARACTER)
+  (0x03000000:NameValue):CountryCode      = 'US' (CHARACTER)
+)
+-------------------
+-- Root:
+------------------------
+( ['WSRoot' : 0x23643ad7e10]
+  (0x01000000:Name  ):Properties = ( ['MQPROPERTYPARSER' : 0x23644ecb030]
+    (0x03000000:NameValue):MessageSet             = NULL
+    (0x03000000:NameValue):MessageType            = NULL
+    (0x03000000:NameValue):MessageFormat          = NULL
+    (0x03000000:NameValue):Encoding               = NULL
+    (0x03000000:NameValue):CodedCharSetId         = NULL
+    (0x03000000:NameValue):Transactional          = NULL
+    (0x03000000:NameValue):Persistence            = NULL
+    (0x03000000:NameValue):CreationTime           = NULL
+    (0x03000000:NameValue):ExpirationTime         = NULL
+    (0x03000000:NameValue):Priority               = NULL
+    (0x03000000:NameValue):ReplyIdentifier        = NULL
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = NULL
+    (0x03000000:NameValue):IdentitySourceType     = NULL
+    (0x03000000:NameValue):IdentitySourceToken    = NULL
+    (0x03000000:NameValue):IdentitySourcePassword = NULL
+    (0x03000000:NameValue):IdentitySourceIssuedBy = NULL
+    (0x03000000:NameValue):IdentityMappedType     = NULL
+    (0x03000000:NameValue):IdentityMappedToken    = NULL
+    (0x03000000:NameValue):IdentityMappedPassword = NULL
+    (0x03000000:NameValue):IdentityMappedIssuedBy = NULL
+  )
+  (0x01000000:Folder):XMLNSC     = ( ['xmlnsc' : 0x2343af8d170]
+    (0x01000000:Folder)http://schemas.xmlsoap.org/soap/envelope/:Envelope = (
+      (0x03000102:NamespaceDecl):                                              = NULL
+      (
+        (0x03000000:PCDataField):soapenv = 'http://schemas.xmlsoap.org/soap/envelope/' (CHARACTER)
+        (0x03000000:PCDataField):ns      = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+      )
+      (0x01000000:Folder       )http://schemas.xmlsoap.org/soap/envelope/:Body = (
+        (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:FullCountryInfo = (
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCountryISOCode = 'US' (CHARACTER)
+        )
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = '935c6bf9-3eaf-42eb-9523-e7e365af62ea' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+      (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'FullCountryInfo' (CHARACTER)
+  (0x03000000:NameValue):CountryCode      = 'US' (CHARACTER)
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+( ['MQROOT' : 0x23643ad8150]
+  (0x01000000:Name):Destination = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name     ):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+            (0x03000000:NameValue):Timeout       = 30 (INTEGER)
+          )
+        )
+        (0x03000000:NameValue):Operation = 'FullCountryInfo' (CHARACTER)
+      )
+    )
+  )
+)
+
+------------------------
+-- 
+--------------------------Oupt response------------------------2025-05-20 23:42:14.460908
+------CorrelationID: '935c6bf9-3eaf-42eb-9523-e7e365af62ea'
+Environment:
+-------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = '935c6bf9-3eaf-42eb-9523-e7e365af62ea' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+      (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'FullCountryInfo' (CHARACTER)
+  (0x03000000:NameValue):CountryCode      = 'US' (CHARACTER)
+)
+-------------------
+-- Root:
+------------------------
+( ['SOAPRoot' : 0x23641536980]
+  (0x01000000:Name  ):Properties         = ( ['SOAPPROPERTYPARSER' : 0x236434ecaa0]
+    (0x03000000:NameValue):MessageSet             = '' (CHARACTER)
+    (0x03000000:NameValue):MessageType            = '' (CHARACTER)
+    (0x03000000:NameValue):MessageFormat          = '' (CHARACTER)
+    (0x03000000:NameValue):Encoding               = 546 (INTEGER)
+    (0x03000000:NameValue):CodedCharSetId         = 1208 (INTEGER)
+    (0x03000000:NameValue):Transactional          = FALSE (BOOLEAN)
+    (0x03000000:NameValue):Persistence            = FALSE (BOOLEAN)
+    (0x03000000:NameValue):CreationTime           = GMTTIMESTAMP '2025-05-20 21:42:14.066' (GMTTIMESTAMP)
+    (0x03000000:NameValue):ExpirationTime         = -1 (INTEGER)
+    (0x03000000:NameValue):Priority               = 0 (INTEGER)
+    (0x03000000:NameValue):ReplyIdentifier        = X'000000000000000000000000000000000000000000000000' (BLOB)
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourcePassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceIssuedBy = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedPassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedIssuedBy = '' (CHARACTER)
+  )
+  (0x01000000:Name  ):HTTPResponseHeader = ( ['WSRSPHDR' : 0x23642f92150]
+    (0x03000000:NameValue):X-Original-HTTP-Status-Line = 'HTTP/1.1 200 OK' (CHARACTER)
+    (0x03000000:NameValue):X-Original-HTTP-Status-Code = 200 (INTEGER)
+    (0x03000000:NameValue):Cache-Control               = 'private, max-age=0' (CHARACTER)
+    (0x03000000:NameValue):Content-Type                = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):Server                      = 'Microsoft-IIS/10.0' (CHARACTER)
+    (0x03000000:NameValue):Web-Service                 = 'DataFlex 19.1' (CHARACTER)
+    (0x03000000:NameValue):Date                        = 'Tue, 20 May 2025 20:10:04 GMT' (CHARACTER)
+    (0x03000000:NameValue):Content-Length              = '910' (CHARACTER)
+  )
+  (0x01000000:Folder):SOAP               = ( ['SOAP' : 0x23642107d60]
+    (0x01000000:Folder):Context = ( ['xmlnsc' : 0x2343af8df70]
+      (0x03000100:Attribute  ):operation         = 'FullCountryInfo' (CHARACTER)
+      (0x03000100:Attribute  ):operationType     = 'REQUEST_RESPONSE' (CHARACTER)
+      (0x03000100:Attribute  ):portType          = 'CountryInfoServiceSoapType' (CHARACTER)
+      (0x03000100:Attribute  ):portTypeNamespace = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+      (0x03000100:Attribute  ):port              = 'CountryInfoServiceSoap' (CHARACTER)
+      (0x03000100:Attribute  ):service           = 'CountryInfoService' (CHARACTER)
+      (0x03000100:Attribute  ):fileName          = 'CountryInfoService.wsdl' (CHARACTER)
+      (0x03000000:PCDataField):SOAP_Version      = '1.1' (CHARACTER)
+      (0x01000000:Folder     ):Namespace         = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:soap = 'http://schemas.xmlsoap.org/soap/envelope/' (CHARACTER)
+      )
+      (0x01000000:Folder     ):_XmlDeclaration   = (
+        (0x03000100:Attribute):Version  = '1.0' (CHARACTER)
+        (0x03000100:Attribute):Encoding = 'utf-8' (CHARACTER)
+      )
+    )
+    (0x01000000:Folder):Header  = 
+    (0x01000000:Folder):Body    = ( ['xmlnsc' : 0x2343af8df70]
+      (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:FullCountryInfoResponse = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:m                                       = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+        (0x01000000:Folder       )http://www.oorsprong.org/websamples.countryinfo:FullCountryInfoResult = (
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sISOCode         = 'US' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sName            = 'United States' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCapitalCity     = 'Washington' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sPhoneCode       = '1' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sContinentCode   = 'AM' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCurrencyISOCode = 'USD' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCountryFlag     = 'http://www.oorsprong.org/WebSamples.CountryInfo/Flags/USA.jpg' (CHARACTER)
+          (0x01000000:Folder     )http://www.oorsprong.org/websamples.countryinfo:Languages        = (
+            (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:tLanguage = (
+              (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sISOCode = 'eng' (CHARACTER)
+              (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sName    = 'English' (CHARACTER)
+            )
+          )
+        )
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = '935c6bf9-3eaf-42eb-9523-e7e365af62ea' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+      (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'FullCountryInfo' (CHARACTER)
+  (0x03000000:NameValue):CountryCode      = 'US' (CHARACTER)
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+( ['MQROOT' : 0x23643ad8150]
+  (0x01000000:Name):Destination        = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name     ):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+            (0x03000000:NameValue):Timeout       = 30 (INTEGER)
+          )
+        )
+        (0x03000000:NameValue):Operation = 'FullCountryInfo' (CHARACTER)
+      )
+    )
+  )
+  (0x01000000:Name):WrittenDestination = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+          )
+        )
+      )
+    )
+  )
+)
+
+------------------------
+-- 
+-------------------------- SOAP RESPONSE ------------------------2025-05-20 23:42:14.461572
+------
+Environment:
+-------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = '935c6bf9-3eaf-42eb-9523-e7e365af62ea' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+      (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'FullCountryInfo' (CHARACTER)
+  (0x03000000:NameValue):CountryCode      = 'US' (CHARACTER)
+)
+-------------------
+-- Root:
+------------------------
+( ['SOAPRoot' : 0x23641536980]
+  (0x01000000:Name  ):Properties         = ( ['SOAPPROPERTYPARSER' : 0x236434ecaa0]
+    (0x03000000:NameValue):MessageSet             = '' (CHARACTER)
+    (0x03000000:NameValue):MessageType            = '' (CHARACTER)
+    (0x03000000:NameValue):MessageFormat          = '' (CHARACTER)
+    (0x03000000:NameValue):Encoding               = 546 (INTEGER)
+    (0x03000000:NameValue):CodedCharSetId         = 1208 (INTEGER)
+    (0x03000000:NameValue):Transactional          = FALSE (BOOLEAN)
+    (0x03000000:NameValue):Persistence            = FALSE (BOOLEAN)
+    (0x03000000:NameValue):CreationTime           = GMTTIMESTAMP '2025-05-20 21:42:14.066' (GMTTIMESTAMP)
+    (0x03000000:NameValue):ExpirationTime         = -1 (INTEGER)
+    (0x03000000:NameValue):Priority               = 0 (INTEGER)
+    (0x03000000:NameValue):ReplyIdentifier        = X'000000000000000000000000000000000000000000000000' (BLOB)
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourcePassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceIssuedBy = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedPassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedIssuedBy = '' (CHARACTER)
+  )
+  (0x01000000:Name  ):HTTPResponseHeader = ( ['WSRSPHDR' : 0x23642f92150]
+    (0x03000000:NameValue):X-Original-HTTP-Status-Line = 'HTTP/1.1 200 OK' (CHARACTER)
+    (0x03000000:NameValue):X-Original-HTTP-Status-Code = 200 (INTEGER)
+    (0x03000000:NameValue):Cache-Control               = 'private, max-age=0' (CHARACTER)
+    (0x03000000:NameValue):Content-Type                = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):Server                      = 'Microsoft-IIS/10.0' (CHARACTER)
+    (0x03000000:NameValue):Web-Service                 = 'DataFlex 19.1' (CHARACTER)
+    (0x03000000:NameValue):Date                        = 'Tue, 20 May 2025 20:10:04 GMT' (CHARACTER)
+    (0x03000000:NameValue):Content-Length              = '910' (CHARACTER)
+  )
+  (0x01000000:Folder):SOAP               = ( ['SOAP' : 0x23642107d60]
+    (0x01000000:Folder):Context = ( ['xmlnsc' : 0x2343af8df70]
+      (0x03000100:Attribute  ):operation         = 'FullCountryInfo' (CHARACTER)
+      (0x03000100:Attribute  ):operationType     = 'REQUEST_RESPONSE' (CHARACTER)
+      (0x03000100:Attribute  ):portType          = 'CountryInfoServiceSoapType' (CHARACTER)
+      (0x03000100:Attribute  ):portTypeNamespace = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+      (0x03000100:Attribute  ):port              = 'CountryInfoServiceSoap' (CHARACTER)
+      (0x03000100:Attribute  ):service           = 'CountryInfoService' (CHARACTER)
+      (0x03000100:Attribute  ):fileName          = 'CountryInfoService.wsdl' (CHARACTER)
+      (0x03000000:PCDataField):SOAP_Version      = '1.1' (CHARACTER)
+      (0x01000000:Folder     ):Namespace         = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:soap = 'http://schemas.xmlsoap.org/soap/envelope/' (CHARACTER)
+      )
+      (0x01000000:Folder     ):_XmlDeclaration   = (
+        (0x03000100:Attribute):Version  = '1.0' (CHARACTER)
+        (0x03000100:Attribute):Encoding = 'utf-8' (CHARACTER)
+      )
+    )
+    (0x01000000:Folder):Header  = 
+    (0x01000000:Folder):Body    = ( ['xmlnsc' : 0x2343af8df70]
+      (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:FullCountryInfoResponse = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:m                                       = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+        (0x01000000:Folder       )http://www.oorsprong.org/websamples.countryinfo:FullCountryInfoResult = (
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sISOCode         = 'US' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sName            = 'United States' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCapitalCity     = 'Washington' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sPhoneCode       = '1' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sContinentCode   = 'AM' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCurrencyISOCode = 'USD' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCountryFlag     = 'http://www.oorsprong.org/WebSamples.CountryInfo/Flags/USA.jpg' (CHARACTER)
+          (0x01000000:Folder     )http://www.oorsprong.org/websamples.countryinfo:Languages        = (
+            (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:tLanguage = (
+              (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sISOCode = 'eng' (CHARACTER)
+              (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sName    = 'English' (CHARACTER)
+            )
+          )
+        )
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = '935c6bf9-3eaf-42eb-9523-e7e365af62ea' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+      (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'FullCountryInfo' (CHARACTER)
+  (0x03000000:NameValue):CountryCode      = 'US' (CHARACTER)
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+( ['MQROOT' : 0x23643ad8150]
+  (0x01000000:Name):Destination        = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name     ):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+            (0x03000000:NameValue):Timeout       = 30 (INTEGER)
+          )
+        )
+        (0x03000000:NameValue):Operation = 'FullCountryInfo' (CHARACTER)
+      )
+    )
+  )
+  (0x01000000:Name):WrittenDestination = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+          )
+        )
+      )
+    )
+  )
+)
+
+------------------------
+-- 
+===== EXCEPCIÓN DETECTADA EN EXCEPTIONHANDLER =====
+Timestamp: 2025-05-20 23:42:14.462062
+ExceptionList: 
+CorrelationID: '935c6bf9-3eaf-42eb-9523-e7e365af62ea'
+Root: ( ['SOAPRoot' : 0x23643b20410]
+  (0x01000000:Name  ):Properties = ( ['MQPROPERTYPARSER' : 0x2364344c490]
+    (0x03000000:NameValue):MessageSet             = NULL
+    (0x03000000:NameValue):MessageType            = NULL
+    (0x03000000:NameValue):MessageFormat          = NULL
+    (0x03000000:NameValue):Encoding               = NULL
+    (0x03000000:NameValue):CodedCharSetId         = NULL
+    (0x03000000:NameValue):Transactional          = NULL
+    (0x03000000:NameValue):Persistence            = NULL
+    (0x03000000:NameValue):CreationTime           = NULL
+    (0x03000000:NameValue):ExpirationTime         = NULL
+    (0x03000000:NameValue):Priority               = NULL
+    (0x03000000:NameValue):ReplyIdentifier        = NULL
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = NULL
+    (0x03000000:NameValue):IdentitySourceType     = NULL
+    (0x03000000:NameValue):IdentitySourceToken    = NULL
+    (0x03000000:NameValue):IdentitySourcePassword = NULL
+    (0x03000000:NameValue):IdentitySourceIssuedBy = NULL
+    (0x03000000:NameValue):IdentityMappedType     = NULL
+    (0x03000000:NameValue):IdentityMappedToken    = NULL
+    (0x03000000:NameValue):IdentityMappedPassword = NULL
+    (0x03000000:NameValue):IdentityMappedIssuedBy = NULL
+  )
+  (0x01000000:Object):JSON       = ( ['json' : 0x23641383a40]
+    (0x01000000:Object):Data = (
+      (0x03000000:NameValue):error         = TRUE (BOOLEAN)
+      (0x03000000:NameValue):timestamp     = TIMESTAMP '2025-05-20 23:42:14.462001' (TIMESTAMP)
+      (0x03000000:NameValue):codigo        = '500' (CHARACTER)
+      (0x03000000:NameValue):tipo          = 'UNKNOWN_ERROR' (CHARACTER)
+      (0x03000000:NameValue):mensaje       = 'Error desconocido' (CHARACTER)
+      (0x03000000:NameValue):correlationId = 'dcff9e66-f334-48a5-a5f7-7ac1b81eeff7' (CHARACTER)
+    )
+  )
+)
+-------------------------- IN HTTP------------------------2025-05-20 23:43:22.309888
+------
+CorrelationID: 'f993376d-27a8-49e3-9c23-5482c14505dd'
+Environment:
+-------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name):Variables = (
+    (0x03000000:NameValue):correlationId = 'f993376d-27a8-49e3-9c23-5482c14505dd' (CHARACTER)
+  )
+)
+-------------------
+-- Root:
+------------------------
+( ['WSRoot' : 0x23643ad9120]
+  (0x01000000:Name  ):Properties      = ( ['WSPROPERTYPARSER' : 0x236434c1190]
+    (0x03000000:NameValue):MessageSet             = '' (CHARACTER)
+    (0x03000000:NameValue):MessageType            = '' (CHARACTER)
+    (0x03000000:NameValue):MessageFormat          = '' (CHARACTER)
+    (0x03000000:NameValue):Encoding               = 546 (INTEGER)
+    (0x03000000:NameValue):CodedCharSetId         = 1208 (INTEGER)
+    (0x03000000:NameValue):Transactional          = FALSE (BOOLEAN)
+    (0x03000000:NameValue):Persistence            = FALSE (BOOLEAN)
+    (0x03000000:NameValue):CreationTime           = GMTTIMESTAMP '2025-05-20 21:43:22.309' (GMTTIMESTAMP)
+    (0x03000000:NameValue):ExpirationTime         = -1 (INTEGER)
+    (0x03000000:NameValue):Priority               = 0 (INTEGER)
+    (0x03000000:NameValue):ReplyIdentifier        = X'000000000000000000000000000000000000000000000000' (BLOB)
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = 'application/json' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourcePassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceIssuedBy = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedPassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedIssuedBy = '' (CHARACTER)
+  )
+  (0x01000000:Name  ):HTTPInputHeader = ( ['WSINPHDR' : 0x23643ad9e20]
+    (0x03000000:NameValue):Content-Type            = 'application/json' (CHARACTER)
+    (0x03000000:NameValue):User-Agent              = 'PostmanRuntime/7.43.4' (CHARACTER)
+    (0x03000000:NameValue):Accept                  = '*/*' (CHARACTER)
+    (0x03000000:NameValue):Cache-Control           = 'no-cache' (CHARACTER)
+    (0x03000000:NameValue):Postman-Token           = '2169fd2d-326e-4233-9256-a74e4d67fa2f' (CHARACTER)
+    (0x03000000:NameValue):Host                    = 'localhost:7080' (CHARACTER)
+    (0x03000000:NameValue):Accept-Encoding         = 'gzip, deflate, br' (CHARACTER)
+    (0x03000000:NameValue):Connection              = 'keep-alive' (CHARACTER)
+    (0x03000000:NameValue):Content-Length          = '86' (CHARACTER)
+    (0x03000000:NameValue):X-Original-HTTP-Command = 'GET http://localhost:7080/path/http_service_hub HTTP/1.1' (CHARACTER)
+    (0x03000000:NameValue):X-Server-Name           = 'localhost' (CHARACTER)
+    (0x03000000:NameValue):X-Server-Port           = '7080' (CHARACTER)
+    (0x03000000:NameValue):X-Remote-Addr           = '127.0.0.1' (CHARACTER)
+    (0x03000000:NameValue):X-Remote-Host           = 'localhost' (CHARACTER)
+    (0x03000000:NameValue):X-Scheme                = 'http' (CHARACTER)
+    (0x03000000:NameValue):X-Correlation-ID        = 'f993376d-27a8-49e3-9c23-5482c14505dd' (CHARACTER)
+  )
+  (0x01000000:Object):JSON            = ( ['json' : 0x236448a0080]
+    (0x01000000:Object):Data = (
+      (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+      (0x01000000:Object   ):parameters  = (
+        (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+        (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name):Variables = (
+    (0x03000000:NameValue):correlationId = 'f993376d-27a8-49e3-9c23-5482c14505dd' (CHARACTER)
+  )
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+
+
+------------------------
+-- 
+--------------------------Oupt------------------------2025-05-20 23:43:22.310836
+------CorrelationID: 'f993376d-27a8-49e3-9c23-5482c14505dd'
+Environment:
+-------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = 'f993376d-27a8-49e3-9c23-5482c14505dd' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+      (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'FullCountryInfo' (CHARACTER)
+  (0x03000000:NameValue):CountryCode      = 'US' (CHARACTER)
+)
+-------------------
+-- Root:
+------------------------
+( ['WSRoot' : 0x236445986e0]
+  (0x01000000:Name  ):Properties = ( ['MQPROPERTYPARSER' : 0x23641d50950]
+    (0x03000000:NameValue):MessageSet             = NULL
+    (0x03000000:NameValue):MessageType            = NULL
+    (0x03000000:NameValue):MessageFormat          = NULL
+    (0x03000000:NameValue):Encoding               = NULL
+    (0x03000000:NameValue):CodedCharSetId         = NULL
+    (0x03000000:NameValue):Transactional          = NULL
+    (0x03000000:NameValue):Persistence            = NULL
+    (0x03000000:NameValue):CreationTime           = NULL
+    (0x03000000:NameValue):ExpirationTime         = NULL
+    (0x03000000:NameValue):Priority               = NULL
+    (0x03000000:NameValue):ReplyIdentifier        = NULL
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = NULL
+    (0x03000000:NameValue):IdentitySourceType     = NULL
+    (0x03000000:NameValue):IdentitySourceToken    = NULL
+    (0x03000000:NameValue):IdentitySourcePassword = NULL
+    (0x03000000:NameValue):IdentitySourceIssuedBy = NULL
+    (0x03000000:NameValue):IdentityMappedType     = NULL
+    (0x03000000:NameValue):IdentityMappedToken    = NULL
+    (0x03000000:NameValue):IdentityMappedPassword = NULL
+    (0x03000000:NameValue):IdentityMappedIssuedBy = NULL
+  )
+  (0x01000000:Folder):XMLNSC     = ( ['xmlnsc' : 0x2343af8df70]
+    (0x01000000:Folder)http://schemas.xmlsoap.org/soap/envelope/:Envelope = (
+      (0x03000102:NamespaceDecl):                                              = NULL
+      (
+        (0x03000000:PCDataField):soapenv = 'http://schemas.xmlsoap.org/soap/envelope/' (CHARACTER)
+        (0x03000000:PCDataField):ns      = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+      )
+      (0x01000000:Folder       )http://schemas.xmlsoap.org/soap/envelope/:Body = (
+        (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:FullCountryInfo = (
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCountryISOCode = 'US' (CHARACTER)
+        )
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = 'f993376d-27a8-49e3-9c23-5482c14505dd' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+      (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'FullCountryInfo' (CHARACTER)
+  (0x03000000:NameValue):CountryCode      = 'US' (CHARACTER)
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+( ['MQROOT' : 0x23644599720]
+  (0x01000000:Name):Destination = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name     ):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+            (0x03000000:NameValue):Timeout       = 30 (INTEGER)
+          )
+        )
+        (0x03000000:NameValue):Operation = 'FullCountryInfo' (CHARACTER)
+      )
+    )
+  )
+)
+
+------------------------
+-- 
+--------------------------Oupt response------------------------2025-05-20 23:43:22.682969
+------CorrelationID: 'f993376d-27a8-49e3-9c23-5482c14505dd'
+Environment:
+-------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = 'f993376d-27a8-49e3-9c23-5482c14505dd' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+      (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'FullCountryInfo' (CHARACTER)
+  (0x03000000:NameValue):CountryCode      = 'US' (CHARACTER)
+)
+-------------------
+-- Root:
+------------------------
+( ['SOAPRoot' : 0x2364459a6f0]
+  (0x01000000:Name  ):Properties         = ( ['SOAPPROPERTYPARSER' : 0x23643adc0f0]
+    (0x03000000:NameValue):MessageSet             = '' (CHARACTER)
+    (0x03000000:NameValue):MessageType            = '' (CHARACTER)
+    (0x03000000:NameValue):MessageFormat          = '' (CHARACTER)
+    (0x03000000:NameValue):Encoding               = 546 (INTEGER)
+    (0x03000000:NameValue):CodedCharSetId         = 1208 (INTEGER)
+    (0x03000000:NameValue):Transactional          = FALSE (BOOLEAN)
+    (0x03000000:NameValue):Persistence            = FALSE (BOOLEAN)
+    (0x03000000:NameValue):CreationTime           = GMTTIMESTAMP '2025-05-20 21:43:22.311001' (GMTTIMESTAMP)
+    (0x03000000:NameValue):ExpirationTime         = -1 (INTEGER)
+    (0x03000000:NameValue):Priority               = 0 (INTEGER)
+    (0x03000000:NameValue):ReplyIdentifier        = X'000000000000000000000000000000000000000000000000' (BLOB)
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourcePassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceIssuedBy = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedPassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedIssuedBy = '' (CHARACTER)
+  )
+  (0x01000000:Name  ):HTTPResponseHeader = ( ['WSRSPHDR' : 0x236435e7d60]
+    (0x03000000:NameValue):X-Original-HTTP-Status-Line = 'HTTP/1.1 200 OK' (CHARACTER)
+    (0x03000000:NameValue):X-Original-HTTP-Status-Code = 200 (INTEGER)
+    (0x03000000:NameValue):Cache-Control               = 'private, max-age=0' (CHARACTER)
+    (0x03000000:NameValue):Content-Type                = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):Server                      = 'Microsoft-IIS/10.0' (CHARACTER)
+    (0x03000000:NameValue):Web-Service                 = 'DataFlex 19.1' (CHARACTER)
+    (0x03000000:NameValue):Date                        = 'Tue, 20 May 2025 20:11:11 GMT' (CHARACTER)
+    (0x03000000:NameValue):Content-Length              = '910' (CHARACTER)
+  )
+  (0x01000000:Folder):SOAP               = ( ['SOAP' : 0x2343bc5d2b0]
+    (0x01000000:Folder):Context = ( ['xmlnsc' : 0x2343af8d170]
+      (0x03000100:Attribute  ):operation         = 'FullCountryInfo' (CHARACTER)
+      (0x03000100:Attribute  ):operationType     = 'REQUEST_RESPONSE' (CHARACTER)
+      (0x03000100:Attribute  ):portType          = 'CountryInfoServiceSoapType' (CHARACTER)
+      (0x03000100:Attribute  ):portTypeNamespace = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+      (0x03000100:Attribute  ):port              = 'CountryInfoServiceSoap' (CHARACTER)
+      (0x03000100:Attribute  ):service           = 'CountryInfoService' (CHARACTER)
+      (0x03000100:Attribute  ):fileName          = 'CountryInfoService.wsdl' (CHARACTER)
+      (0x03000000:PCDataField):SOAP_Version      = '1.1' (CHARACTER)
+      (0x01000000:Folder     ):Namespace         = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:soap = 'http://schemas.xmlsoap.org/soap/envelope/' (CHARACTER)
+      )
+      (0x01000000:Folder     ):_XmlDeclaration   = (
+        (0x03000100:Attribute):Version  = '1.0' (CHARACTER)
+        (0x03000100:Attribute):Encoding = 'utf-8' (CHARACTER)
+      )
+    )
+    (0x01000000:Folder):Header  = 
+    (0x01000000:Folder):Body    = ( ['xmlnsc' : 0x2343af8d170]
+      (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:FullCountryInfoResponse = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:m                                       = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+        (0x01000000:Folder       )http://www.oorsprong.org/websamples.countryinfo:FullCountryInfoResult = (
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sISOCode         = 'US' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sName            = 'United States' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCapitalCity     = 'Washington' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sPhoneCode       = '1' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sContinentCode   = 'AM' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCurrencyISOCode = 'USD' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCountryFlag     = 'http://www.oorsprong.org/WebSamples.CountryInfo/Flags/USA.jpg' (CHARACTER)
+          (0x01000000:Folder     )http://www.oorsprong.org/websamples.countryinfo:Languages        = (
+            (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:tLanguage = (
+              (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sISOCode = 'eng' (CHARACTER)
+              (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sName    = 'English' (CHARACTER)
+            )
+          )
+        )
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = 'f993376d-27a8-49e3-9c23-5482c14505dd' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+      (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'FullCountryInfo' (CHARACTER)
+  (0x03000000:NameValue):CountryCode      = 'US' (CHARACTER)
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+( ['MQROOT' : 0x23644599720]
+  (0x01000000:Name):Destination        = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name     ):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+            (0x03000000:NameValue):Timeout       = 30 (INTEGER)
+          )
+        )
+        (0x03000000:NameValue):Operation = 'FullCountryInfo' (CHARACTER)
+      )
+    )
+  )
+  (0x01000000:Name):WrittenDestination = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+          )
+        )
+      )
+    )
+  )
+)
+
+------------------------
+-- 
+-------------------------- SOAP RESPONSE ------------------------2025-05-20 23:43:22.685362
+------
+Environment:
+-------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = 'f993376d-27a8-49e3-9c23-5482c14505dd' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+      (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'FullCountryInfo' (CHARACTER)
+  (0x03000000:NameValue):CountryCode      = 'US' (CHARACTER)
+)
+-------------------
+-- Root:
+------------------------
+( ['SOAPRoot' : 0x2364459a6f0]
+  (0x01000000:Name  ):Properties         = ( ['SOAPPROPERTYPARSER' : 0x23643adc0f0]
+    (0x03000000:NameValue):MessageSet             = '' (CHARACTER)
+    (0x03000000:NameValue):MessageType            = '' (CHARACTER)
+    (0x03000000:NameValue):MessageFormat          = '' (CHARACTER)
+    (0x03000000:NameValue):Encoding               = 546 (INTEGER)
+    (0x03000000:NameValue):CodedCharSetId         = 1208 (INTEGER)
+    (0x03000000:NameValue):Transactional          = FALSE (BOOLEAN)
+    (0x03000000:NameValue):Persistence            = FALSE (BOOLEAN)
+    (0x03000000:NameValue):CreationTime           = GMTTIMESTAMP '2025-05-20 21:43:22.311001' (GMTTIMESTAMP)
+    (0x03000000:NameValue):ExpirationTime         = -1 (INTEGER)
+    (0x03000000:NameValue):Priority               = 0 (INTEGER)
+    (0x03000000:NameValue):ReplyIdentifier        = X'000000000000000000000000000000000000000000000000' (BLOB)
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourcePassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceIssuedBy = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedPassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedIssuedBy = '' (CHARACTER)
+  )
+  (0x01000000:Name  ):HTTPResponseHeader = ( ['WSRSPHDR' : 0x236435e7d60]
+    (0x03000000:NameValue):X-Original-HTTP-Status-Line = 'HTTP/1.1 200 OK' (CHARACTER)
+    (0x03000000:NameValue):X-Original-HTTP-Status-Code = 200 (INTEGER)
+    (0x03000000:NameValue):Cache-Control               = 'private, max-age=0' (CHARACTER)
+    (0x03000000:NameValue):Content-Type                = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):Server                      = 'Microsoft-IIS/10.0' (CHARACTER)
+    (0x03000000:NameValue):Web-Service                 = 'DataFlex 19.1' (CHARACTER)
+    (0x03000000:NameValue):Date                        = 'Tue, 20 May 2025 20:11:11 GMT' (CHARACTER)
+    (0x03000000:NameValue):Content-Length              = '910' (CHARACTER)
+  )
+  (0x01000000:Folder):SOAP               = ( ['SOAP' : 0x2343bc5d2b0]
+    (0x01000000:Folder):Context = ( ['xmlnsc' : 0x2343af8d170]
+      (0x03000100:Attribute  ):operation         = 'FullCountryInfo' (CHARACTER)
+      (0x03000100:Attribute  ):operationType     = 'REQUEST_RESPONSE' (CHARACTER)
+      (0x03000100:Attribute  ):portType          = 'CountryInfoServiceSoapType' (CHARACTER)
+      (0x03000100:Attribute  ):portTypeNamespace = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+      (0x03000100:Attribute  ):port              = 'CountryInfoServiceSoap' (CHARACTER)
+      (0x03000100:Attribute  ):service           = 'CountryInfoService' (CHARACTER)
+      (0x03000100:Attribute  ):fileName          = 'CountryInfoService.wsdl' (CHARACTER)
+      (0x03000000:PCDataField):SOAP_Version      = '1.1' (CHARACTER)
+      (0x01000000:Folder     ):Namespace         = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:soap = 'http://schemas.xmlsoap.org/soap/envelope/' (CHARACTER)
+      )
+      (0x01000000:Folder     ):_XmlDeclaration   = (
+        (0x03000100:Attribute):Version  = '1.0' (CHARACTER)
+        (0x03000100:Attribute):Encoding = 'utf-8' (CHARACTER)
+      )
+    )
+    (0x01000000:Folder):Header  = 
+    (0x01000000:Folder):Body    = ( ['xmlnsc' : 0x2343af8d170]
+      (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:FullCountryInfoResponse = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:m                                       = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+        (0x01000000:Folder       )http://www.oorsprong.org/websamples.countryinfo:FullCountryInfoResult = (
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sISOCode         = 'US' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sName            = 'United States' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCapitalCity     = 'Washington' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sPhoneCode       = '1' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sContinentCode   = 'AM' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCurrencyISOCode = 'USD' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCountryFlag     = 'http://www.oorsprong.org/WebSamples.CountryInfo/Flags/USA.jpg' (CHARACTER)
+          (0x01000000:Folder     )http://www.oorsprong.org/websamples.countryinfo:Languages        = (
+            (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:tLanguage = (
+              (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sISOCode = 'eng' (CHARACTER)
+              (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sName    = 'English' (CHARACTER)
+            )
+          )
+        )
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = 'f993376d-27a8-49e3-9c23-5482c14505dd' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+      (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'FullCountryInfo' (CHARACTER)
+  (0x03000000:NameValue):CountryCode      = 'US' (CHARACTER)
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+( ['MQROOT' : 0x23644599720]
+  (0x01000000:Name):Destination        = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name     ):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+            (0x03000000:NameValue):Timeout       = 30 (INTEGER)
+          )
+        )
+        (0x03000000:NameValue):Operation = 'FullCountryInfo' (CHARACTER)
+      )
+    )
+  )
+  (0x01000000:Name):WrittenDestination = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+          )
+        )
+      )
+    )
+  )
+)
+
+------------------------
+-- 
+===== EXCEPCIÓN DETECTADA EN EXCEPTIONHANDLER =====
+Timestamp: 2025-05-20 23:43:22.685907
+ExceptionList: 
+CorrelationID: 'f993376d-27a8-49e3-9c23-5482c14505dd'
+Root: ( ['SOAPRoot' : 0x2364459aa30]
+  (0x01000000:Name  ):Properties = ( ['MQPROPERTYPARSER' : 0x236434ecaf0]
+    (0x03000000:NameValue):MessageSet             = NULL
+    (0x03000000:NameValue):MessageType            = NULL
+    (0x03000000:NameValue):MessageFormat          = NULL
+    (0x03000000:NameValue):Encoding               = NULL
+    (0x03000000:NameValue):CodedCharSetId         = NULL
+    (0x03000000:NameValue):Transactional          = NULL
+    (0x03000000:NameValue):Persistence            = NULL
+    (0x03000000:NameValue):CreationTime           = NULL
+    (0x03000000:NameValue):ExpirationTime         = NULL
+    (0x03000000:NameValue):Priority               = NULL
+    (0x03000000:NameValue):ReplyIdentifier        = NULL
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = NULL
+    (0x03000000:NameValue):IdentitySourceType     = NULL
+    (0x03000000:NameValue):IdentitySourceToken    = NULL
+    (0x03000000:NameValue):IdentitySourcePassword = NULL
+    (0x03000000:NameValue):IdentitySourceIssuedBy = NULL
+    (0x03000000:NameValue):IdentityMappedType     = NULL
+    (0x03000000:NameValue):IdentityMappedToken    = NULL
+    (0x03000000:NameValue):IdentityMappedPassword = NULL
+    (0x03000000:NameValue):IdentityMappedIssuedBy = NULL
+  )
+  (0x01000000:Object):JSON       = ( ['json' : 0x236445b43f0]
+    (0x01000000:Object):Data = (
+      (0x01000000:Object):responseInfo = (
+        (0x03000000:NameValue):status    = 'success' (CHARACTER)
+        (0x03000000:NameValue):timestamp = TIMESTAMP '2025-05-20 23:43:22.685819' (TIMESTAMP)
+      )
+      (0x01000000:Object):countryData  = (
+        (0x01000000:Object):basicInfo = (
+          (0x03000000:NameValue):code    = 'US' (CHARACTER)
+          (0x03000000:NameValue):name    = 'United States' (CHARACTER)
+          (0x03000000:NameValue):capital = 'Washington' (CHARACTER)
+        )
+        (0x01000000:Object):details   = (
+          (0x03000000:NameValue):phoneCode = '1' (CHARACTER)
+          (0x01000000:Object   ):continent = (
+            (0x03000000:NameValue):code = 'AM' (CHARACTER)
+          )
+          (0x01000000:Object   ):currency  = (
+            (0x03000000:NameValue):code = 'USD' (CHARACTER)
+          )
+          (0x03000000:NameValue):flagUrl   = 'http://www.oorsprong.org/WebSamples.CountryInfo/Flags/USA.jpg' (CHARACTER)
+          (0x01000000:Object   ):language  = (
+            (0x03000000:NameValue):code = 'eng' (CHARACTER)
+            (0x03000000:NameValue):name = 'English' (CHARACTER)
+          )
+        )
+      )
+    )
+  )
+)
+-------------------------- IN HTTP------------------------2025-05-20 23:43:29.448176
+------
+CorrelationID: '9c7d6ab1-59ad-4900-b6e9-ad11a6c747d6'
+Environment:
+-------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name):Variables = (
+    (0x03000000:NameValue):correlationId = '9c7d6ab1-59ad-4900-b6e9-ad11a6c747d6' (CHARACTER)
+  )
+)
+-------------------
+-- Root:
+------------------------
+( ['WSRoot' : 0x23643ad9120]
+  (0x01000000:Name  ):Properties      = ( ['WSPROPERTYPARSER' : 0x236434c1190]
+    (0x03000000:NameValue):MessageSet             = '' (CHARACTER)
+    (0x03000000:NameValue):MessageType            = '' (CHARACTER)
+    (0x03000000:NameValue):MessageFormat          = '' (CHARACTER)
+    (0x03000000:NameValue):Encoding               = 546 (INTEGER)
+    (0x03000000:NameValue):CodedCharSetId         = 1208 (INTEGER)
+    (0x03000000:NameValue):Transactional          = FALSE (BOOLEAN)
+    (0x03000000:NameValue):Persistence            = FALSE (BOOLEAN)
+    (0x03000000:NameValue):CreationTime           = GMTTIMESTAMP '2025-05-20 21:43:29.447001' (GMTTIMESTAMP)
+    (0x03000000:NameValue):ExpirationTime         = -1 (INTEGER)
+    (0x03000000:NameValue):Priority               = 0 (INTEGER)
+    (0x03000000:NameValue):ReplyIdentifier        = X'000000000000000000000000000000000000000000000000' (BLOB)
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = 'application/json' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourcePassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceIssuedBy = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedPassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedIssuedBy = '' (CHARACTER)
+  )
+  (0x01000000:Name  ):HTTPInputHeader = ( ['WSINPHDR' : 0x23643ad9e20]
+    (0x03000000:NameValue):Content-Type            = 'application/json' (CHARACTER)
+    (0x03000000:NameValue):User-Agent              = 'PostmanRuntime/7.43.4' (CHARACTER)
+    (0x03000000:NameValue):Accept                  = '*/*' (CHARACTER)
+    (0x03000000:NameValue):Cache-Control           = 'no-cache' (CHARACTER)
+    (0x03000000:NameValue):Postman-Token           = '8947f745-68cb-4ce3-9cbe-9e5db77bbd09' (CHARACTER)
+    (0x03000000:NameValue):Host                    = 'localhost:7080' (CHARACTER)
+    (0x03000000:NameValue):Accept-Encoding         = 'gzip, deflate, br' (CHARACTER)
+    (0x03000000:NameValue):Connection              = 'keep-alive' (CHARACTER)
+    (0x03000000:NameValue):Content-Length          = '85' (CHARACTER)
+    (0x03000000:NameValue):X-Original-HTTP-Command = 'GET http://localhost:7080/path/http_service_hub HTTP/1.1' (CHARACTER)
+    (0x03000000:NameValue):X-Query-String          = 'errorCode=400' (CHARACTER)
+    (0x03000000:NameValue):X-Server-Name           = 'localhost' (CHARACTER)
+    (0x03000000:NameValue):X-Server-Port           = '7080' (CHARACTER)
+    (0x03000000:NameValue):X-Remote-Addr           = '127.0.0.1' (CHARACTER)
+    (0x03000000:NameValue):X-Remote-Host           = 'localhost' (CHARACTER)
+    (0x03000000:NameValue):X-Scheme                = 'http' (CHARACTER)
+    (0x03000000:NameValue):X-Correlation-ID        = '9c7d6ab1-59ad-4900-b6e9-ad11a6c747d6' (CHARACTER)
+  )
+  (0x01000000:Object):JSON            = ( ['json' : 0x236448a0080]
+    (0x01000000:Object):Data = (
+      (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+      (0x01000000:Object   ):parameters  = (
+        (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+        (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name):Variables = (
+    (0x03000000:NameValue):correlationId = '9c7d6ab1-59ad-4900-b6e9-ad11a6c747d6' (CHARACTER)
+  )
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+
+
+------------------------
+-- 
+--------------------------Oupt------------------------2025-05-20 23:43:29.448567
+------CorrelationID: '9c7d6ab1-59ad-4900-b6e9-ad11a6c747d6'
+Environment:
+-------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = '9c7d6ab1-59ad-4900-b6e9-ad11a6c747d6' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+      (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'FullCountryInfo' (CHARACTER)
+  (0x03000000:NameValue):CountryCode      = 'US' (CHARACTER)
+)
+-------------------
+-- Root:
+------------------------
+( ['WSRoot' : 0x236445986e0]
+  (0x01000000:Name  ):Properties = ( ['MQPROPERTYPARSER' : 0x23641d50950]
+    (0x03000000:NameValue):MessageSet             = NULL
+    (0x03000000:NameValue):MessageType            = NULL
+    (0x03000000:NameValue):MessageFormat          = NULL
+    (0x03000000:NameValue):Encoding               = NULL
+    (0x03000000:NameValue):CodedCharSetId         = NULL
+    (0x03000000:NameValue):Transactional          = NULL
+    (0x03000000:NameValue):Persistence            = NULL
+    (0x03000000:NameValue):CreationTime           = NULL
+    (0x03000000:NameValue):ExpirationTime         = NULL
+    (0x03000000:NameValue):Priority               = NULL
+    (0x03000000:NameValue):ReplyIdentifier        = NULL
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = NULL
+    (0x03000000:NameValue):IdentitySourceType     = NULL
+    (0x03000000:NameValue):IdentitySourceToken    = NULL
+    (0x03000000:NameValue):IdentitySourcePassword = NULL
+    (0x03000000:NameValue):IdentitySourceIssuedBy = NULL
+    (0x03000000:NameValue):IdentityMappedType     = NULL
+    (0x03000000:NameValue):IdentityMappedToken    = NULL
+    (0x03000000:NameValue):IdentityMappedPassword = NULL
+    (0x03000000:NameValue):IdentityMappedIssuedBy = NULL
+  )
+  (0x01000000:Folder):XMLNSC     = ( ['xmlnsc' : 0x2343af8df70]
+    (0x01000000:Folder)http://schemas.xmlsoap.org/soap/envelope/:Envelope = (
+      (0x03000102:NamespaceDecl):                                              = NULL
+      (
+        (0x03000000:PCDataField):soapenv = 'http://schemas.xmlsoap.org/soap/envelope/' (CHARACTER)
+        (0x03000000:PCDataField):ns      = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+      )
+      (0x01000000:Folder       )http://schemas.xmlsoap.org/soap/envelope/:Body = (
+        (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:FullCountryInfo = (
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCountryISOCode = 'US' (CHARACTER)
+        )
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = '9c7d6ab1-59ad-4900-b6e9-ad11a6c747d6' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+      (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'FullCountryInfo' (CHARACTER)
+  (0x03000000:NameValue):CountryCode      = 'US' (CHARACTER)
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+( ['MQROOT' : 0x23644599720]
+  (0x01000000:Name):Destination = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name     ):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+            (0x03000000:NameValue):Timeout       = 30 (INTEGER)
+          )
+        )
+        (0x03000000:NameValue):Operation = 'FullCountryInfo' (CHARACTER)
+      )
+    )
+  )
+)
+
+------------------------
+-- 
+--------------------------Oupt response------------------------2025-05-20 23:43:29.815514
+------CorrelationID: '9c7d6ab1-59ad-4900-b6e9-ad11a6c747d6'
+Environment:
+-------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = '9c7d6ab1-59ad-4900-b6e9-ad11a6c747d6' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+      (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'FullCountryInfo' (CHARACTER)
+  (0x03000000:NameValue):CountryCode      = 'US' (CHARACTER)
+)
+-------------------
+-- Root:
+------------------------
+( ['SOAPRoot' : 0x2364459a6f0]
+  (0x01000000:Name  ):Properties         = ( ['SOAPPROPERTYPARSER' : 0x23643adc0f0]
+    (0x03000000:NameValue):MessageSet             = '' (CHARACTER)
+    (0x03000000:NameValue):MessageType            = '' (CHARACTER)
+    (0x03000000:NameValue):MessageFormat          = '' (CHARACTER)
+    (0x03000000:NameValue):Encoding               = 546 (INTEGER)
+    (0x03000000:NameValue):CodedCharSetId         = 1208 (INTEGER)
+    (0x03000000:NameValue):Transactional          = FALSE (BOOLEAN)
+    (0x03000000:NameValue):Persistence            = FALSE (BOOLEAN)
+    (0x03000000:NameValue):CreationTime           = GMTTIMESTAMP '2025-05-20 21:43:29.448' (GMTTIMESTAMP)
+    (0x03000000:NameValue):ExpirationTime         = -1 (INTEGER)
+    (0x03000000:NameValue):Priority               = 0 (INTEGER)
+    (0x03000000:NameValue):ReplyIdentifier        = X'000000000000000000000000000000000000000000000000' (BLOB)
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourcePassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceIssuedBy = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedPassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedIssuedBy = '' (CHARACTER)
+  )
+  (0x01000000:Name  ):HTTPResponseHeader = ( ['WSRSPHDR' : 0x236435e7d60]
+    (0x03000000:NameValue):X-Original-HTTP-Status-Line = 'HTTP/1.1 200 OK' (CHARACTER)
+    (0x03000000:NameValue):X-Original-HTTP-Status-Code = 200 (INTEGER)
+    (0x03000000:NameValue):Cache-Control               = 'private, max-age=0' (CHARACTER)
+    (0x03000000:NameValue):Content-Type                = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):Server                      = 'Microsoft-IIS/10.0' (CHARACTER)
+    (0x03000000:NameValue):Web-Service                 = 'DataFlex 19.1' (CHARACTER)
+    (0x03000000:NameValue):Date                        = 'Tue, 20 May 2025 20:11:19 GMT' (CHARACTER)
+    (0x03000000:NameValue):Content-Length              = '910' (CHARACTER)
+  )
+  (0x01000000:Folder):SOAP               = ( ['SOAP' : 0x2343bc5d2b0]
+    (0x01000000:Folder):Context = ( ['xmlnsc' : 0x2343af8d170]
+      (0x03000100:Attribute  ):operation         = 'FullCountryInfo' (CHARACTER)
+      (0x03000100:Attribute  ):operationType     = 'REQUEST_RESPONSE' (CHARACTER)
+      (0x03000100:Attribute  ):portType          = 'CountryInfoServiceSoapType' (CHARACTER)
+      (0x03000100:Attribute  ):portTypeNamespace = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+      (0x03000100:Attribute  ):port              = 'CountryInfoServiceSoap' (CHARACTER)
+      (0x03000100:Attribute  ):service           = 'CountryInfoService' (CHARACTER)
+      (0x03000100:Attribute  ):fileName          = 'CountryInfoService.wsdl' (CHARACTER)
+      (0x03000000:PCDataField):SOAP_Version      = '1.1' (CHARACTER)
+      (0x01000000:Folder     ):Namespace         = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:soap = 'http://schemas.xmlsoap.org/soap/envelope/' (CHARACTER)
+      )
+      (0x01000000:Folder     ):_XmlDeclaration   = (
+        (0x03000100:Attribute):Version  = '1.0' (CHARACTER)
+        (0x03000100:Attribute):Encoding = 'utf-8' (CHARACTER)
+      )
+    )
+    (0x01000000:Folder):Header  = 
+    (0x01000000:Folder):Body    = ( ['xmlnsc' : 0x2343af8d170]
+      (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:FullCountryInfoResponse = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:m                                       = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+        (0x01000000:Folder       )http://www.oorsprong.org/websamples.countryinfo:FullCountryInfoResult = (
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sISOCode         = 'US' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sName            = 'United States' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCapitalCity     = 'Washington' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sPhoneCode       = '1' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sContinentCode   = 'AM' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCurrencyISOCode = 'USD' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCountryFlag     = 'http://www.oorsprong.org/WebSamples.CountryInfo/Flags/USA.jpg' (CHARACTER)
+          (0x01000000:Folder     )http://www.oorsprong.org/websamples.countryinfo:Languages        = (
+            (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:tLanguage = (
+              (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sISOCode = 'eng' (CHARACTER)
+              (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sName    = 'English' (CHARACTER)
+            )
+          )
+        )
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = '9c7d6ab1-59ad-4900-b6e9-ad11a6c747d6' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+      (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'FullCountryInfo' (CHARACTER)
+  (0x03000000:NameValue):CountryCode      = 'US' (CHARACTER)
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+( ['MQROOT' : 0x23644599720]
+  (0x01000000:Name):Destination        = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name     ):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+            (0x03000000:NameValue):Timeout       = 30 (INTEGER)
+          )
+        )
+        (0x03000000:NameValue):Operation = 'FullCountryInfo' (CHARACTER)
+      )
+    )
+  )
+  (0x01000000:Name):WrittenDestination = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+          )
+        )
+      )
+    )
+  )
+)
+
+------------------------
+-- 
+-------------------------- SOAP RESPONSE ------------------------2025-05-20 23:43:29.816371
+------
+Environment:
+-------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = '9c7d6ab1-59ad-4900-b6e9-ad11a6c747d6' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+      (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'FullCountryInfo' (CHARACTER)
+  (0x03000000:NameValue):CountryCode      = 'US' (CHARACTER)
+)
+-------------------
+-- Root:
+------------------------
+( ['SOAPRoot' : 0x2364459a6f0]
+  (0x01000000:Name  ):Properties         = ( ['SOAPPROPERTYPARSER' : 0x23643adc0f0]
+    (0x03000000:NameValue):MessageSet             = '' (CHARACTER)
+    (0x03000000:NameValue):MessageType            = '' (CHARACTER)
+    (0x03000000:NameValue):MessageFormat          = '' (CHARACTER)
+    (0x03000000:NameValue):Encoding               = 546 (INTEGER)
+    (0x03000000:NameValue):CodedCharSetId         = 1208 (INTEGER)
+    (0x03000000:NameValue):Transactional          = FALSE (BOOLEAN)
+    (0x03000000:NameValue):Persistence            = FALSE (BOOLEAN)
+    (0x03000000:NameValue):CreationTime           = GMTTIMESTAMP '2025-05-20 21:43:29.448' (GMTTIMESTAMP)
+    (0x03000000:NameValue):ExpirationTime         = -1 (INTEGER)
+    (0x03000000:NameValue):Priority               = 0 (INTEGER)
+    (0x03000000:NameValue):ReplyIdentifier        = X'000000000000000000000000000000000000000000000000' (BLOB)
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourcePassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceIssuedBy = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedPassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedIssuedBy = '' (CHARACTER)
+  )
+  (0x01000000:Name  ):HTTPResponseHeader = ( ['WSRSPHDR' : 0x236435e7d60]
+    (0x03000000:NameValue):X-Original-HTTP-Status-Line = 'HTTP/1.1 200 OK' (CHARACTER)
+    (0x03000000:NameValue):X-Original-HTTP-Status-Code = 200 (INTEGER)
+    (0x03000000:NameValue):Cache-Control               = 'private, max-age=0' (CHARACTER)
+    (0x03000000:NameValue):Content-Type                = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):Server                      = 'Microsoft-IIS/10.0' (CHARACTER)
+    (0x03000000:NameValue):Web-Service                 = 'DataFlex 19.1' (CHARACTER)
+    (0x03000000:NameValue):Date                        = 'Tue, 20 May 2025 20:11:19 GMT' (CHARACTER)
+    (0x03000000:NameValue):Content-Length              = '910' (CHARACTER)
+  )
+  (0x01000000:Folder):SOAP               = ( ['SOAP' : 0x2343bc5d2b0]
+    (0x01000000:Folder):Context = ( ['xmlnsc' : 0x2343af8d170]
+      (0x03000100:Attribute  ):operation         = 'FullCountryInfo' (CHARACTER)
+      (0x03000100:Attribute  ):operationType     = 'REQUEST_RESPONSE' (CHARACTER)
+      (0x03000100:Attribute  ):portType          = 'CountryInfoServiceSoapType' (CHARACTER)
+      (0x03000100:Attribute  ):portTypeNamespace = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+      (0x03000100:Attribute  ):port              = 'CountryInfoServiceSoap' (CHARACTER)
+      (0x03000100:Attribute  ):service           = 'CountryInfoService' (CHARACTER)
+      (0x03000100:Attribute  ):fileName          = 'CountryInfoService.wsdl' (CHARACTER)
+      (0x03000000:PCDataField):SOAP_Version      = '1.1' (CHARACTER)
+      (0x01000000:Folder     ):Namespace         = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:soap = 'http://schemas.xmlsoap.org/soap/envelope/' (CHARACTER)
+      )
+      (0x01000000:Folder     ):_XmlDeclaration   = (
+        (0x03000100:Attribute):Version  = '1.0' (CHARACTER)
+        (0x03000100:Attribute):Encoding = 'utf-8' (CHARACTER)
+      )
+    )
+    (0x01000000:Folder):Header  = 
+    (0x01000000:Folder):Body    = ( ['xmlnsc' : 0x2343af8d170]
+      (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:FullCountryInfoResponse = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:m                                       = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+        (0x01000000:Folder       )http://www.oorsprong.org/websamples.countryinfo:FullCountryInfoResult = (
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sISOCode         = 'US' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sName            = 'United States' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCapitalCity     = 'Washington' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sPhoneCode       = '1' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sContinentCode   = 'AM' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCurrencyISOCode = 'USD' (CHARACTER)
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCountryFlag     = 'http://www.oorsprong.org/WebSamples.CountryInfo/Flags/USA.jpg' (CHARACTER)
+          (0x01000000:Folder     )http://www.oorsprong.org/websamples.countryinfo:Languages        = (
+            (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:tLanguage = (
+              (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sISOCode = 'eng' (CHARACTER)
+              (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sName    = 'English' (CHARACTER)
+            )
+          )
+        )
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = '9c7d6ab1-59ad-4900-b6e9-ad11a6c747d6' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'countryInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):searchType  = 'byCode' (CHARACTER)
+      (0x03000000:NameValue):countryCode = 'US' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'FullCountryInfo' (CHARACTER)
+  (0x03000000:NameValue):CountryCode      = 'US' (CHARACTER)
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+( ['MQROOT' : 0x23644599720]
+  (0x01000000:Name):Destination        = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name     ):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+            (0x03000000:NameValue):Timeout       = 30 (INTEGER)
+          )
+        )
+        (0x03000000:NameValue):Operation = 'FullCountryInfo' (CHARACTER)
+      )
+    )
+  )
+  (0x01000000:Name):WrittenDestination = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+          )
+        )
+      )
+    )
+  )
+)
+
+------------------------
+-- 
+===== EXCEPCIÓN DETECTADA EN EXCEPTIONHANDLER =====
+Timestamp: 2025-05-20 23:43:29.816895
+ExceptionList: 
+CorrelationID: '9c7d6ab1-59ad-4900-b6e9-ad11a6c747d6'
+Root: ( ['SOAPRoot' : 0x2364459aa30]
+  (0x01000000:Name  ):Properties = ( ['MQPROPERTYPARSER' : 0x236434ecaf0]
+    (0x03000000:NameValue):MessageSet             = NULL
+    (0x03000000:NameValue):MessageType            = NULL
+    (0x03000000:NameValue):MessageFormat          = NULL
+    (0x03000000:NameValue):Encoding               = NULL
+    (0x03000000:NameValue):CodedCharSetId         = NULL
+    (0x03000000:NameValue):Transactional          = NULL
+    (0x03000000:NameValue):Persistence            = NULL
+    (0x03000000:NameValue):CreationTime           = NULL
+    (0x03000000:NameValue):ExpirationTime         = NULL
+    (0x03000000:NameValue):Priority               = NULL
+    (0x03000000:NameValue):ReplyIdentifier        = NULL
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = NULL
+    (0x03000000:NameValue):IdentitySourceType     = NULL
+    (0x03000000:NameValue):IdentitySourceToken    = NULL
+    (0x03000000:NameValue):IdentitySourcePassword = NULL
+    (0x03000000:NameValue):IdentitySourceIssuedBy = NULL
+    (0x03000000:NameValue):IdentityMappedType     = NULL
+    (0x03000000:NameValue):IdentityMappedToken    = NULL
+    (0x03000000:NameValue):IdentityMappedPassword = NULL
+    (0x03000000:NameValue):IdentityMappedIssuedBy = NULL
+  )
+  (0x01000000:Object):JSON       = ( ['json' : 0x236445b43f0]
+    (0x01000000:Object):Data = (
+      (0x01000000:Object):responseInfo = (
+        (0x03000000:NameValue):status    = 'success' (CHARACTER)
+        (0x03000000:NameValue):timestamp = TIMESTAMP '2025-05-20 23:43:29.816706' (TIMESTAMP)
+      )
+      (0x01000000:Object):countryData  = (
+        (0x01000000:Object):basicInfo = (
+          (0x03000000:NameValue):code    = 'US' (CHARACTER)
+          (0x03000000:NameValue):name    = 'United States' (CHARACTER)
+          (0x03000000:NameValue):capital = 'Washington' (CHARACTER)
+        )
+        (0x01000000:Object):details   = (
+          (0x03000000:NameValue):phoneCode = '1' (CHARACTER)
+          (0x01000000:Object   ):continent = (
+            (0x03000000:NameValue):code = 'AM' (CHARACTER)
+          )
+          (0x01000000:Object   ):currency  = (
+            (0x03000000:NameValue):code = 'USD' (CHARACTER)
+          )
+          (0x03000000:NameValue):flagUrl   = 'http://www.oorsprong.org/WebSamples.CountryInfo/Flags/USA.jpg' (CHARACTER)
+          (0x01000000:Object   ):language  = (
+            (0x03000000:NameValue):code = 'eng' (CHARACTER)
+            (0x03000000:NameValue):name = 'English' (CHARACTER)
+          )
+        )
+      )
+    )
+  )
+)
+-------------------------- IN HTTP------------------------2025-05-20 23:43:46.498135
+------
+CorrelationID: '320cfeb2-463b-4d5c-adbc-2e28597020f3'
+Environment:
+-------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name):Variables = (
+    (0x03000000:NameValue):correlationId = '320cfeb2-463b-4d5c-adbc-2e28597020f3' (CHARACTER)
+  )
+)
+-------------------
+-- Root:
+------------------------
+( ['WSRoot' : 0x23643ad9120]
+  (0x01000000:Name  ):Properties      = ( ['WSPROPERTYPARSER' : 0x236434c1190]
+    (0x03000000:NameValue):MessageSet             = '' (CHARACTER)
+    (0x03000000:NameValue):MessageType            = '' (CHARACTER)
+    (0x03000000:NameValue):MessageFormat          = '' (CHARACTER)
+    (0x03000000:NameValue):Encoding               = 546 (INTEGER)
+    (0x03000000:NameValue):CodedCharSetId         = 1208 (INTEGER)
+    (0x03000000:NameValue):Transactional          = FALSE (BOOLEAN)
+    (0x03000000:NameValue):Persistence            = FALSE (BOOLEAN)
+    (0x03000000:NameValue):CreationTime           = GMTTIMESTAMP '2025-05-20 21:43:46.497002' (GMTTIMESTAMP)
+    (0x03000000:NameValue):ExpirationTime         = -1 (INTEGER)
+    (0x03000000:NameValue):Priority               = 0 (INTEGER)
+    (0x03000000:NameValue):ReplyIdentifier        = X'000000000000000000000000000000000000000000000000' (BLOB)
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = 'application/json' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourcePassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceIssuedBy = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedPassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedIssuedBy = '' (CHARACTER)
+  )
+  (0x01000000:Name  ):HTTPInputHeader = ( ['WSINPHDR' : 0x23643ad9e20]
+    (0x03000000:NameValue):Content-Type            = 'application/json' (CHARACTER)
+    (0x03000000:NameValue):User-Agent              = 'PostmanRuntime/7.43.4' (CHARACTER)
+    (0x03000000:NameValue):Accept                  = '*/*' (CHARACTER)
+    (0x03000000:NameValue):Cache-Control           = 'no-cache' (CHARACTER)
+    (0x03000000:NameValue):Postman-Token           = 'c5076f38-6092-42cc-9c3c-9c00dfa8f110' (CHARACTER)
+    (0x03000000:NameValue):Host                    = 'localhost:7080' (CHARACTER)
+    (0x03000000:NameValue):Accept-Encoding         = 'gzip, deflate, br' (CHARACTER)
+    (0x03000000:NameValue):Connection              = 'keep-alive' (CHARACTER)
+    (0x03000000:NameValue):Content-Length          = '89' (CHARACTER)
+    (0x03000000:NameValue):X-Original-HTTP-Command = 'GET http://localhost:7080/path/http_service_hub HTTP/1.1' (CHARACTER)
+    (0x03000000:NameValue):X-Server-Name           = 'localhost' (CHARACTER)
+    (0x03000000:NameValue):X-Server-Port           = '7080' (CHARACTER)
+    (0x03000000:NameValue):X-Remote-Addr           = '127.0.0.1' (CHARACTER)
+    (0x03000000:NameValue):X-Remote-Host           = 'localhost' (CHARACTER)
+    (0x03000000:NameValue):X-Scheme                = 'http' (CHARACTER)
+    (0x03000000:NameValue):X-Correlation-ID        = '320cfeb2-463b-4d5c-adbc-2e28597020f3' (CHARACTER)
+  )
+  (0x01000000:Object):JSON            = ( ['json' : 0x236448a0080]
+    (0x01000000:Object):Data = (
+      (0x03000000:NameValue):requestType = 'currencyInfo' (CHARACTER)
+      (0x01000000:Object   ):parameters  = (
+        (0x03000000:NameValue):currencyCode = 'EUR' (CHARACTER)
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name):Variables = (
+    (0x03000000:NameValue):correlationId = '320cfeb2-463b-4d5c-adbc-2e28597020f3' (CHARACTER)
+  )
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+
+
+------------------------
+-- 
+--------------------------Oupt------------------------2025-05-20 23:43:46.498520
+------CorrelationID: '320cfeb2-463b-4d5c-adbc-2e28597020f3'
+Environment:
+-------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = '320cfeb2-463b-4d5c-adbc-2e28597020f3' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'currencyInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):currencyCode = 'EUR' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'CurrencyName' (CHARACTER)
+  (0x03000000:NameValue):CurrencyCode     = 'EUR' (CHARACTER)
+)
+-------------------
+-- Root:
+------------------------
+( ['WSRoot' : 0x236445986e0]
+  (0x01000000:Name  ):Properties = ( ['MQPROPERTYPARSER' : 0x23641d50950]
+    (0x03000000:NameValue):MessageSet             = NULL
+    (0x03000000:NameValue):MessageType            = NULL
+    (0x03000000:NameValue):MessageFormat          = NULL
+    (0x03000000:NameValue):Encoding               = NULL
+    (0x03000000:NameValue):CodedCharSetId         = NULL
+    (0x03000000:NameValue):Transactional          = NULL
+    (0x03000000:NameValue):Persistence            = NULL
+    (0x03000000:NameValue):CreationTime           = NULL
+    (0x03000000:NameValue):ExpirationTime         = NULL
+    (0x03000000:NameValue):Priority               = NULL
+    (0x03000000:NameValue):ReplyIdentifier        = NULL
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = NULL
+    (0x03000000:NameValue):IdentitySourceType     = NULL
+    (0x03000000:NameValue):IdentitySourceToken    = NULL
+    (0x03000000:NameValue):IdentitySourcePassword = NULL
+    (0x03000000:NameValue):IdentitySourceIssuedBy = NULL
+    (0x03000000:NameValue):IdentityMappedType     = NULL
+    (0x03000000:NameValue):IdentityMappedToken    = NULL
+    (0x03000000:NameValue):IdentityMappedPassword = NULL
+    (0x03000000:NameValue):IdentityMappedIssuedBy = NULL
+  )
+  (0x01000000:Folder):XMLNSC     = ( ['xmlnsc' : 0x2343af8df70]
+    (0x01000000:Folder)http://schemas.xmlsoap.org/soap/envelope/:Envelope = (
+      (0x03000102:NamespaceDecl):                                              = NULL
+      (
+        (0x03000000:PCDataField):soapenv = 'http://schemas.xmlsoap.org/soap/envelope/' (CHARACTER)
+        (0x03000000:PCDataField):ns      = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+      )
+      (0x01000000:Folder       )http://schemas.xmlsoap.org/soap/envelope/:Body = (
+        (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:CurrencyName = (
+          (0x03000000:PCDataField)http://www.oorsprong.org/websamples.countryinfo:sCurrencyISOCode = 'EUR' (CHARACTER)
+        )
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = '320cfeb2-463b-4d5c-adbc-2e28597020f3' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'currencyInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):currencyCode = 'EUR' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'CurrencyName' (CHARACTER)
+  (0x03000000:NameValue):CurrencyCode     = 'EUR' (CHARACTER)
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+( ['MQROOT' : 0x23644599720]
+  (0x01000000:Name):Destination = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name     ):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+            (0x03000000:NameValue):Timeout       = 30 (INTEGER)
+          )
+        )
+        (0x03000000:NameValue):Operation = 'CurrencyName' (CHARACTER)
+      )
+    )
+  )
+)
+
+------------------------
+-- 
+--------------------------Oupt response------------------------2025-05-20 23:43:46.990534
+------CorrelationID: '320cfeb2-463b-4d5c-adbc-2e28597020f3'
+Environment:
+-------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = '320cfeb2-463b-4d5c-adbc-2e28597020f3' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'currencyInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):currencyCode = 'EUR' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'CurrencyName' (CHARACTER)
+  (0x03000000:NameValue):CurrencyCode     = 'EUR' (CHARACTER)
+)
+-------------------
+-- Root:
+------------------------
+( ['SOAPRoot' : 0x2364459a6f0]
+  (0x01000000:Name  ):Properties         = ( ['SOAPPROPERTYPARSER' : 0x23643adc0f0]
+    (0x03000000:NameValue):MessageSet             = '' (CHARACTER)
+    (0x03000000:NameValue):MessageType            = '' (CHARACTER)
+    (0x03000000:NameValue):MessageFormat          = '' (CHARACTER)
+    (0x03000000:NameValue):Encoding               = 546 (INTEGER)
+    (0x03000000:NameValue):CodedCharSetId         = 1208 (INTEGER)
+    (0x03000000:NameValue):Transactional          = FALSE (BOOLEAN)
+    (0x03000000:NameValue):Persistence            = FALSE (BOOLEAN)
+    (0x03000000:NameValue):CreationTime           = GMTTIMESTAMP '2025-05-20 21:43:46.498001' (GMTTIMESTAMP)
+    (0x03000000:NameValue):ExpirationTime         = -1 (INTEGER)
+    (0x03000000:NameValue):Priority               = 0 (INTEGER)
+    (0x03000000:NameValue):ReplyIdentifier        = X'000000000000000000000000000000000000000000000000' (BLOB)
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourcePassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceIssuedBy = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedPassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedIssuedBy = '' (CHARACTER)
+  )
+  (0x01000000:Name  ):HTTPResponseHeader = ( ['WSRSPHDR' : 0x236435e7d60]
+    (0x03000000:NameValue):X-Original-HTTP-Status-Line = 'HTTP/1.1 200 OK' (CHARACTER)
+    (0x03000000:NameValue):X-Original-HTTP-Status-Code = 200 (INTEGER)
+    (0x03000000:NameValue):Cache-Control               = 'private, max-age=0' (CHARACTER)
+    (0x03000000:NameValue):Content-Type                = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):Server                      = 'Microsoft-IIS/10.0' (CHARACTER)
+    (0x03000000:NameValue):Web-Service                 = 'DataFlex 19.1' (CHARACTER)
+    (0x03000000:NameValue):Date                        = 'Tue, 20 May 2025 20:11:36 GMT' (CHARACTER)
+    (0x03000000:NameValue):Content-Length              = '335' (CHARACTER)
+  )
+  (0x01000000:Folder):SOAP               = ( ['SOAP' : 0x2343bc5d2b0]
+    (0x01000000:Folder):Context = ( ['xmlnsc' : 0x2343af8d170]
+      (0x03000100:Attribute  ):operation         = 'CurrencyName' (CHARACTER)
+      (0x03000100:Attribute  ):operationType     = 'REQUEST_RESPONSE' (CHARACTER)
+      (0x03000100:Attribute  ):portType          = 'CountryInfoServiceSoapType' (CHARACTER)
+      (0x03000100:Attribute  ):portTypeNamespace = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+      (0x03000100:Attribute  ):port              = 'CountryInfoServiceSoap' (CHARACTER)
+      (0x03000100:Attribute  ):service           = 'CountryInfoService' (CHARACTER)
+      (0x03000100:Attribute  ):fileName          = 'CountryInfoService.wsdl' (CHARACTER)
+      (0x03000000:PCDataField):SOAP_Version      = '1.1' (CHARACTER)
+      (0x01000000:Folder     ):Namespace         = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:soap = 'http://schemas.xmlsoap.org/soap/envelope/' (CHARACTER)
+      )
+      (0x01000000:Folder     ):_XmlDeclaration   = (
+        (0x03000100:Attribute):Version  = '1.0' (CHARACTER)
+        (0x03000100:Attribute):Encoding = 'utf-8' (CHARACTER)
+      )
+    )
+    (0x01000000:Folder):Header  = 
+    (0x01000000:Folder):Body    = ( ['xmlnsc' : 0x2343af8d170]
+      (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:CurrencyNameResponse = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:m                                    = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+        (0x03000000:PCDataField  )http://www.oorsprong.org/websamples.countryinfo:CurrencyNameResult = 'Euro' (CHARACTER)
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = '320cfeb2-463b-4d5c-adbc-2e28597020f3' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'currencyInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):currencyCode = 'EUR' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'CurrencyName' (CHARACTER)
+  (0x03000000:NameValue):CurrencyCode     = 'EUR' (CHARACTER)
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+( ['MQROOT' : 0x23644599720]
+  (0x01000000:Name):Destination        = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name     ):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+            (0x03000000:NameValue):Timeout       = 30 (INTEGER)
+          )
+        )
+        (0x03000000:NameValue):Operation = 'CurrencyName' (CHARACTER)
+      )
+    )
+  )
+  (0x01000000:Name):WrittenDestination = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+          )
+        )
+      )
+    )
+  )
+)
+
+------------------------
+-- 
+-------------------------- SOAP RESPONSE ------------------------2025-05-20 23:43:46.991147
+------
+Environment:
+-------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = '320cfeb2-463b-4d5c-adbc-2e28597020f3' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'currencyInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):currencyCode = 'EUR' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'CurrencyName' (CHARACTER)
+  (0x03000000:NameValue):CurrencyCode     = 'EUR' (CHARACTER)
+)
+-------------------
+-- Root:
+------------------------
+( ['SOAPRoot' : 0x2364459a6f0]
+  (0x01000000:Name  ):Properties         = ( ['SOAPPROPERTYPARSER' : 0x23643adc0f0]
+    (0x03000000:NameValue):MessageSet             = '' (CHARACTER)
+    (0x03000000:NameValue):MessageType            = '' (CHARACTER)
+    (0x03000000:NameValue):MessageFormat          = '' (CHARACTER)
+    (0x03000000:NameValue):Encoding               = 546 (INTEGER)
+    (0x03000000:NameValue):CodedCharSetId         = 1208 (INTEGER)
+    (0x03000000:NameValue):Transactional          = FALSE (BOOLEAN)
+    (0x03000000:NameValue):Persistence            = FALSE (BOOLEAN)
+    (0x03000000:NameValue):CreationTime           = GMTTIMESTAMP '2025-05-20 21:43:46.498001' (GMTTIMESTAMP)
+    (0x03000000:NameValue):ExpirationTime         = -1 (INTEGER)
+    (0x03000000:NameValue):Priority               = 0 (INTEGER)
+    (0x03000000:NameValue):ReplyIdentifier        = X'000000000000000000000000000000000000000000000000' (BLOB)
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourcePassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentitySourceIssuedBy = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedType     = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedToken    = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedPassword = '' (CHARACTER)
+    (0x03000000:NameValue):IdentityMappedIssuedBy = '' (CHARACTER)
+  )
+  (0x01000000:Name  ):HTTPResponseHeader = ( ['WSRSPHDR' : 0x236435e7d60]
+    (0x03000000:NameValue):X-Original-HTTP-Status-Line = 'HTTP/1.1 200 OK' (CHARACTER)
+    (0x03000000:NameValue):X-Original-HTTP-Status-Code = 200 (INTEGER)
+    (0x03000000:NameValue):Cache-Control               = 'private, max-age=0' (CHARACTER)
+    (0x03000000:NameValue):Content-Type                = 'text/xml; charset=utf-8' (CHARACTER)
+    (0x03000000:NameValue):Server                      = 'Microsoft-IIS/10.0' (CHARACTER)
+    (0x03000000:NameValue):Web-Service                 = 'DataFlex 19.1' (CHARACTER)
+    (0x03000000:NameValue):Date                        = 'Tue, 20 May 2025 20:11:36 GMT' (CHARACTER)
+    (0x03000000:NameValue):Content-Length              = '335' (CHARACTER)
+  )
+  (0x01000000:Folder):SOAP               = ( ['SOAP' : 0x2343bc5d2b0]
+    (0x01000000:Folder):Context = ( ['xmlnsc' : 0x2343af8d170]
+      (0x03000100:Attribute  ):operation         = 'CurrencyName' (CHARACTER)
+      (0x03000100:Attribute  ):operationType     = 'REQUEST_RESPONSE' (CHARACTER)
+      (0x03000100:Attribute  ):portType          = 'CountryInfoServiceSoapType' (CHARACTER)
+      (0x03000100:Attribute  ):portTypeNamespace = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+      (0x03000100:Attribute  ):port              = 'CountryInfoServiceSoap' (CHARACTER)
+      (0x03000100:Attribute  ):service           = 'CountryInfoService' (CHARACTER)
+      (0x03000100:Attribute  ):fileName          = 'CountryInfoService.wsdl' (CHARACTER)
+      (0x03000000:PCDataField):SOAP_Version      = '1.1' (CHARACTER)
+      (0x01000000:Folder     ):Namespace         = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:soap = 'http://schemas.xmlsoap.org/soap/envelope/' (CHARACTER)
+      )
+      (0x01000000:Folder     ):_XmlDeclaration   = (
+        (0x03000100:Attribute):Version  = '1.0' (CHARACTER)
+        (0x03000100:Attribute):Encoding = 'utf-8' (CHARACTER)
+      )
+    )
+    (0x01000000:Folder):Header  = 
+    (0x01000000:Folder):Body    = ( ['xmlnsc' : 0x2343af8d170]
+      (0x01000000:Folder)http://www.oorsprong.org/websamples.countryinfo:CurrencyNameResponse = (
+        (0x03000102:NamespaceDecl)http://www.w3.org/2000/xmlns/:m                                    = 'http://www.oorsprong.org/websamples.countryinfo' (CHARACTER)
+        (0x03000000:PCDataField  )http://www.oorsprong.org/websamples.countryinfo:CurrencyNameResult = 'Euro' (CHARACTER)
+      )
+    )
+  )
+)
+------------------------
+------------------------
+-- ExceptionList:
+------------------------
+
+
+------------------------
+-- Environment:
+------------------------
+( ['MQROOT' : 0x23643ad97a0]
+  (0x01000000:Name     ):Variables        = (
+    (0x03000000:NameValue):correlationId = '320cfeb2-463b-4d5c-adbc-2e28597020f3' (CHARACTER)
+  )
+  (0x01000000:Name     ):RequestEntrada   = (
+    (0x03000000:NameValue):requestType = 'currencyInfo' (CHARACTER)
+    (0x01000000:Name     ):parameters  = (
+      (0x03000000:NameValue):currencyCode = 'EUR' (CHARACTER)
+    )
+  )
+  (0x03000000:NameValue):ValidationStatus = 'VALID' (CHARACTER)
+  (0x03000000:NameValue):SOAPOperation    = 'CurrencyName' (CHARACTER)
+  (0x03000000:NameValue):CurrencyCode     = 'EUR' (CHARACTER)
+)
+
+------------------------
+-- LocalEnvironment:
+------------------------
+( ['MQROOT' : 0x23644599720]
+  (0x01000000:Name):Destination        = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name     ):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+            (0x03000000:NameValue):Timeout       = 30 (INTEGER)
+          )
+        )
+        (0x03000000:NameValue):Operation = 'CurrencyName' (CHARACTER)
+      )
+    )
+  )
+  (0x01000000:Name):WrittenDestination = (
+    (0x01000000:Name):SOAP = (
+      (0x01000000:Name):Request = (
+        (0x01000000:Name):Transport = (
+          (0x01000000:Name):HTTP = (
+            (0x03000000:NameValue):WebServiceURL = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso' (CHARACTER)
+          )
+        )
+      )
+    )
+  )
+)
+
+------------------------
+-- 
+===== EXCEPCIÓN DETECTADA EN EXCEPTIONHANDLER =====
+Timestamp: 2025-05-20 23:43:46.991446
+ExceptionList: 
+CorrelationID: '320cfeb2-463b-4d5c-adbc-2e28597020f3'
+Root: ( ['SOAPRoot' : 0x2364459aa30]
+  (0x01000000:Name  ):Properties = ( ['MQPROPERTYPARSER' : 0x236434ecaf0]
+    (0x03000000:NameValue):MessageSet             = NULL
+    (0x03000000:NameValue):MessageType            = NULL
+    (0x03000000:NameValue):MessageFormat          = NULL
+    (0x03000000:NameValue):Encoding               = NULL
+    (0x03000000:NameValue):CodedCharSetId         = NULL
+    (0x03000000:NameValue):Transactional          = NULL
+    (0x03000000:NameValue):Persistence            = NULL
+    (0x03000000:NameValue):CreationTime           = NULL
+    (0x03000000:NameValue):ExpirationTime         = NULL
+    (0x03000000:NameValue):Priority               = NULL
+    (0x03000000:NameValue):ReplyIdentifier        = NULL
+    (0x03000000:NameValue):ReplyProtocol          = 'SOAP-HTTP' (CHARACTER)
+    (0x03000000:NameValue):Topic                  = NULL
+    (0x03000000:NameValue):ContentType            = NULL
+    (0x03000000:NameValue):IdentitySourceType     = NULL
+    (0x03000000:NameValue):IdentitySourceToken    = NULL
+    (0x03000000:NameValue):IdentitySourcePassword = NULL
+    (0x03000000:NameValue):IdentitySourceIssuedBy = NULL
+    (0x03000000:NameValue):IdentityMappedType     = NULL
+    (0x03000000:NameValue):IdentityMappedToken    = NULL
+    (0x03000000:NameValue):IdentityMappedPassword = NULL
+    (0x03000000:NameValue):IdentityMappedIssuedBy = NULL
+  )
+  (0x01000000:Object):JSON       = ( ['json' : 0x236445b43f0]
+    (0x01000000:Object):Data = (
+      (0x01000000:Object):responseInfo = (
+        (0x03000000:NameValue):status    = 'success' (CHARACTER)
+        (0x03000000:NameValue):timestamp = TIMESTAMP '2025-05-20 23:43:46.991381' (TIMESTAMP)
+      )
+      (0x01000000:Object):currencyData = (
+        (0x03000000:NameValue):code = 'EUR' (CHARACTER)
+        (0x03000000:NameValue):name = 'Euro' (CHARACTER)
+      )
+    )
+  )
+)

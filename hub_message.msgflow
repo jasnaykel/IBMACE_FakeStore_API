@@ -7,7 +7,7 @@
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/App_Service_Hub/icons/full/obj16/hub_message.gif"/>
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/App_Service_Hub/icons/full/obj30/hub_message.gif"/>
     <composition>
-      <nodes xmi:type="ComIbmWSReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="2719,29">
+      <nodes xmi:type="ComIbmWSReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="2762,31">
         <translation xmi:type="utility:ConstantString" string="HTTP Reply"/>
       </nodes>
       <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="303,114" destination="file" filePath="D:\jasna\Mis cosas\IBM_ACE\ACET12\ACET12\workspace\App_Service_Hub\log_http_prueba.log" pattern="-------------------------- TIME OUT------------------------${CURRENT_TIMESTAMP}&#xD;&#xA;------CorrelationID: ${Environment.Variables.correlationId}&#xD;&#xA;Environment:&#xD;&#xA;-------------------&#xD;&#xA;${Environment}&#xD;&#xA;-------------------&#xD;&#xA;-- Root:&#xD;&#xA;------------------------&#xD;&#xA;${Root}&#xD;&#xA;------------------------&#xD;&#xA;------------------------&#xD;&#xA;-- ExceptionList:&#xD;&#xA;------------------------&#xD;&#xA;${ExceptionList}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- Environment:&#xD;&#xA;------------------------&#xD;&#xA;${Environment}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- LocalEnvironment:&#xD;&#xA;------------------------&#xD;&#xA;${LocalEnvironment}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- ">
@@ -40,21 +40,12 @@
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_17" location="2295,291" computeExpression="esql://routine/#TransformSOAPtoJSON.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="ConfHTTPRequest1"/>
       </nodes>
-      <nodes xmi:type="ComIbmFilter.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_12" location="1837,238" filterExpression="esql://routine/#hub_message_Filter.Main">
-        <translation xmi:type="utility:ConstantString" string="Filter_precio"/>
-      </nodes>
       <nodes xmi:type="ComIbmSOAPRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="1417,212" wsdlFileName="CountryInfoService.wsdl" selectedPortType="CountryInfoServiceSoapType" selectedBinding="CountryInfoServiceSoapBinding" selectedOperation="FullCountryInfo" selectedPort="CountryInfoServiceSoap" targetNamespace="http://www.oorsprong.org/websamples.countryinfo" useHTTPTransport="true" webServiceURL="http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso"
           requestTimeout="10" sslProtocol="TLSv1" requestTimeoutJMS="30" jmsProviderName="activeMQ" initialContextFactory="org.apache.activemq.jndi.ActiveMQInitialContextFactory">
         <translation xmi:type="utility:ConstantString" string="CountryInfoService"/>
       </nodes>
-      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="2533,143" destination="file" filePath="D:\jasna\Mis cosas\IBM_ACE\ACET12\ACET12\workspace\App_Service_Hub\log_http_prueba.log" pattern="--------------------------oupt reply------------------------${CURRENT_TIMESTAMP}&#xD;&#xA;------CorrelationID: ${Environment.Variables.correlationId}&#xD;&#xA;Environment:&#xD;&#xA;-------------------&#xD;&#xA;${Environment}&#xD;&#xA;-------------------&#xD;&#xA;-- Root:&#xD;&#xA;------------------------&#xD;&#xA;${Root}&#xD;&#xA;------------------------&#xD;&#xA;------------------------&#xD;&#xA;-- ExceptionList:&#xD;&#xA;------------------------&#xD;&#xA;${ExceptionList}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- Environment:&#xD;&#xA;------------------------&#xD;&#xA;${Environment}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- LocalEnvironment:&#xD;&#xA;------------------------&#xD;&#xA;${LocalEnvironment}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- ">
-        <translation xmi:type="utility:ConstantString" string="Trace3"/>
-      </nodes>
       <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_14" location="2060,288" destination="file" filePath="D:\jasna\Mis cosas\IBM_ACE\ACET12\ACET12\workspace\App_Service_Hub\log_http_prueba.log" pattern="-------------------------- SOAP RESPONSE ------------------------${CURRENT_TIMESTAMP}&#xD;&#xA;------&#xD;&#xA;Environment:&#xD;&#xA;-------------------&#xD;&#xA;${Environment}&#xD;&#xA;-------------------&#xD;&#xA;-- Root:&#xD;&#xA;------------------------&#xD;&#xA;${Root}&#xD;&#xA;------------------------&#xD;&#xA;------------------------&#xD;&#xA;-- ExceptionList:&#xD;&#xA;------------------------&#xD;&#xA;${ExceptionList}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- Environment:&#xD;&#xA;------------------------&#xD;&#xA;${Environment}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- LocalEnvironment:&#xD;&#xA;------------------------&#xD;&#xA;${LocalEnvironment}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- ">
         <translation xmi:type="utility:ConstantString" string="Trace4"/>
-      </nodes>
-      <nodes xmi:type="ExceptionHandler.subflow:FCMComposite_1" xmi:id="FCMComposite_1_19" location="1833,23">
-        <translation xmi:type="utility:ConstantString" string="ExceptionHandler"/>
       </nodes>
       <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_21" location="1550,82" destination="file" filePath="D:\jasna\Mis cosas\IBM_ACE\ACET12\ACET12\workspace\App_Service_Hub\log_http_prueba.log" pattern="--------------------------Oupt response------------------------${CURRENT_TIMESTAMP}&#xD;&#xA;------CorrelationID: ${Environment.Variables.correlationId}&#xD;&#xA;Environment:&#xD;&#xA;-------------------&#xD;&#xA;${Environment}&#xD;&#xA;-------------------&#xD;&#xA;-- Root:&#xD;&#xA;------------------------&#xD;&#xA;${Root}&#xD;&#xA;------------------------&#xD;&#xA;------------------------&#xD;&#xA;-- ExceptionList:&#xD;&#xA;------------------------&#xD;&#xA;${ExceptionList}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- Environment:&#xD;&#xA;------------------------&#xD;&#xA;${Environment}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- LocalEnvironment:&#xD;&#xA;------------------------&#xD;&#xA;${LocalEnvironment}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- ">
         <translation xmi:type="utility:ConstantString" string="Trace6"/>
@@ -62,11 +53,8 @@
       <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_22" location="1652,144" destination="file" filePath="D:\jasna\Mis cosas\IBM_ACE\ACET12\ACET12\workspace\App_Service_Hub\log_http_prueba.log" pattern="--------------------------Oupt response------------------------${CURRENT_TIMESTAMP}&#xD;&#xA;------CorrelationID: ${Environment.Variables.correlationId}&#xD;&#xA;Environment:&#xD;&#xA;-------------------&#xD;&#xA;${Environment}&#xD;&#xA;-------------------&#xD;&#xA;-- Root:&#xD;&#xA;------------------------&#xD;&#xA;${Root}&#xD;&#xA;------------------------&#xD;&#xA;------------------------&#xD;&#xA;-- ExceptionList:&#xD;&#xA;------------------------&#xD;&#xA;${ExceptionList}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- Environment:&#xD;&#xA;------------------------&#xD;&#xA;${Environment}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- LocalEnvironment:&#xD;&#xA;------------------------&#xD;&#xA;${LocalEnvironment}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- ">
         <translation xmi:type="utility:ConstantString" string="Trace7"/>
       </nodes>
-      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_23" location="2073,146" destination="file" filePath="D:\jasna\Mis cosas\IBM_ACE\ACET12\ACET12\workspace\App_Service_Hub\log_http_prueba.log" pattern="-------------------------- SOAP RESPONSE ------------------------${CURRENT_TIMESTAMP}&#xD;&#xA;------CorrelationID: ${Environment.Variables.correlationId}&#xD;&#xA;Environment:&#xD;&#xA;-------------------&#xD;&#xA;${Environment}&#xD;&#xA;-------------------&#xD;&#xA;-- Root:&#xD;&#xA;------------------------&#xD;&#xA;${Root}&#xD;&#xA;------------------------&#xD;&#xA;------------------------&#xD;&#xA;-- ExceptionList:&#xD;&#xA;------------------------&#xD;&#xA;${ExceptionList}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- Environment:&#xD;&#xA;------------------------&#xD;&#xA;${Environment}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- LocalEnvironment:&#xD;&#xA;------------------------&#xD;&#xA;${LocalEnvironment}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- ">
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_23" location="2112,152" destination="file" filePath="D:\jasna\Mis cosas\IBM_ACE\ACET12\ACET12\workspace\App_Service_Hub\log_http_prueba.log" pattern="-------------------------- SOAP RESPONSE ------------------------${CURRENT_TIMESTAMP}&#xD;&#xA;------CorrelationID: ${Environment.Variables.correlationId}&#xD;&#xA;Environment:&#xD;&#xA;-------------------&#xD;&#xA;${Environment}&#xD;&#xA;-------------------&#xD;&#xA;-- Root:&#xD;&#xA;------------------------&#xD;&#xA;${Root}&#xD;&#xA;------------------------&#xD;&#xA;------------------------&#xD;&#xA;-- ExceptionList:&#xD;&#xA;------------------------&#xD;&#xA;${ExceptionList}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- Environment:&#xD;&#xA;------------------------&#xD;&#xA;${Environment}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- LocalEnvironment:&#xD;&#xA;------------------------&#xD;&#xA;${LocalEnvironment}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- ">
         <translation xmi:type="utility:ConstantString" string="Trace8"/>
-      </nodes>
-      <nodes xmi:type="ExceptionHandler.subflow:FCMComposite_1" xmi:id="FCMComposite_1_24" location="2297,105">
-        <translation xmi:type="utility:ConstantString" string="ExceptionHandler1"/>
       </nodes>
       <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_26" location="1413,-5" destination="file" filePath="D:\jasna\Mis cosas\IBM_ACE\ACET12\ACET12\workspace\App_Service_Hub\log_http_prueba.log" pattern="===== EXCEPCIÓN DETECTADA EN EXCEPTIONHANDLER =====&#xD;&#xA;Timestamp: ${CURRENT_TIMESTAMP}&#xD;&#xA;ExceptionList: ${ExceptionList}&#xD;&#xA;CorrelationID: ${Environment.Variables.correlationId}">
         <translation xmi:type="utility:ConstantString" string="Trace9"/>
@@ -77,38 +65,26 @@
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_28" location="90,206" computeExpression="esql://routine/#InitializeCorrelationId.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="Compute"/>
       </nodes>
-      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_29" location="2235,13" destination="file" filePath="D:\jasna\Mis cosas\IBM_ACE\ACET12\ACET12\workspace\App_Service_Hub\log_http_prueba.log" pattern="===== EXCEPCIÓN DETECTADA EN EXCEPTIONHANDLER =====&#xD;&#xA;Timestamp: ${CURRENT_TIMESTAMP}&#xD;&#xA;ExceptionList: ${ExceptionList}&#xD;&#xA;CorrelationID: ${Environment.Variables.correlationId}&#xD;&#xA;Root: ${Root}">
-        <translation xmi:type="utility:ConstantString" string="Trace10"/>
-      </nodes>
       <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_30" location="2489,79" destination="file" filePath="D:\jasna\Mis cosas\IBM_ACE\ACET12\ACET12\workspace\App_Service_Hub\log_http_prueba.log" pattern="===== EXCEPCIÓN DETECTADA EN EXCEPTIONHANDLER =====&#xD;&#xA;Timestamp: ${CURRENT_TIMESTAMP}&#xD;&#xA;ExceptionList: ${ExceptionList}&#xD;&#xA;CorrelationID: ${Environment.Variables.correlationId}&#xD;&#xA;Root: ${Root}">
         <translation xmi:type="utility:ConstantString" string="Trace5"/>
+      </nodes>
+      <nodes xmi:type="ExceptionHandler.subflow:FCMComposite_1" xmi:id="FCMComposite_1_15" location="2284,82">
+        <translation xmi:type="utility:ConstantString" string="ExceptionHandler3"/>
+      </nodes>
+      <nodes xmi:type="ComIbmFilter.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="1846,250" filterExpression="esql://routine/#hub_message_Filter_new.Main">
+        <translation xmi:type="utility:ConstantString" string="Filter"/>
       </nodes>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_13" targetNode="FCMComposite_1_13" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_23" targetNode="FCMComposite_1_16" sourceNode="FCMComposite_1_13" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_27" targetNode="FCMComposite_1_10" sourceNode="FCMComposite_1_16" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_11" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_14" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_12" sourceTerminalName="OutTerminal.false" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_17" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_17" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_18" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_9" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_16" targetNode="FCMComposite_1_17" sourceNode="FCMComposite_1_14" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_19" targetNode="FCMComposite_1_14" sourceNode="FCMComposite_1_12" sourceTerminalName="OutTerminal.true" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_21" targetNode="FCMComposite_1_12" sourceNode="FCMComposite_1_11" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_30" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_10" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_34" targetNode="FCMComposite_1_21" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_35" targetNode="FCMComposite_1_19" sourceNode="FCMComposite_1_21" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input1"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_36" targetNode="FCMComposite_1_22" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.fault" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_37" targetNode="FCMComposite_1_19" sourceNode="FCMComposite_1_22" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input1"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_38" targetNode="FCMComposite_1_23" sourceNode="FCMComposite_1_12" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in">
-        <bendPoints>73,-90,-163,2</bendPoints>
-      </connections>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_39" targetNode="FCMComposite_1_24" sourceNode="FCMComposite_1_23" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input1"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_41" targetNode="FCMComposite_1_23" sourceNode="FCMComposite_1_12" sourceTerminalName="OutTerminal.unknown" targetTerminalName="InTerminal.in">
-        <bendPoints>162,-36,-74,56</bendPoints>
-      </connections>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_42" targetNode="FCMComposite_1_26" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_43" targetNode="FCMComposite_1_26" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_44" targetNode="FCMComposite_1_19" sourceNode="FCMComposite_1_26" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input1"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_46" targetNode="FCMComposite_1_26" sourceNode="FCMComposite_1_27" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_47" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_28" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_48" targetNode="FCMComposite_1_27" sourceNode="FCMComposite_1_28" sourceTerminalName="OutTerminal.out1" targetTerminalName="InTerminal.in"/>
@@ -118,10 +94,22 @@
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_52" targetNode="FCMComposite_1_28" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.timeout" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_53" targetNode="FCMComposite_1_28" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_54" targetNode="FCMComposite_1_28" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_55" targetNode="FCMComposite_1_29" sourceNode="FCMComposite_1_19" sourceTerminalName="OutTerminal.Output1" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_56" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_29" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_57" targetNode="FCMComposite_1_30" sourceNode="FCMComposite_1_24" sourceTerminalName="OutTerminal.Output1" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_58" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_30" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_15" sourceNode="FCMComposite_1_22" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input1"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_15" sourceNode="FCMComposite_1_21" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input1"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_15" sourceNode="FCMComposite_1_26" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input1"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_30" sourceNode="FCMComposite_1_15" sourceTerminalName="OutTerminal.Output1" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_15" sourceNode="FCMComposite_1_23" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input1"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_11" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_9" targetNode="FCMComposite_1_23" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.false" targetTerminalName="InTerminal.in">
+        <bendPoints>184,-30,-82,68</bendPoints>
+      </connections>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_11" targetNode="FCMComposite_1_14" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.true" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_12" targetNode="FCMComposite_1_23" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.unknown" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_14" targetNode="FCMComposite_1_23" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in">
+        <bendPoints>67,-102,-199,-4</bendPoints>
+      </connections>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_15" targetNode="FCMComposite_1_30" sourceNode="FCMComposite_1_17" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
     </composition>
     <propertyOrganizer/>
     <stickyBoard/>

@@ -1,5 +1,4 @@
-
-CREATE FILTER MODULE hub_message_Filter
+CREATE FILTER MODULE hub_message_Filter_new
     CREATE FUNCTION Main() RETURNS BOOLEAN
     BEGIN
         -- Verificar si hay un error en Environment

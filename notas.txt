@@ -1,0 +1,437 @@
+Plan para el Ejercicio 4: Consumo de SOAP desde REST
+Basado en tu ejercicio 3 y las instrucciones de tu tutor, aquí te muestro cómo adaptar tu código para el ejercicio 4 utilizando el WSDL de CountryInfoService.
+1. Estructura del Proyecto
+Mantén la misma estructura de flujo del ejercicio 3, pero adaptándola para consumir un servicio SOAP en lugar de REST:
+App_Service_Hub_SOAP/
+  ├── country_info_service.msgflow (adaptado de hub_message.msgflow)
+  ├── Country_Info_Compute.esql (adaptado de Http_Message_Compute.esql)
+  └── country_info_Filter.esql (adaptado de hub_message_Filter.esql)
+
+Copy
+2. Diseño de JSON personalizado para Request/Response
+Diseño de Request JSON (personalizado):
+{
+  "requestType": "countryInfo",
+  "parameters": {
+    "searchType": "byCode",
+    "countryCode": "US",
+    "includeDetails": true,
+    "language": "en"
+  },
+  "options": {
+    "format": "complete",
+    "cacheResults": false
+  }
+}
+
+Copy
+Diseño de Response JSON (personalizado):
+{
+  "responseInfo": {
+    "status": "success",
+    "timestamp": "2023-04-16T10:30:45Z",
+    "requestType": "countryInfo"
+  },
+  "countryData": {
+    "basicInfo": {
+      "name": "United States",
+      "code": "US",
+      "capital": "Washington"
+    },
+    "details": {
+      "continent": {
+        "name": "North America",
+        "code": "NA"
+      },
+      "currency": {
+        "name": "Dollar",
+        "code": "USD",
+        "symbol": "$"
+      },
+      "phoneCode": "+1",
+      "flagUrl": "http://example.com/flags/us.png"
+    },
+    "languages": [
+      {
+        "name": "English",
+        "code": "EN",
+        "primary": true
+      }
+    ]
+  }
+}
+
+Copy
+3. Modificaciones al Message Flow
+Adapta hub_message.msgflow para crear country_info_service.msgflow:
+Mantén el nodo HTTP Input y HTTP Reply
+Reemplaza el nodo HTTP Request por un nodo SOAP Request
+Configura el nodo SOAP Request para usar el WSDL de CountryInfoService
+Mantén los nodos Compute para transformación y validación, pero adapta su lógica
+4. Código ESQL para las Transformaciones
+1. Adaptación de Http_Message_Compute.Main:
+CREATE COMPUTE MODULE Country_Info_Compute
+    CREATE FUNCTION Main() RETURNS BOOLEAN
+    BEGIN
+        -- Extraer datos de entrada y guardarlos en Environment
+        SET Environment.RequestEntrada = InputRoot.JSON.Data;
+        
+        -- Validar que los datos de entrada tengan formato correcto
+        IF EXISTS(InputRoot.JSON.Data.requestType[]) AND 
+           EXISTS(InputRoot.JSON.Data.parameters[]) THEN
+            SET Environment.ValidationStatus = 'VALID';
+        ELSE
+            SET Environment.ValidationStatus = 'INVALID';
+            -- Crear un mensaje de error
+            SET OutputRoot.JSON.Data.responseInfo.status = 'error';
+            SET OutputRoot.JSON.Data.responseInfo.message = 'Invalid request format';
+            RETURN FALSE;
+        END IF;
+        
+        RETURN TRUE;
+    END;
+END MODULE;
+
+Copy
+Country_Info_Compute.esql
+2. Adaptación para mapear la solicitud JSON a SOAP:
+CREATE COMPUTE MODULE RequestToSOAPMapper
+    CREATE FUNCTION Main() RETURNS BOOLEAN
+    BEGIN
+        -- Determinar qué operación SOAP invocar basado en el requestType y searchType
+        DECLARE requestType CHARACTER Environment.RequestEntrada.requestType;
+        DECLARE searchType CHARACTER Environment.RequestEntrada.parameters.searchType;
+        
+        -- Crear estructura SOAP para la salida
+        CREATE LASTCHILD OF OutputRoot DOMAIN 'XMLNSC';
+        
+        -- Mapear diferentes tipos de solicitudes a operaciones SOAP específicas
+        IF requestType = 'countryInfo' THEN
+            IF searchType = 'byCode' THEN
+                -- Mapear a FullCountryInfo
+                SET Environment.SOAPOperation = 'FullCountryInfo';
+                
+                -- Crear el mensaje SOAP para FullCountryInfo
+                SET OutputRoot.XMLNSC.(SOAP.Envelope).(SOAP.Body).{'ns:FullCountryInfo'} = '';
+                DECLARE soapBody REFERENCE TO OutputRoot.XMLNSC.(SOAP.Envelope).(SOAP.Body).{'ns:FullCountryInfo'};
+                
+                -- Establecer el código del país
+                SET soapBody.{'ns:sCountryISOCode'} = Environment.RequestEntrada.parameters.countryCode;
+                
+                -- Configurar el namespace
+                SET OutputRoot.XMLNSC.(SOAP.Envelope).(XMLNSC.NamespaceDecl)xmlns:ns = 'http://www.oorsprong.org/websamples.countryinfo';
+            ELSEIF searchType = 'byName' THEN
+                -- Mapear a CountryISOCode
+                SET Environment.SOAPOperation = 'CountryISOCode';
+                
+                -- Crear el mensaje SOAP para CountryISOCode
+                SET OutputRoot.XMLNSC.(SOAP.Envelope).(SOAP.Body).{'ns:CountryISOCode'} = '';
+                DECLARE soapBody REFERENCE TO OutputRoot.XMLNSC.(SOAP.Envelope).(SOAP.Body).{'ns:CountryISOCode'};
+                
+                -- Establecer el nombre del país
+                SET soapBody.{'ns:sCountryName'} = Environment.RequestEntrada.parameters.countryName;
+                
+                -- Configurar el namespace
+                SET OutputRoot.XMLNSC.(SOAP.Envelope).(XMLNSC.NamespaceDecl)xmlns:ns = 'http://www.oorsprong.org/websamples.countryinfo';
+            END IF;
+        ELSEIF requestType = 'listCountries' THEN
+            -- Mapear a ListOfCountryNamesByCode o ListOfCountryNamesByName
+            IF searchType = 'byCode' THEN
+                SET Environment.SOAPOperation = 'ListOfCountryNamesByCode';
+                
+                -- Crear el mensaje SOAP para ListOfCountryNamesByCode
+                SET OutputRoot.XMLNSC.(SOAP.Envelope).(SOAP.Body).{'ns:ListOfCountryNamesByCode'} = '';
+                
+                -- Configurar el namespace
+                SET OutputRoot.XMLNSC.(SOAP.Envelope).(XMLNSC.NamespaceDecl)xmlns:ns = 'http://www.oorsprong.org/websamples.countryinfo';
+            ELSE
+                SET Environment.SOAPOperation = 'ListOfCountryNamesByName';
+                
+                -- Crear el mensaje SOAP para ListOfCountryNamesByName
+                SET OutputRoot.XMLNSC.(SOAP.Envelope).(SOAP.Body).{'ns:ListOfCountryNamesByName'} = '';
+                
+                -- Configurar el namespace
+                SET OutputRoot.XMLNSC.(SOAP.Envelope).(XMLNSC.NamespaceDecl)xmlns:ns = 'http://www.oorsprong.org/websamples.countryinfo';
+            END IF;
+        END IF;
+        
+        -- Configurar el endpoint SOAP
+        SET OutputLocalEnvironment.Destination.SOAP.Request.Operation = Environment.SOAPOperation;
+        SET OutputLocalEnvironment.Destination.SOAP.Request.Transport.URI = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso';
+        
+        RETURN TRUE;
+    END;
+END MODULE;
+
+Copy
+Country_Info_Compute.esql
+3. Adaptación para transformar la respuesta SOAP a JSON:
+CREATE COMPUTE MODULE SOAPResponseToJSON
+    CREATE FUNCTION Main() RETURNS BOOLEAN
+    BEGIN
+        -- Crear estructura JSON para la salida
+        CREATE LASTCHILD OF OutputRoot DOMAIN 'JSON';
+        CREATE FIELD OutputRoot.JSON.Data;
+        
+        -- Establecer información básica de respuesta
+        SET OutputRoot.JSON.Data.responseInfo.status = 'success';
+        SET OutputRoot.JSON.Data.responseInfo.timestamp = CURRENT_TIMESTAMP;
+        SET OutputRoot.JSON.Data.responseInfo.requestType = Environment.RequestEntrada.requestType;
+        
+        -- Procesar diferentes tipos de respuestas SOAP
+        DECLARE soapOperation CHARACTER Environment.SOAPOperation;
+        
+        IF soapOperation = 'FullCountryInfo' THEN
+            -- Procesar respuesta de FullCountryInfo
+            DECLARE soapResp REFERENCE TO InputRoot.XMLNSC.(SOAP.Body).{'*:FullCountryInfoResponse'}.{'*:FullCountryInfoResult'};
+            
+            -- Mapear datos básicos
+            SET OutputRoot.JSON.Data.countryData.basicInfo.name = soapResp.{'*:sName'};
+            SET OutputRoot.JSON.Data.countryData.basicInfo.code = soapResp.{'*:sISOCode'};
+            SET OutputRoot.JSON.Data.countryData.basicInfo.capital = soapResp.{'*:sCapitalCity'};
+            
+            -- Mapear detalles
+            SET OutputRoot.JSON.Data.countryData.details.continent.code = soapResp.{'*:sContinentCode'};
+            SET OutputRoot.JSON.Data.countryData.details.currency.code = soapResp.{'*:sCurrencyISOCode'};
+            SET OutputRoot.JSON.Data.countryData.details.phoneCode = soapResp.{'*:sPhoneCode'};
+            SET OutputRoot.JSON.Data.countryData.details.flagUrl = soapResp.{'*:sCountryFlag'};
+            
+            -- Mapear idiomas
+            DECLARE i INTEGER 1;
+            DECLARE langRef REFERENCE TO soapResp.{'*:Languages'}.{'*:tLanguage'}[i];
+            DECLARE j INTEGER 1;
+            
+            WHILE LASTMOVE(langRef) DO
+                SET OutputRoot.JSON.Data.countryData.languages[j].name = langRef.{'*:sName'};
+                SET OutputRoot.JSON.Data.countryData.languages[j].code = langRef.{'*:sISOCode'};
+                SET OutputRoot.JSON.Data.countryData.languages[j].primary = (j = 1); -- Primer idioma es primario
+                
+                SET i = i + 1;
+                SET j = j + 1;
+                MOVE langRef TO soapResp.{'*:Languages'}.{'*:tLanguage'}[i];
+            END WHILE;
+            
+        ELSEIF soapOperation = 'CountryISOCode' THEN
+            -- Procesar respuesta de CountryISOCode
+            DECLARE isoCode CHARACTER InputRoot.XMLNSC.(SOAP.Body).{'*:CountryISOCodeResponse'}.{'*:CountryISOCodeResult'};
+            
+            SET OutputRoot.JSON.Data.countryData.basicInfo.code = isoCode;
+            
+        ELSEIF soapOperation = 'ListOfCountryNamesByCode' OR soapOperation = 'ListOfCountryNamesByName' THEN
+            -- Procesar respuesta de ListOfCountryNamesByCode o ListOfCountryNamesByName
+            DECLARE responseField CHARACTER;
+            IF soapOperation = 'ListOfCountryNamesByCode' THEN
+                SET responseField = '*:ListOfCountryNamesByCodeResponse';
+            ELSE
+                SET responseField = '*:ListOfCountryNamesByNameResponse';
+            END IF;
+            
+            DECLARE resultField CHARACTER;
+            IF soapOperation = 'ListOfCountryNamesByCode' THEN
+                SET resultField = '*:ListOfCountryNamesByCodeResult';
+            ELSE
+                SET resultField = '*:ListOfCountryNamesByNameResult';
+            END IF;
+            
+            DECLARE countriesRef REFERENCE TO InputRoot.XMLNSC.(SOAP.Body).{responseField}.{resultField}.{'*:tCountryCodeAndName'};
+            DECLARE i INTEGER 1;
+            DECLARE j INTEGER 1;
+            
+            -- Crear array para países
+            CREATE FIELD OutputRoot.JSON.Data.countries IDENTITY JSON.Array;
+            
+            WHILE LASTMOVE(countriesRef[i]) DO
+                SET OutputRoot.JSON.Data.countries.Item[j].name = countriesRef[i].{'*:sName'};
+                SET OutputRoot.JSON.Data.countries.Item[j].code = countriesRef[i].{'*:sISOCode'};
+                
+                SET i = i + 1;
+                SET j = j + 1;
+            END WHILE;
+        END IF;
+        
+        RETURN TRUE;
+    END;
+END MODULE;
+
+Copy
+Country_Info_Compute.esql
+4. Adaptación del filtro:
+CREATE FILTER MODULE country_info_Filter
+    CREATE FUNCTION Main() RETURNS BOOLEAN
+    BEGIN
+        -- Devuelve TRUE si se solicita información detallada
+        -- Esto podría usarse para aplicar lógica adicional según el tipo de solicitud
+        RETURN EXISTS(Environment.RequestEntrada.parameters.includeDetails[]) 
+               AND Environment.RequestEntrada.parameters.includeDetails = TRUE;
+    END;
+END MODULE;
+
+Copy
+country_info_Filter.esql
+5. Configuración del Message Flow
+Para el archivo country_info_service.msgflow, deberías:
+Mantener el nodo HTTP Input con un nuevo URLSpecifier: /path/country_info_service
+Usar los nodos Compute adaptados para transformar JSON a SOAP y viceversa
+Reemplazar el nodo HTTP Request con un nodo SOAP Request configurado para usar el WSDL
+Mantener la estructura general de flujo, pero adaptando las transformaciones
+Resumen de Cambios
+Entrada: Diseñaste un formato JSON personalizado para la entrada
+Transformación de Entrada: Transformas ese JSON a la estructura SOAP requerida
+Invocación SOAP: Configuras y realizas la llamada al servicio SOAP
+Transformación de Salida: Transformas la respuesta SOAP al formato JSON personalizado
+Validaciones: Implementas validaciones en varios puntos del flujo
+Este enfoque cumple con los requisitos de tu tutor de:
+Diseñar tus propios formatos de request/response
+Transformar bidirecccionalmente entre tu formato y el requerido por el servicio SOAP
+Mantener la estructura general de tu ejercicio 3 pero adaptándola para SOAP
+
+
+
+
+
+COMO HAGO PARA SABER PORQUE EL ExceptionHandler.subflow NO ME ESTA FUNCIONANDO 
+
+
+Context
+— none fetched
+Cómo diagnosticar por qué ExceptionHandler.subflow no está funcionando
+Para diagnosticar por qué tu ExceptionHandler.subflow no está funcionando correctamente, necesitas seguir un enfoque sistemático. Basado en el código que has compartido, aquí te presento una estrategia paso a paso:
+
+1. Añade logs de diagnóstico al inicio del ExceptionHandler
+Modifica tu ExceptionHandler.subflow para añadir un nodo Trace al principio que registre información básica:
+
+Abre ExceptionHandler.subflow
+Añade un nuevo nodo Trace justo después del nodo de entrada InTerminal.Input1
+Configúralo con este patrón simple:
+===== EXCEPCIÓN DETECTADA (ENTRADA) =====
+Timestamp: ${CURRENT_TIMESTAMP}
+ExceptionList: ${ExceptionList}
+
+Copy
+
+
+Conecta este nodo al nodo Compute existente
+Este log te permitirá confirmar si las excepciones están llegando al subflow.
+
+2. Simplifica el nodo Compute en ExceptionHandler
+Modifica temporalmente ExceptionHandler_Compute.esql para que sea lo más simple posible:
+
+CREATE COMPUTE MODULE ExceptionHandler_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- Crear estructura básica
+		CREATE LASTCHILD OF OutputRoot DOMAIN('JSON');
+		CREATE LASTCHILD OF OutputRoot.JSON NAME 'Data';
+		
+		-- Información básica
+		SET OutputRoot.JSON.Data.error = TRUE;
+		SET OutputRoot.JSON.Data.timestamp = CURRENT_TIMESTAMP;
+		SET OutputRoot.JSON.Data.mensaje = 'Error detectado';
+		
+		-- Código HTTP fijo para pruebas
+		SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 500;
+		
+		RETURN TRUE;
+	END;
+END MODULE;
+
+Copy
+
+
+ExceptionHandler_Compute.esql
+3. Verifica las conexiones en hub_message.msgflow
+Examina cuidadosamente tu hub_message.msgflow para asegurarte de que:
+
+Cada instancia de ExceptionHandler.subflow está correctamente conectada:
+
+La entrada debe venir de un terminal de error (failure, fault, timeout, etc.)
+La salida debe estar conectada al nodo HTTP Reply
+No hay conexiones redundantes o conflictivas:
+
+Verifica que no haya múltiples rutas de manejo de errores para el mismo tipo de error
+Asegúrate de que no haya nodos desconectados
+4. Fuerza un error controlado para pruebas
+Crea una solicitud que genere un error específico y fácil de reproducir:
+
+{
+  "categoria": "invalid_category",
+  "id": "not_a_number",
+  "operacion": "invalid_operation",
+  "pais": "XYZ"
+}
+
+Copy
+
+
+Esta solicitud debería generar errores en varios puntos del flujo.
+
+5. Examina los logs del servidor
+Además de tu archivo log_http_prueba.log, examina los logs del servidor de integración:
+
+cd <directorio_instalacion_ace>/logs
+cat <nombre_servidor_integracion>.log
+
+Copy
+Execute
+
+Busca mensajes de error relacionados con tu flujo o subflow.
+
+6. Añade un nodo Trace después del ExceptionHandler
+Modifica tu hub_message.msgflow para añadir un nodo Trace después de cada instancia de ExceptionHandler.subflow:
+
+Añade un nuevo nodo Trace
+Configúralo con este patrón:
+===== DESPUÉS DE EXCEPTIONHANDLER =====
+Timestamp: ${CURRENT_TIMESTAMP}
+Root: ${Root}
+
+Copy
+
+
+Conecta este nodo al nodo HTTP Reply
+Esto te permitirá confirmar si el mensaje está saliendo correctamente del ExceptionHandler.
+
+7. Verifica la configuración del nodo HTTP Reply
+Asegúrate de que el nodo HTTP Reply (FCMComposite_1_1) esté correctamente configurado:
+
+No debe tener validaciones o transformaciones adicionales
+Debe estar configurado para manejar respuestas JSON
+8. Prueba con un flujo simplificado
+Si los pasos anteriores no resuelven el problema, crea un flujo de prueba simplificado:
+
+Crea un nuevo flujo con solo estos componentes:
+
+HTTP Input
+Compute (que genere un error intencionalmente)
+ExceptionHandler.subflow
+HTTP Reply
+Prueba este flujo para aislar el problema con el ExceptionHandler.
+
+9. Verifica la implementación de ExceptionHandler_Compute.esql
+Revisa cuidadosamente tu ExceptionHandler_Compute.esql para detectar posibles problemas:
+
+Asegúrate de que el código de estado HTTP se establezca correctamente:
+
+SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = CAST(OutputRoot.JSON.Data.codigo AS INTEGER);
+
+Copy
+
+
+Verifica que no haya referencias a campos que podrían no existir.
+
+10. Habilita el modo de depuración
+Activa el modo de depuración en tu servidor de integración:
+
+En la consola web de administración, ve a tu servidor de integración
+Habilita "Debug mode" o "Trace mode"
+Establece el nivel de detalle en "Debug" o "Trace"
+Aplica los cambios y reinicia el servidor si es necesario
+Esto generará logs más detallados que pueden ayudarte a identificar el problema.
+
+Conclusión
+Siguiendo estos pasos sistemáticamente, deberías poder identificar por qué tu ExceptionHandler.subflow no está funcionando como se espera. El problema más común suele ser:
+
+Las excepciones no están llegando al subflow (problema de conexión)
+El subflow está procesando las excepciones incorrectamente (problema en el código ESQL)
+La respuesta del subflow no está llegando al cliente (problema de conexión o configuración)
+Una vez que identifiques el problema específico, podrás implementar la solución adecuada.
