@@ -70,7 +70,6 @@ El servicio transforma errores en respuestas JSON estructuradas:
 Errores de validación (400)
 Errores de recursos no encontrados (404)
 Errores internos del servidor (500)
-Errores de gateway (502)
 Errores de timeout (504)
 Cada respuesta de error incluye:
 
@@ -421,44 +420,86 @@ Para información de país (countryInfo):
         }}
 ```
 
-🔍 Tipos de solicitudes soportadas
 
-El servicio soporta cinco tipos principales de solicitudes:
+🔍 Tipos de Solicitudes Soportadas
+El servicio soporta cinco tipos principales de solicitudes REST que se transforman en operaciones SOAP específicas:
 
-countryInfo: Obtiene información detallada de un país
+🌍 1. Información de País (countryInfo)
+Descripción: Obtiene información detallada de un país específico
+Parámetros requeridos:
+searchType: "byCode" o "byName"
+countryCode: Código ISO del país (ej: "ES", "US") - solo para byCode
+countryName: Nombre del país (ej: "Spain") - solo para byName
+Operaciones SOAP: FullCountryInfo | CountryISOCode
+Respuesta: Datos completos del país (código, nombre, capital, moneda, idioma, bandera)
+📋 2. Lista de Países (listCountries)
+Descripción: Lista todos los países disponibles
+Parámetros requeridos:
+searchType: "byCode" (ordenado por código) o "byName" (ordenado por nombre)
+Operaciones SOAP: ListOfCountryNamesByCode | ListOfCountryNamesByName
+Respuesta: Array de países con código y nombre
+💰 3. Información de Moneda (currencyInfo)
+Descripción: Obtiene información sobre una moneda específica
+Parámetros requeridos:
+currencyCode: Código ISO de moneda (ej: "EUR", "USD", "GBP")
+Operación SOAP: CurrencyName
+Respuesta: Código y nombre de la moneda
+🗣️ 4. Lista de Idiomas (countryLanguage)
+Descripción: Lista todos los idiomas disponibles en el sistema
+Parámetros: No requiere parámetros adicionales
+Operación SOAP: ListOfLanguagesByName
+Respuesta: Array de idiomas con código ISO y nombre
+🏛️ 5. Capital de País (capitalCity)
+Descripción: Obtiene la capital de un país específico
+Parámetros requeridos:
+countryCode: Código ISO del país (ej: "ES", "US", "FR")
+Operación SOAP: CapitalCity
+Respuesta: Código del país y nombre de la capital
+🔄 Flujo de Datos Detallado
+📊 Arquitectura de Procesamiento:
+REST Client → Validación → Mapeo → SOAP → Transformación → JSON Response
 
-Parámetros: searchType ("byCode"), countryCode
-listCountries: Lista todos los países
+⚠️ Manejo de Errores Robusto
+🛡️ Sistema de Manejo de Errores:
+El servicio implementa un sistema multicapa de manejo de errores que garantiza respuestas consistentes:
 
-Parámetros: searchType ("byCode" o "byName")
-currencyInfo: Obtiene información sobre una moneda
+📋 Tipos de Errores Capturados:
+Código HTTP	Tipo de Error	Descripción	Ejemplo
+400	Bad Request	Estructura JSON inválida o parámetros faltantes	requestType no especificado
+404	Not Found	Recurso no encontrado	País con código inexistente
+500	Internal Server Error	Error interno del servicio	Fallo en transformación SOAP
+502	Bad Gateway	Error en servicio SOAP externo	Servicio CountryInfo no disponible
+504	Gateway Timeout	Timeout en solicitud SOAP	Servicio externo no responde
+🔧 Componentes de Manejo:
+Validación de Entrada
 
-Parámetros: currencyCode
-countryLanguage: Lista todos los idiomas disponibles
+Verifica estructura JSON requerida
+Valida presencia de campos obligatorios
+Genera errores 400 para datos inválidos
+Captura de Errores SOAP
 
-No requiere parámetros adicionales
-capitalCity: Obtiene la capital de un país
+Maneja fallas de conexión al servicio externo
+Procesa timeouts de red
+Transforma faults SOAP en errores HTTP
+Módulos Especializados
 
-Parámetros: countryCode
-🔄 Flujo de Datos
+ErrorHelper: Funciones utilitarias para manejo de errores
+ImprovedErrorHandler: Procesamiento avanzado de excepciones
+Nodos Trace: Logging detallado para depuración
+📊 Estructura de Respuesta de Error:
+{
+  "responseInfo": {
+    "status": "error",
+    "timestamp": "2023-11-15T10:30:45.123Z"
+  },
+  "error": {
+    "code": 400,
+    "message": "Invalid request format",
+    "details": "Missing required field: requestType",
+    "type": "ValidationError"
+  }
+}
 
-Cliente envía solicitud REST en formato JSON
-Http_Message_Compute extrae y valida los parámetros
-CategoryToURLMapper determina la operación SOAP a invocar
-ConfigureHTTPRequest construye el mensaje SOAP
-CountryInfoService envía la solicitud SOAP al servicio externo
-TransformSOAPtoJSON transforma la respuesta SOAP en JSON estructurado
-HTTP Reply devuelve la respuesta JSON al cliente
-⚠️ Manejo de Errores
-
-El servicio implementa un sistema robusto de manejo de errores que:
-
-Captura errores en diferentes puntos del flujo
-Clasifica los errores según su tipo (validación, no encontrado, timeout, etc.)
-Asigna códigos HTTP apropiados (400, 404, 500, 502, 504)
-Genera respuestas de error estructuradas con detalles útiles
-Registra información detallada para facilitar la depuración
-Los errores se manejan mediante los módulos ErrorHelper e ImprovedErrorHandler.
 
 📝 Notas Adicionales
 
