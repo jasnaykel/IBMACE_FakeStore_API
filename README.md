@@ -489,16 +489,15 @@ Nodos Trace: Logging detallado para depuración
 📊 Estructura de Respuesta de Error:
 ```json
 {
-  "responseInfo": {
-    "status": "error",
-    "timestamp": "2023-11-15T10:30:45.123Z"
-  },
-  "error": {
-    "code": 400,
-    "message": "Invalid request format",
-    "details": "Missing required field: requestType",
-    "type": "ValidationError"
-  }
+    "error": {
+        "code": 500,
+        "status": "Internal Server Error",
+        "detail": "BIP2230E: Se ha detectado un error mientras se procesaba un mensaje en el nodo 'hub_message.Trace'. \nBIP5705E: Se han producido errores de análisis de JSON. \nBIP5702E: Se ha producido un error de análisis de JSON. Se ha llegado al final de la corriente de bits antes de que el mensaje estuviera completo.  El analizador JSON esperaba encontrar uno de los siguientes caracteres o tipos: "
+    ]", "
+}", ",
+", ",
+"  El código de error interno es 0x0000018C. "
+}
 }
 ```
 
