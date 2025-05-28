@@ -73,15 +73,21 @@ Crea una nueva solicitud GET
 URL: http://localhost:7080/path/http_service_hub
 En la pestaña Body, selecciona "raw" y "JSON"
 Ingresa el siguiente JSON:
+## 📊 Ejemplos de Funcionamiento
+
+**Envías:**
+```json
 {
   "Data": {
     "param1": "value1"
   }
 }
+```
+
 📊 Respuesta esperada
 
-Recibirás un array JSON con los productos de FakeStoreAPI:
-
+**Recibirás un array JSON con los productos de FakeStoreAPI:**
+```json
 [
   {
     "id": 1,
@@ -97,6 +103,9 @@ Recibirás un array JSON con los productos de FakeStoreAPI:
   },
   // Más productos...
 ]
+
+```
+
 
 🔍 Monitoreo y Solución de Problemas
 
