@@ -237,107 +237,190 @@ En la pestaña Body, selecciona "raw" y "JSON"
 Ingresa uno de los ejemplos JSON anteriores
 Haz clic en "Send"
 📊 Respuestas esperadas
+Ejemplo 1: Consulta por categoría
+Usando Postman:
 
+Crea una nueva solicitud GET
+URL: http://localhost:7800/path/http_service_hub
+En la pestaña Body, selecciona "raw" y "JSON"
+Ingresa uno de los ejemplos JSON anteriores
+Haz clic en "Send"
+📊 Respuesta esperada
+### ✅ **Caso 1: información de monedas**
+**Envías:**
 Para información de país (countryInfo):
-
-📊 Respuestas esperadas
-
-Para información de país (countryInfo):
-
+```json
 {
-  "responseInfo": {
-    "status": "success",
-    "timestamp": "2023-11-15T10:30:45.123Z"
-  },
-  "countryData": {
-    "basicInfo": {
-      "code": "ES",
-      "name": "Spain",
-      "capital": "Madrid"
+  "requestType": "currencyInfo",
+  "parameters": {
+    "currencyCode": "CUP"
+  }
+}
+```
+
+**Recibes:**
+```json
+{
+    "responseInfo": {
+        "status": "success",
+        "timestamp": "2025-05-28 16:39:07.368476"
     },
-    "details": {
-      "phoneCode": "34",
-      "continent": {
-        "code": "EU"
-      },
-      "currency": {
-        "code": "EUR"
-      },
-      "flagUrl": "http://www.oorsprong.org/WebSamples.CountryInfo/Flags/Spain.jpg",
-      "language": {
-        "code": "es",
-        "name": "Spanish"
-      }
+    "currencyData": {
+        "code": "CUP",
+        "name": "Pesos"
     }
+}
+```
+
+### ✅ **Caso 2: Lista de idiomas**
+**Envías:**
+```json
+{
+  "requestType": "countryLanguage",
+  "parameters": {}
+}
+```
+
+**Recibes:**
+```json
+{
+    "responseInfo": {
+        "status": "success",
+        "timestamp": "2025-05-28 08:00:56.713934"
+    },
+    "languages": {
+        "items": {
+            "code": "abk",
+            "name": "Abkhazian"
+        },
+        "items": {
+            "code": "ace",
+            "name": "Achinese"
+        },
+        "items": {
+            "code": "ach",
+            "name": "Acoli"
+        },
+        "items": {
+            "code": "ada",
+            "name": "Adangme"
+        },
+        "items": {
+            "code": "aar",
+            "name": "Afar"
+        },
+]
+```
+
+### ✅ **Caso 3: Capital de un país en especifico
+**
+**Envías:**
+```json
+{
+    "requestType": "capitalCity",
+    "parameters": {
+      "countryCode": "US"
   }
 }
-Para lista de países (listCountries):
+```
 
+**Recibes:**
+```json
 {
-  "responseInfo": {
-    "status": "success",
-    "timestamp": "2023-11-15T10:31:45.123Z"
-  },
-  "countries": {
-    "count": 239,
-    "items": [
-      {
-        "code": "AF",
-        "name": "Afghanistan"
-      },
-      {
-        "code": "AL",
-        "name": "Albania"
-      },
-      // Más países...
-    ]
+    "responseInfo": {
+        "status": "success",
+        "timestamp": "2025-05-28 16:29:09.029450"
+    },
+    "capitalInfo": {
+        "countryCode": "US",
+        "capitalName": "Washington"
+    }
+}
+```
+
+### ✅ **Caso 4: Listado de paises por código**
+**Envías:**
+
+```json
+{
+    "requestType": "listCountries",
+    "parameters": {
+      "searchType": "byCode"
   }
 }
-Para información de moneda (currencyInfo):
+```
 
+**Recibes:**
+```json
 {
-  "responseInfo": {
-    "status": "success",
-    "timestamp": "2023-11-15T10:32:45.123Z"
-  },
-  "currencyData": {
-    "code": "EUR",
-    "name": "Euro"
+    "responseInfo": {
+        "status": "success",
+        "timestamp": "2025-05-28 08:04:36.887031"
+    },
+    "countries": {
+        "items": {
+            "code": "AD",
+            "name": "Andorra"
+        },
+        "items": {
+            "code": "AE",
+            "name": "United Arab Emirates"
+        },
+        "items": {
+            "code": "AF",
+            "name": "Afghanistan"
+        },
+        "items": {
+            "code": "AG",
+            "name": "Antigua & Barbuda"
+        }}
+```
+### ✅ **Caso 5: Listado de paises por nombre**
+**Envías:**
+
+```json
+{
+    "requestType": "listCountries",
+    "parameters": {
+      "searchType": "byName"    
   }
 }
-Para información de idiomas (countryLanguage):
+```
 
+**Recibes:**
+```json
 {
-  "responseInfo": {
-    "status": "success",
-    "timestamp": "2023-11-15T10:33:45.123Z"
-  },
-  "languages": {
-    "count": 139,
-    "items": [
-      {
-        "code": "aa",
-        "name": "Afar"
-      },
-      {
-        "code": "ab",
-        "name": "Abkhazian"
-      },
-      // Más idiomas...
-    ]
-  }
-  Para capital de país (capitalCity):
+    "responseInfo": {
+        "status": "success",
+        "timestamp": "2025-05-28 08:05:16.263784"
+    },
+    "countries": {
+        "items": {
+            "code": "AX",
+            "name": "Åland Islands"
+        },
+        "items": {
+            "code": "AF",
+            "name": "Afghanistan"
+        },
+        "items": {
+            "code": "AL",
+            "name": "Albania"
+        },
+        "items": {
+            "code": "DZ",
+            "name": "Algeria"
+        },
+        "items": {
+            "code": "AS",
+            "name": "American Samoa"
+        },
+        "items": {
+            "code": "AD",
+            "name": "Andorra"
+        }}
+```
 
-{
-  "responseInfo": {
-    "status": "success",
-    "timestamp": "2023-11-15T10:34:45.123Z"
-  },
-  "capitalInfo": {
-    "countryCode": "US",
-    "capitalName": "Washington"
-  }
-}
 🔍 Tipos de solicitudes soportadas
 
 El servicio soporta cinco tipos principales de solicitudes:
