@@ -1,101 +1,183 @@
-IBMACE_FakeStore_API 🛒
-IBM ACE - Servicio HTTP para Consulta de Productos
-📌 Descripción
+# API Echo - IBM ACE 🔄
 
-Este servicio en IBM App Connect Enterprise (ACE) actúa como intermediario para consultar productos de una tienda online mediante la API pública FakeStoreAPI. El servicio recibe solicitudes HTTP, las procesa y devuelve los datos de productos obtenidos de FakeStoreAPI.
+**IBM App Connect Enterprise - Ejercicio 1: API REST Echo**
 
-🚀 Características principales
+## 📌 Descripción
 
-✅ Procesamiento de mensajes JSON
-✅ Consulta a la API externa (https://fakestoreapi.com/products)
-✅ Registro detallado para monitoreo y depuración
-✅ Manejo de errores y excepciones
-✅ Configuración de timeouts para cliente y servidor
+Este servicio en IBM App Connect Enterprise (ACE) implementa un **API Echo** que recibe datos JSON vía REST y devuelve exactamente el mismo JSON de vuelta. Es el ejercicio fundamental para demostrar el procesamiento básico de mensajes JSON en IBM ACE.
 
-🏗️ Arquitectura del flujo
+## 🎯 Objetivo del Ejercicio
 
-El servicio se compone de los siguientes componentes clave:
+**Crear una aplicación que:**
+- ✅ Reciba algo vía REST con JSON
+- ✅ Responda exactamente lo mismo para atrás
+- ✅ API de toda la vida (patrón Echo básico)
 
-1️⃣ HTTP Input
-Recibe solicitudes HTTP en el endpoint /path/http_service_hub.
-Configura un timeout de 15 segundos para el cliente.
+## 🚀 Características principales
 
-2️⃣ Http_Message_Compute
-Valida la estructura del mensaje JSON de entrada.
-Prepara el mensaje para la solicitud a la API externa.
+✅ Recibe JSON vía REST  
+✅ Devuelve exactamente el mismo JSON  
+✅ Validación de entrada (Error 500 si no hay JSON)  
+✅ Endpoint: `/path/http_service_hub`  
+✅ Puerto: 7080  
+✅ Manejo de errores controlado  
 
-3️⃣ WSRequest (Fakestoreapi)
-Realiza la conexión con la API externa https://fakestoreapi.com/products.
-Configura un timeout de 5 segundos para el servidor externo.
-Utiliza el protocolo TLS para una conexión segura.
+## 🏗️ Arquitectura del flujo
 
-4️⃣ Nodos de Trace
-Registran información detallada en diferentes puntos del flujo.
-Capturan entradas, salidas, errores y timeouts para facilitar la depuración.
+**Archivos del proyecto:**
+- `hub_message.msgflow` - Flujo principal
+- `Http_Message_Compute.esql` - Lógica de procesamiento
 
-🔧 Instalación y Uso
+**Componentes:**
 
-1️⃣ Clonar el repositorio
-git clone https://github.com/jasnaykel/IBMACE_FakeStore_API.git
-cd IBMACE_FakeStore_API
+**1️⃣ HTTP Input**
+- Endpoint: `/path/http_service_hub`
+- Puerto: 7080
+- Acepta requests con JSON
 
-2️⃣ Configurar en IBM ACE
+**2️⃣ Http_Message_Compute**
+- Valida que exista el nodo JSON.Data usando CARDINALITY
+- Copia el JSON de entrada al JSON de salida
+- Lanza excepción si no hay datos válidos
 
-Abre IBM App Connect Enterprise Toolkit.
-Importa el proyecto en tu espacio de trabajo (File → Import → General → Existing Projects into Workspace).
-Verifica que los archivos hub_message.msgflow y Http_Message_Compute.esql se hayan importado correctamente.
-Asegúrate de que la carpeta D:\LOG\ exista para los archivos de registro.
-3️⃣ Desplegar el servicio
+**3️⃣ HTTP Reply**
+- Devuelve el mismo JSON recibido
+- Status: 200 OK para éxito
+- Status: 500 para errores
 
-Crea un archivo BAR (clic derecho en el proyecto → Export → BAR file).
-Despliega el archivo BAR en tu servidor de integración.
-4️⃣ Probar el servicio
+## 🔧 Proceso de Despliegue
 
-Usando cURL:
-curl -X GET http://localhost:7800/path/http_service_hub
-Usando Postman:
+### **Pasos que seguí:**
 
-Crea una nueva solicitud GET
-URL: http://localhost:7800/path/http_service_hub
-Haz clic en "Send"
-📊 Respuesta esperada
+1️⃣ **Desarrollo:**
+   - Creé mi flujo en ACE Toolkit (`hub_message.msgflow`)
+   - Programé mi Compute Node (`Http_Message_Compute.esql`)
 
-Recibirás un array JSON con los productos de FakeStoreAPI:
+2️⃣ **Despliegue:**
+   - Creé el BAR file
+   - Lo guardé
+   - Lo desplegué en el nodo de integración
 
-[
-  {
-    "id": 1,
-    "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-    "price": 109.95,
-    "description": "Your perfect pack for everyday use...",
-    "category": "men's clothing",
-    "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    "rating": {
-      "rate": 3.9,
-      "count": 120
-    }
-  },
-  // Más productos...
-]
-🔍 Monitoreo y Solución de Problemas
+3️⃣ **Pruebas:**
+   - Vi en el nodo de integración la URL generada
+   - Copié la URL: `http://localhost:7080/path/http_service_hub`
+   - La probé en Postman
 
-Los logs detallados se almacenan en D:\LOG\log_http_prueba.log
-Revisa los logs para identificar:
-Mensajes de entrada y salida
-Errores de conexión
-Timeouts (cliente: 15s, servidor: 5s)
-Problemas de formato JSON
-🔄 Flujo de Datos
+## 📮 Configuración en Postman
 
-Cliente → Solicitud HTTP → /path/http_service_hub
-Validación y procesamiento del mensaje JSON
-Consulta a FakeStoreAPI (https://fakestoreapi.com/products)
-Registro de la respuesta
-Devolución de datos al cliente
+```
+Método: POST
+URL: http://localhost:7080/path/http_service_hub
+Headers: Content-Type: application/json
+Body: JSON válido
+```
 
-📝 Notas Adicionales
+## 📊 Ejemplos de Funcionamiento
 
-El timeout para el cliente está configurado en 15 segundos
-El timeout para el servidor externo está configurado en 5 segundos
-El servicio utiliza TLS para la conexión con la API externa
-Los mensajes se procesan en formato JSON
+### ✅ **Caso 1: JSON Simple**
+**Envías:**
+```json
+{
+  "nombre": "Juan",
+  "edad": 30
+}
+```
+
+**Recibes:**
+```json
+{
+  "nombre": "Juan",
+  "edad": 30
+}
+```
+
+### ✅ **Caso 2: JSON Complejo**
+**Envías:**
+```json
+{
+  "usuario": {
+    "id": 123,
+    "datos": ["a", "b", "c"]
+  }
+}
+```
+
+**Recibes:**
+```json
+{
+  "usuario": {
+    "id": 123,
+    "datos": ["a", "b", "c"]
+  }
+}
+```
+
+### ❌ **Caso 3: Sin JSON**
+**Envías:** (cuerpo vacío)  
+**Recibes:** `HTTP 500 - Entrada JSON no válida, nodo Data no encontrado`
+
+## 🔍 Código Principal
+
+```esql
+CREATE COMPUTE MODULE Http_Message_Compute
+    CREATE FUNCTION Main() RETURNS BOOLEAN
+    BEGIN
+        -- Verificar si existe el nodo JSON.Data usando CARDINALITY
+        IF CARDINALITY(InputRoot.JSON.Data.*[]) > 0 THEN
+            -- Copiar el JSON de entrada al JSON de salida
+            SET OutputRoot.JSON.Data = InputRoot.JSON.Data;
+        ELSE
+            -- Manejar el caso donde el nodo no existe
+            THROW USER EXCEPTION CATALOG 'UserDefined' MESSAGE 1001 
+                VALUES('Entrada JSON no válida, nodo Data no encontrado');
+        END IF;
+
+        RETURN TRUE;
+    END;
+END MODULE;
+```
+
+## 🎬 Demostración del Funcionamiento
+
+### **"Comportamiento del API:"**
+
+✅ **CASO EXITOSO:**
+   - Envío cualquier JSON válido
+   - Recibo exactamente el mismo JSON de vuelta
+   - Status: 200 OK
+
+❌ **CASO DE ERROR:**
+   - Envío body vacío (sin JSON)
+   - Recibo Error 500: "nodo no encontrado"
+   - Comportamiento esperado y correcto
+
+## 🔄 Flujo de Datos
+
+```
+Cliente → POST JSON → IBM ACE → Validación → Mismo JSON → Cliente
+```
+
+## 🧪 Casos de Prueba Validados
+
+| Entrada | Salida | Status | Resultado |
+|---------|--------|--------|-----------|
+| `{"nombre": "Juan", "edad": 30}` | Mismo JSON | 200 OK | ✅ Exitoso |
+| `{"usuario": {"id": 123, "datos": ["a","b","c"]}}` | Mismo JSON | 200 OK | ✅ Exitoso |
+| (vacío) | Error message | 500 Error | ✅ Validación correcta |
+
+## 🎯 Cumplimiento del Ejercicio
+
+**✅ REQUISITOS CUMPLIDOS:**
+- Aplicación vía REST ✓
+- Recibe JSON ✓  
+- Devuelve exactamente lo mismo ✓
+- API de toda la vida (patrón Echo) ✓
+- Manejo de errores ✓
+
+## 📋 Información Técnica
+
+- **URL:** `http://localhost:7080/path/http_service_hub`
+- **Puerto:** 7080
+- **Método:** POST
+- **Content-Type:** application/json requerido
+- **Archivos:** `hub_message.msgflow`, `Http_Message_Compute.esql`
