@@ -265,8 +265,6 @@ Para un filtrado por precio (ejemplo: 695):
 {
   "price": 6952
 }
-
-}
 ```
 
 **Recibes:**
