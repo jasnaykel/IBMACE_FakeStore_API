@@ -487,6 +487,7 @@ ErrorHelper: Funciones utilitarias para manejo de errores
 ImprovedErrorHandler: Procesamiento avanzado de excepciones
 Nodos Trace: Logging detallado para depuración
 📊 Estructura de Respuesta de Error:
+```json
 {
   "responseInfo": {
     "status": "error",
@@ -499,7 +500,7 @@ Nodos Trace: Logging detallado para depuración
     "type": "ValidationError"
   }
 }
-
+```
 
 📝 Notas Adicionales
 
