@@ -137,7 +137,7 @@ CREATE COMPUTE MODULE ConfigureHTTPRequest
         -- Configurar parámetros de la solicitud SOAP
         SET OutputLocalEnvironment.Destination.SOAP.Request.Transport.HTTP.WebServiceURL = 
             'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso';
-        SET OutputLocalEnvironment.Destination.SOAP.Request.Transport.HTTP.Timeout = 30;
+        SET OutputLocalEnvironment.Destination.SOAP.Request.Transport.HTTP.Timeout = 60;
         
         -- Configurar la operación SOAP en el entorno local
         SET OutputLocalEnvironment.Destination.SOAP.Request.Operation = Environment.SOAPOperation;

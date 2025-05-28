@@ -70,7 +70,6 @@ El servicio transforma errores en respuestas JSON estructuradas:
 Errores de validación (400)
 Errores de recursos no encontrados (404)
 Errores internos del servidor (500)
-Errores de gateway (502)
 Errores de timeout (504)
 Cada respuesta de error incluye:
 
@@ -237,145 +236,278 @@ En la pestaña Body, selecciona "raw" y "JSON"
 Ingresa uno de los ejemplos JSON anteriores
 Haz clic en "Send"
 📊 Respuestas esperadas
+Ejemplo 1: Consulta por categoría
+Usando Postman:
 
+Crea una nueva solicitud GET
+URL: http://localhost:7800/path/http_service_hub
+En la pestaña Body, selecciona "raw" y "JSON"
+Ingresa uno de los ejemplos JSON anteriores
+Haz clic en "Send"
+📊 Respuesta esperada
+### ✅ **Caso 1: información de monedas**
+**Envías:**
 Para información de país (countryInfo):
-
-📊 Respuestas esperadas
-
-Para información de país (countryInfo):
-
+```json
 {
-  "responseInfo": {
-    "status": "success",
-    "timestamp": "2023-11-15T10:30:45.123Z"
-  },
-  "countryData": {
-    "basicInfo": {
-      "code": "ES",
-      "name": "Spain",
-      "capital": "Madrid"
+  "requestType": "currencyInfo",
+  "parameters": {
+    "currencyCode": "CUP"
+  }
+}
+```
+
+**Recibes:**
+```json
+{
+    "responseInfo": {
+        "status": "success",
+        "timestamp": "2025-05-28 16:39:07.368476"
     },
-    "details": {
-      "phoneCode": "34",
-      "continent": {
-        "code": "EU"
-      },
-      "currency": {
-        "code": "EUR"
-      },
-      "flagUrl": "http://www.oorsprong.org/WebSamples.CountryInfo/Flags/Spain.jpg",
-      "language": {
-        "code": "es",
-        "name": "Spanish"
-      }
+    "currencyData": {
+        "code": "CUP",
+        "name": "Pesos"
     }
+}
+```
+
+### ✅ **Caso 2: Lista de idiomas**
+**Envías:**
+```json
+{
+  "requestType": "countryLanguage",
+  "parameters": {}
+}
+```
+
+**Recibes:**
+```json
+{
+    "responseInfo": {
+        "status": "success",
+        "timestamp": "2025-05-28 08:00:56.713934"
+    },
+    "languages": {
+        "items": {
+            "code": "abk",
+            "name": "Abkhazian"
+        },
+        "items": {
+            "code": "ace",
+            "name": "Achinese"
+        },
+        "items": {
+            "code": "ach",
+            "name": "Acoli"
+        },
+        "items": {
+            "code": "ada",
+            "name": "Adangme"
+        },
+        "items": {
+            "code": "aar",
+            "name": "Afar"
+        },
+]
+```
+
+### ✅ **Caso 3: Capital de un país en especifico
+**
+**Envías:**
+```json
+{
+    "requestType": "capitalCity",
+    "parameters": {
+      "countryCode": "US"
   }
 }
-Para lista de países (listCountries):
+```
 
+**Recibes:**
+```json
 {
-  "responseInfo": {
-    "status": "success",
-    "timestamp": "2023-11-15T10:31:45.123Z"
-  },
-  "countries": {
-    "count": 239,
-    "items": [
-      {
-        "code": "AF",
-        "name": "Afghanistan"
-      },
-      {
-        "code": "AL",
-        "name": "Albania"
-      },
-      // Más países...
-    ]
+    "responseInfo": {
+        "status": "success",
+        "timestamp": "2025-05-28 16:29:09.029450"
+    },
+    "capitalInfo": {
+        "countryCode": "US",
+        "capitalName": "Washington"
+    }
+}
+```
+
+### ✅ **Caso 4: Listado de paises por código**
+**Envías:**
+
+```json
+{
+    "requestType": "listCountries",
+    "parameters": {
+      "searchType": "byCode"
   }
 }
-Para información de moneda (currencyInfo):
+```
 
+**Recibes:**
+```json
 {
-  "responseInfo": {
-    "status": "success",
-    "timestamp": "2023-11-15T10:32:45.123Z"
-  },
-  "currencyData": {
-    "code": "EUR",
-    "name": "Euro"
+    "responseInfo": {
+        "status": "success",
+        "timestamp": "2025-05-28 08:04:36.887031"
+    },
+    "countries": {
+        "items": {
+            "code": "AD",
+            "name": "Andorra"
+        },
+        "items": {
+            "code": "AE",
+            "name": "United Arab Emirates"
+        },
+        "items": {
+            "code": "AF",
+            "name": "Afghanistan"
+        },
+        "items": {
+            "code": "AG",
+            "name": "Antigua & Barbuda"
+        }}
+```
+### ✅ **Caso 5: Listado de paises por nombre**
+**Envías:**
+
+```json
+{
+    "requestType": "listCountries",
+    "parameters": {
+      "searchType": "byName"    
   }
 }
-Para información de idiomas (countryLanguage):
+```
 
+**Recibes:**
+```json
 {
-  "responseInfo": {
-    "status": "success",
-    "timestamp": "2023-11-15T10:33:45.123Z"
-  },
-  "languages": {
-    "count": 139,
-    "items": [
-      {
-        "code": "aa",
-        "name": "Afar"
-      },
-      {
-        "code": "ab",
-        "name": "Abkhazian"
-      },
-      // Más idiomas...
-    ]
-  }
-  Para capital de país (capitalCity):
+    "responseInfo": {
+        "status": "success",
+        "timestamp": "2025-05-28 08:05:16.263784"
+    },
+    "countries": {
+        "items": {
+            "code": "AX",
+            "name": "Åland Islands"
+        },
+        "items": {
+            "code": "AF",
+            "name": "Afghanistan"
+        },
+        "items": {
+            "code": "AL",
+            "name": "Albania"
+        },
+        "items": {
+            "code": "DZ",
+            "name": "Algeria"
+        },
+        "items": {
+            "code": "AS",
+            "name": "American Samoa"
+        },
+        "items": {
+            "code": "AD",
+            "name": "Andorra"
+        }}
+```
 
+
+🔍 Tipos de Solicitudes Soportadas
+El servicio soporta cinco tipos principales de solicitudes REST que se transforman en operaciones SOAP específicas:
+
+### **🌍 1. Información de País (`countryInfo`)**
+- **Descripción:** Obtiene información detallada de un país específico
+- **Parámetros requeridos:** 
+  - `searchType`: `"byCode"` o `"byName"`
+  - `countryCode`: Código ISO del país (ej: "ES", "US") - *solo para byCode*
+  - `countryName`: Nombre del país (ej: "Spain") - *solo para byName*
+- **Operaciones SOAP:** `FullCountryInfo` | `CountryISOCode`
+- **Respuesta:** Datos completos del país (código, nombre, capital, moneda, idioma, bandera)
+
+### **📋 2. Lista de Países (`listCountries`)**
+- **Descripción:** Lista todos los países disponibles
+- **Parámetros requeridos:**
+  - `searchType`: `"byCode"` (ordenado por código) o `"byName"` (ordenado por nombre)
+- **Operaciones SOAP:** `ListOfCountryNamesByCode` | `ListOfCountryNamesByName`
+- **Respuesta:** Array de países con código y nombre
+
+### **💰 3. Información de Moneda (`currencyInfo`)**
+- **Descripción:** Obtiene información sobre una moneda específica
+- **Parámetros requeridos:**
+  - `currencyCode`: Código ISO de moneda (ej: "EUR", "USD", "GBP")
+- **Operación SOAP:** `CurrencyName`
+- **Respuesta:** Código y nombre de la moneda
+
+### **🗣️ 4. Lista de Idiomas (`countryLanguage`)**
+- **Descripción:** Lista todos los idiomas disponibles en el sistema
+- **Parámetros:** No requiere parámetros adicionales
+- **Operación SOAP:** `ListOfLanguagesByName`
+- **Respuesta:** Array de idiomas con código ISO y nombre
+
+### **🏛️ 5. Capital de País (`capitalCity`)**
+- **Descripción:** Obtiene la capital de un país específico
+- **Parámetros requeridos:**
+  - `countryCode`: Código ISO del país (ej: "ES", "US", "FR")
+- **Operación SOAP:** `CapitalCity`
+- **Respuesta:** Código del país y nombre de la capital
+
+---
+
+## **🔄 Flujo de Datos Detallado**
+
+### **📊 Arquitectura de Procesamiento:**
+REST Client → Validación → Mapeo → SOAP → Transformación → JSON Response
+
+⚠️ Manejo de Errores Robusto
+🛡️ Sistema de Manejo de Errores:
+El servicio implementa un sistema multicapa de manejo de errores que garantiza respuestas consistentes:
+
+📋 Tipos de Errores Capturados:
+Código HTTP	Tipo de Error	Descripción	Ejemplo
+400	Bad Request	Estructura JSON inválida o parámetros faltantes	requestType no especificado
+404	Not Found	Recurso no encontrado	País con código inexistente
+500	Internal Server Error	Error interno del servicio	Fallo en transformación SOAP
+502	Bad Gateway	Error en servicio SOAP externo	Servicio CountryInfo no disponible
+504	Gateway Timeout	Timeout en solicitud SOAP	Servicio externo no responde
+🔧 Componentes de Manejo:
+Validación de Entrada
+
+Verifica estructura JSON requerida
+Valida presencia de campos obligatorios
+Genera errores 400 para datos inválidos
+Captura de Errores SOAP
+
+Maneja fallas de conexión al servicio externo
+Procesa timeouts de red
+Transforma faults SOAP en errores HTTP
+Módulos Especializados
+
+ErrorHelper: Funciones utilitarias para manejo de errores
+ImprovedErrorHandler: Procesamiento avanzado de excepciones
+Nodos Trace: Logging detallado para depuración
+📊 Estructura de Respuesta de Error:
+```json
 {
-  "responseInfo": {
-    "status": "success",
-    "timestamp": "2023-11-15T10:34:45.123Z"
-  },
-  "capitalInfo": {
-    "countryCode": "US",
-    "capitalName": "Washington"
-  }
+    "error": {
+        "code": 500,
+        "status": "Internal Server Error",
+        "detail": "BIP2230E: Se ha detectado un error mientras se procesaba un mensaje en el nodo 'hub_message.Trace'. \nBIP5705E: Se han producido errores de análisis de JSON. \nBIP5702E: Se ha producido un error de análisis de JSON. Se ha llegado al final de la corriente de bits antes de que el mensaje estuviera completo.  El analizador JSON esperaba encontrar uno de los siguientes caracteres o tipos: "
+    ]", "
+}", ",
+", ",
+"  El código de error interno es 0x0000018C. "
 }
-🔍 Tipos de solicitudes soportadas
-
-El servicio soporta cinco tipos principales de solicitudes:
-
-countryInfo: Obtiene información detallada de un país
-
-Parámetros: searchType ("byCode"), countryCode
-listCountries: Lista todos los países
-
-Parámetros: searchType ("byCode" o "byName")
-currencyInfo: Obtiene información sobre una moneda
-
-Parámetros: currencyCode
-countryLanguage: Lista todos los idiomas disponibles
-
-No requiere parámetros adicionales
-capitalCity: Obtiene la capital de un país
-
-Parámetros: countryCode
-🔄 Flujo de Datos
-
-Cliente envía solicitud REST en formato JSON
-Http_Message_Compute extrae y valida los parámetros
-CategoryToURLMapper determina la operación SOAP a invocar
-ConfigureHTTPRequest construye el mensaje SOAP
-CountryInfoService envía la solicitud SOAP al servicio externo
-TransformSOAPtoJSON transforma la respuesta SOAP en JSON estructurado
-HTTP Reply devuelve la respuesta JSON al cliente
-⚠️ Manejo de Errores
-
-El servicio implementa un sistema robusto de manejo de errores que:
-
-Captura errores en diferentes puntos del flujo
-Clasifica los errores según su tipo (validación, no encontrado, timeout, etc.)
-Asigna códigos HTTP apropiados (400, 404, 500, 502, 504)
-Genera respuestas de error estructuradas con detalles útiles
-Registra información detallada para facilitar la depuración
-Los errores se manejan mediante los módulos ErrorHelper e ImprovedErrorHandler.
+}
+```
 
 📝 Notas Adicionales
 
