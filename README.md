@@ -105,6 +105,9 @@ Ingresa el siguiente JSON:
 ]
 
 ```
+### ❌ **Caso: Sin JSON**
+**Envías:** (cuerpo vacío)  
+**Recibes:** `HTTP 500 - Entrada JSON no válida, nodo Data no encontrado`
 
 
 🔍 Monitoreo y Solución de Problemas
