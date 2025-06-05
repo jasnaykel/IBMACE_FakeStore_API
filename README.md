@@ -89,7 +89,7 @@ Ingresa el siguiente JSON:
 ```
 ### ❌ **Caso: Sin JSON**
 **Envías:** (cuerpo vacío)  
-**Recibes:** `HTTP 500 - JSON no encontrado`
+**Recibes:** `HTTP 500 - JSON no encontrado (vacío)`
 
 
 🔍 Monitoreo y Solución de Problemas
