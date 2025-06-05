@@ -1,18 +1,28 @@
 CREATE COMPUTE MODULE Http_Message_Compute
     CREATE FUNCTION Main() RETURNS BOOLEAN
     BEGIN
-        -- Validación mejorada: verificar que existe JSON
+          -- Verificar que existe JSON
         IF NOT EXISTS(InputRoot.JSON[]) THEN
             THROW USER EXCEPTION VALUES('JSON no encontrado');
         END IF;
-
+        
+        -- Validar que exista el objeto Data
+        IF NOT EXISTS(InputRoot.JSON.Data[]) THEN
+            THROW USER EXCEPTION VALUES('Objeto Data no encontrado en JSON');
+        END IF;
+        
+        -- Validar que Data no esté vacío
+        IF CARDINALITY(InputRoot.JSON.Data.*[]) = 0 THEN
+            THROW USER EXCEPTION VALUES('JSON Data está vacío');
+        END IF;
+        
         -- Guardar los datos de entrada en Environment para referencia
-        SET Environment.RequestEntrada = InputRoot.JSON.Data;
+        SET Environment.RequestEntrada = InputRoot.JSON.Data;    
         -- Configurar la solicitud HTTP al servicio externo
         SET OutputLocalEnvironment.Destination.HTTP.RequestURL = 'https://fakestoreapi.com/products';
         SET OutputLocalEnvironment.Destination.HTTP.Timeout = 15;
-        SET OutputLocalEnvironment.Destination.HTTP.RequestLine.Method = 'POST'; 
-
+        SET OutputLocalEnvironment.Destination.HTTP.RequestLine.Method = 'GET'; -- Cambié a GET
+        
         RETURN TRUE;
     END;
 END MODULE;
