@@ -9,13 +9,13 @@
       <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_24" location="1492,57" destination="none" filePath="D:\LOG\log_http_prueba.log" pattern="--------------------------Oupt------------------------${CURRENT_TIMESTAMP}&#xD;&#xA;------&#xD;&#xA;Environment:&#xD;&#xA;-------------------&#xD;&#xA;${Environment}&#xD;&#xA;-------------------&#xD;&#xA;-- Root:&#xD;&#xA;------------------------&#xD;&#xA;${Root}&#xD;&#xA;------------------------&#xD;&#xA;------------------------&#xD;&#xA;-- ExceptionList:&#xD;&#xA;------------------------&#xD;&#xA;${ExceptionList}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- Environment:&#xD;&#xA;------------------------&#xD;&#xA;${Environment}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- LocalEnvironment:&#xD;&#xA;------------------------&#xD;&#xA;${LocalEnvironment}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- ">
         <translation xmi:type="utility:ConstantString" string="Trace2"/>
       </nodes>
-      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_25" location="1124,138" destination="file" filePath="D:\LOG\log_http_prueba.log" pattern="--------------------------Oupt------------------------${CURRENT_TIMESTAMP}&#xD;&#xA;------&#xD;&#xA;Environment:&#xD;&#xA;-------------------&#xD;&#xA;${Environment}&#xD;&#xA;-------------------&#xD;&#xA;-- Root:&#xD;&#xA;------------------------&#xD;&#xA;${Root}&#xD;&#xA;------------------------&#xD;&#xA;------------------------&#xD;&#xA;-- ExceptionList:&#xD;&#xA;------------------------&#xD;&#xA;${ExceptionList}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- Environment:&#xD;&#xA;------------------------&#xD;&#xA;${Environment}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- LocalEnvironment:&#xD;&#xA;------------------------&#xD;&#xA;${LocalEnvironment}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- ">
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_25" location="872,140" destination="file" filePath="D:\LOG\log_http_prueba.log" pattern="--------------------------Oupt------------------------${CURRENT_TIMESTAMP}&#xD;&#xA;------&#xD;&#xA;Environment:&#xD;&#xA;-------------------&#xD;&#xA;${Environment}&#xD;&#xA;-------------------&#xD;&#xA;-- Root:&#xD;&#xA;------------------------&#xD;&#xA;${Root}&#xD;&#xA;------------------------&#xD;&#xA;------------------------&#xD;&#xA;-- ExceptionList:&#xD;&#xA;------------------------&#xD;&#xA;${ExceptionList}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- Environment:&#xD;&#xA;------------------------&#xD;&#xA;${Environment}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- LocalEnvironment:&#xD;&#xA;------------------------&#xD;&#xA;${LocalEnvironment}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- ">
         <translation xmi:type="utility:ConstantString" string="Trace1"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_26" location="561,143" transaction="commit" computeExpression="esql://routine/#Http_Message_Compute.Main">
-        <translation xmi:type="utility:ConstantString" string="Htttp_message"/>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_26" location="591,157" transaction="commit" computeExpression="esql://routine/#Http_Message_Compute.Main">
+        <translation xmi:type="utility:ConstantString" string="Input_Validation_HTTP_Setup"/>
       </nodes>
-      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_27" location="1318,238" URLSpecifier="https://fakestoreapi.com/products" timeoutForServer="5" httpMethod="GET" httpVersion="1.1" protocol="TLS" messageDomainProperty="JSON">
+      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_27" location="1194,115" URLSpecifier="https://fakestoreapi.com/products" timeoutForServer="5" httpMethod="GET" httpVersion="1.1" protocol="TLS" messageDomainProperty="JSON">
         <translation xmi:type="utility:ConstantString" string="Fakestoreapi"/>
       </nodes>
       <nodes xmi:type="ComIbmWSReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_28" location="1700,20">
@@ -30,14 +30,8 @@
       <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_31" location="360,26" destination="file" filePath="D:\LOG\log_http_prueba.log" pattern="-------------------------- ERROR------------------------${CURRENT_TIMESTAMP}&#xD;&#xA;------&#xD;&#xA;Environment:&#xD;&#xA;-------------------&#xD;&#xA;${Environment}&#xD;&#xA;-------------------&#xD;&#xA;-- Root:&#xD;&#xA;------------------------&#xD;&#xA;${Root}&#xD;&#xA;------------------------&#xD;&#xA;------------------------&#xD;&#xA;-- ExceptionList:&#xD;&#xA;------------------------&#xD;&#xA;${ExceptionList}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- Environment:&#xD;&#xA;------------------------&#xD;&#xA;${Environment}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- LocalEnvironment:&#xD;&#xA;------------------------&#xD;&#xA;${LocalEnvironment}&#xD;&#xA;&#xD;&#xA;------------------------&#xD;&#xA;-- ">
         <translation xmi:type="utility:ConstantString" string="Error"/>
       </nodes>
-      <nodes xmi:type="ComIbmWSInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_32" location="120,105" URLSpecifier="/path/http_service_hub" messageDomainProperty="JSON" timeoutForClient="15" faultFormat="JSON">
+      <nodes xmi:type="ComIbmWSInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_32" location="120,105" URLSpecifier="/path/http_service_hub/product" messageDomainProperty="JSON" timeoutForClient="15" faultFormat="JSON">
         <translation xmi:type="utility:ConstantString" string="HTTP Input"/>
-      </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_34" location="745,209" transaction="commit" computeExpression="esql://routine/#ConfigureHTTPRequest.Main" computeMode="destinationAndMessage">
-        <translation xmi:type="utility:ConstantString" string="Htttp_message1"/>
-      </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_35" location="928,241" transaction="commit" computeExpression="esql://routine/#ProxyResponseHandler.Main" computeMode="destinationAndMessage">
-        <translation xmi:type="utility:ConstantString" string="Htttp_message2"/>
       </nodes>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_17" targetNode="FCMComposite_1_30" sourceNode="FCMComposite_1_32" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_18" targetNode="FCMComposite_1_31" sourceNode="FCMComposite_1_32" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
@@ -46,9 +40,7 @@
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_23" targetNode="FCMComposite_1_27" sourceNode="FCMComposite_1_25" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_24" targetNode="FCMComposite_1_24" sourceNode="FCMComposite_1_27" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_25" targetNode="FCMComposite_1_28" sourceNode="FCMComposite_1_24" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_26" targetNode="FCMComposite_1_34" sourceNode="FCMComposite_1_26" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_27" targetNode="FCMComposite_1_35" sourceNode="FCMComposite_1_34" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_28" targetNode="FCMComposite_1_25" sourceNode="FCMComposite_1_35" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_25" sourceNode="FCMComposite_1_26" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
     </composition>
     <propertyOrganizer/>
     <stickyBoard/>

@@ -1,37 +1,18 @@
 CREATE COMPUTE MODULE Http_Message_Compute
     CREATE FUNCTION Main() RETURNS BOOLEAN
     BEGIN
-        -- Validar si existe el nodo JSON.Data
-        IF CARDINALITY(InputRoot.JSON.*[]) > 0 THEN
-            -- Guardar los datos de entrada en Environment para referencia
-            SET Environment.RequestEntrada = InputRoot.JSON.Data;
-        ELSE
-            -- Lanzar excepción si la entrada no es válida
-            THROW USER EXCEPTION CATALOG 'UserDefined' MESSAGE 1001 VALUES('Entrada JSON no válida, nodo Data no encontrado');
+        -- Validación mejorada: verificar que existe JSON
+        IF NOT EXISTS(InputRoot.JSON[]) THEN
+            THROW USER EXCEPTION VALUES('JSON no encontrado');
         END IF;
 
-        RETURN TRUE;
-    END;
-END MODULE;
-CREATE COMPUTE MODULE ConfigureHTTPRequest
-    CREATE FUNCTION Main() RETURNS BOOLEAN
-    BEGIN
+        -- Guardar los datos de entrada en Environment para referencia
+        SET Environment.RequestEntrada = InputRoot.JSON.Data;
         -- Configurar la solicitud HTTP al servicio externo
         SET OutputLocalEnvironment.Destination.HTTP.RequestURL = 'https://fakestoreapi.com/products';
         SET OutputLocalEnvironment.Destination.HTTP.Timeout = 15;
-        SET OutputLocalEnvironment.Destination.HTTP.RequestLine.Method = 'GET'; 
+        SET OutputLocalEnvironment.Destination.HTTP.RequestLine.Method = 'POST'; 
 
         RETURN TRUE;
     END;
 END MODULE;
-
-CREATE COMPUTE MODULE ProxyResponseHandler
-    CREATE FUNCTION Main() RETURNS BOOLEAN
-    BEGIN
-        -- Copiar la respuesta del servicio externo al mensaje de salida
-        SET OutputRoot.JSON = InputRoot.JSON;
-
-        RETURN TRUE;
-    END;
-END MODULE;
-
