@@ -55,15 +55,21 @@ URL: http://localhost:7800/path/http_service_hub/product
 - Método: POS
 En la pestaña Body, selecciona "raw" y "JSON"
 Ingresa el siguiente JSON:
+## 📊 Ejemplos de Funcionamiento
+
+**Envías:**
+```json
 {
   "Data": {
     "param1": "value1"
   }
 }
+```
+
 📊 Respuesta esperada
 
-Recibirás un array JSON con los productos de FakeStoreAPI:
-
+**Recibirás un array JSON con los productos de FakeStoreAPI:**
+```json
 [
   {
     "id": 1,
@@ -79,6 +85,12 @@ Recibirás un array JSON con los productos de FakeStoreAPI:
   },
   // Más productos...
 ]
+
+```
+### ❌ **Caso: Sin JSON**
+**Envías:** (cuerpo vacío)  
+**Recibes:** `HTTP 500 - Entrada JSON no válida, nodo Data no encontrado`
+
 
 🔍 Monitoreo y Solución de Problemas
 
