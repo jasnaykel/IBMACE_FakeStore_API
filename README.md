@@ -52,7 +52,7 @@ Usando cURL: http://localhost:7800/path/http_service_hub/product
 Usando Postman:
 Crea una nueva solicitud 
 URL: http://localhost:7800/path/http_service_hub/product
-- Método: POS
+- Método: POST
 En la pestaña Body, selecciona "raw" y "JSON"
 Ingresa el siguiente JSON:
 ## 📊 Ejemplos de Funcionamiento
@@ -89,7 +89,7 @@ Ingresa el siguiente JSON:
 ```
 ### ❌ **Caso: Sin JSON**
 **Envías:** (cuerpo vacío)  
-**Recibes:** `HTTP 500 - Entrada JSON no válida, nodo Data no encontrado`
+**Recibes:** `HTTP 500 - JSON no encontrado`
 
 
 🔍 Monitoreo y Solución de Problemas
