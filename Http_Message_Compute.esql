@@ -100,7 +100,15 @@ CREATE COMPUTE MODULE FilterProductsByPrice
                 WHILE LASTMOVE(itemRef) DO
                     IF itemRef.price = targetPrice THEN
                         -- Copia  item que coincid
-                        SET OutputRoot.JSON.Data.Item[j] = itemRef;
+                        SET OutputRoot.JSON.Data.Item[j].id = itemRef.id;
+                        SET OutputRoot.JSON.Data.Item[j].title = itemRef.title;
+                        SET OutputRoot.JSON.Data.Item[j].price = itemRef.price;
+                        SET OutputRoot.JSON.Data.Item[j].description = itemRef.description;
+                        SET OutputRoot.JSON.Data.Item[j].category = itemRef.category;
+                        SET OutputRoot.JSON.Data.Item[j].image = itemRef.image;
+                        -- Copiar rating preservando formato
+                        SET OutputRoot.JSON.Data.Item[j].rating.rate = CAST(itemRef.rating.rate AS DECIMAL);
+                        SET OutputRoot.JSON.Data.Item[j].rating.count = itemRef.rating.count;
                         SET j = j + 1;
                         SET found = TRUE;
                     END IF;
