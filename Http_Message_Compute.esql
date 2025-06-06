@@ -1,65 +1,56 @@
 CREATE COMPUTE MODULE Http_Message_Compute
     CREATE FUNCTION Main() RETURNS BOOLEAN
     BEGIN
-        -- Extraer datos de entrada y guardarlos en Environment
-        SET Environment.RequestEntrada = InputRoot.JSON.Data;
-        
         -- Validar que los datos de entrada tengan formato correcto
-        IF EXISTS(InputRoot.JSON.Data[]) THEN
-            SET Environment.ValidationStatus = 'VALID';
-        ELSE
-            SET Environment.ValidationStatus = 'INVALID';
-            --  crear un mensaje de error Pendiente 
+        IF NOT EXISTS(InputRoot.JSON[]) THEN
+            THROW USER EXCEPTION VALUES('JSON no encontrado');
         END IF;
-        
+          -- Extraer datos de entrada y guardarlos en Environment
+        SET Environment.RequestEntrada = InputRoot.JSON.Data;
         RETURN TRUE;
     END;
 END MODULE;
 CREATE COMPUTE MODULE CategoryToURLMapper
     CREATE FUNCTION Main() RETURNS BOOLEAN
     BEGIN
-        -- Obtener la categoría del Environment
         DECLARE chcategory CHARACTER COALESCE(Environment.RequestEntrada.category, '');
+        DECLARE price INTEGER COALESCE(Environment.RequestEntrada.price, 0);
+        DECLARE baseURL CHARACTER 'https://fakestoreapi.com/products';
+        DECLARE cleanCategory CHARACTER;
+        DECLARE finalURL CHARACTER;
         
-        -- Normalizar la categoría para comparación
-        DECLARE normalizedCategory CHARACTER LOWER(TRIM(chcategory));
+        IF LENGTH(chcategory) = 0 AND price > 0 THEN
+            -- Solo precio: usar URL base para obtener todos los productos y filtrar después
+            SET Environment.TargetURL = baseURL;
+            SET Environment.OriginalCategory = '';
+            RETURN TRUE;
+        END IF;
+
+        -- Limpiar y normalizar la categoría
+        SET cleanCategory = chcategory;
         
-        -- Mapeo de categorías normalizadas a categorías exactas de la API
-        DECLARE mappedCategory CHARACTER;
-         -- Verificar si se proporcionó una categoría
-        IF LENGTH(chcategory) > 0 THEN
-            -- Hacer un mapeo básico para manejar variaciones comunes
-            IF normalizedCategory = 'mens_clothing' OR
-                normalizedCategory = 'men_clothing' OR
-                normalizedCategory = 'men clothing' OR
-                normalizedCategory = 'mens clothing' THEN
-                SET mappedCategory = 'men''s clothing';
-            ELSEIF normalizedCategory = 'womens_clothing' OR
-                normalizedCategory = 'women_clothing' OR
-                normalizedCategory = 'women clothing' OR
-                normalizedCategory = 'womens clothing' THEN
-                SET mappedCategory = 'women''s clothing';
-            ELSEIF normalizedCategory = 'jewelery' OR
-                normalizedCategory = 'jewelry' THEN
-                SET mappedCategory = 'jewelery';
-            ELSEIF normalizedCategory = 'electronics' OR
-                normalizedCategory = 'electronic' THEN
-                SET mappedCategory = 'electronics';
-            ELSE
-                -- Si no hay mapeo específico, usar la categoría original
-                SET mappedCategory = chcategory;
-            END IF;
-            
-            -- Construir la URL para filtrar por categoría
-            SET Environment.TargetURL = 'https://fakestoreapi.com/products/category/' || URLENCODE(mappedCategory);
-        ELSE
-            -- Si no se proporcionó categoría, usar la URL base para obtener todos los productos
-            SET Environment.TargetURL = 'https://fakestoreapi.com/products';
-            SET mappedCategory = '';
+        -- Validar solo categorías exactas de la API
+        IF cleanCategory NOT IN ('men''s clothing', 'women''s clothing', 'jewelery', 'electronics') THEN
+            THROW USER EXCEPTION VALUES('Invalid category. Valid categories are: men''s clothing, women''s clothing, jewelery, electronics');
         END IF;
         
-        SET Environment.MappedCategory = mappedCategory;
-        SET Environment.OriginalCategory = chcategory;
+        -- Codificación manual más confiable que URLENCODE()
+        CASE cleanCategory
+            WHEN 'men''s clothing' THEN
+                SET finalURL = baseURL || '/category/men%27s%20clothing';
+            WHEN 'women''s clothing' THEN
+                SET finalURL = baseURL || '/category/women%27s%20clothing';
+            WHEN 'jewelery' THEN
+                SET finalURL = baseURL || '/category/jewelery';
+            WHEN 'electronics' THEN
+                SET finalURL = baseURL || '/category/electronics';
+            ELSE
+                SET finalURL = baseURL;
+        END CASE;
+        
+        -- Asignar valores finales
+        SET Environment.TargetURL = finalURL;
+        SET Environment.OriginalCategory = cleanCategory;
         
         RETURN TRUE;
     END;

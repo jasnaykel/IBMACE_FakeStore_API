@@ -2,16 +2,16 @@ IBMACE_FakeStore_API 🛒
 IBM ACE - Servicio de Transformación y Filtrado de Productos (Ejercicio 3)
 📌 Descripción
 
-Este proyecto implementa un servicio avanzado de integración utilizando IBM App Connect Enterprise (ACE) que actúa como intermediario inteligente para la API pública FakeStore. A diferencia de un simple proxy, este servicio realiza transformaciones bidireccionales de mensajes, validaciones de datos y filtrado de productos según criterios específicos.
+Este proyecto implementa un servicio de integración utilizando IBM App Connect Enterprise (ACE) que actúa como intermediario inteligente para la API pública FakeStore. El servicio se caracteriza por realizar validaciones estrictas de categorías exactas, construcción dinámica de URLs con codificación manual, filtrado flexible por categoría y/o precio mediante comparación exacta y manejo robusto de excepciones. Procesa solicitudes JSON, valida parámetros de entrada y devuelve datos filtrados según criterios específicos, garantizando respuestas precisas y manejo de errores controlado.
 
 🚀 Características principales
 
-✅ Transformación bidireccional de mensajes (request/response)
-✅ Validación de estructura y contenido de mensajes
+✅ Envio de mensajes JSON
+✅ Validación de la estructura del json
 ✅ Mapeo inteligente de categorías de productos
-✅ Filtrado de productos por precio y categoría
-✅ Construcción dinámica de URLs basada en parámetros
-✅ Registro detallado para monitoreo y depuración
+✅ Filtrado de productos por precio especifico
+✅ Manejo de errores con excepciones
+✅ Registro detallado de logs
 
 🏗️ Arquitectura del flujo
 
@@ -19,7 +19,7 @@ El servicio se compone de los siguientes componentes clave:
 
 1️⃣ HTTP Input
 
-Recibe solicitudes HTTP en el endpoint /path/http_service_hub
+Recibe solicitudes HTTP en el endpoint /path/http_service_hub/products/categ
 Configura un timeout de 15 segundos para el cliente
 Procesa mensajes en formato JSON
 2️⃣ Http_Message_Compute
@@ -34,62 +34,96 @@ Normaliza y mapea la categoría a los valores exactos aceptados por la API
 Construye dinámicamente la URL de destino con la categoría mapeada
 4️⃣ ConfigureHTTPRequest
 
-Configura los parámetros para la solicitud HTTP
-Establece la URL de destino construida dinámicamente
-Define el método HTTP (GET) y el timeout
-5️⃣ FilterProductsByPrice
+6️⃣ Fakestoreapi (WSRequest)
+- Realiza solicitud a FakeStore API
+- Usa URL construida dinámicamente
 
+7️⃣ ConfHTTPRequest1 (FilterProductsByPrice)
 Filtra los productos recibidos según el precio especificado
 Construye una nueva estructura JSON con los productos filtrados
 Proporciona mensajes informativos cuando no hay coincidencias
-6️⃣ Filter_precio (hub_message_Filter)
 
-Determina si se debe aplicar el filtro de precio
-Dirige el flujo según la existencia del parámetro de precio
 📄 Estructura del código
 
-El proyecto consta de tres archivos principales:
-
-hub_message.msgflow: Define el flujo de mensajes completo con todos los nodos y conexiones.
-
-Http_Message_Compute.esql: Contiene cuatro módulos ESQL:
-
-Http_Message_Compute: Valida y extrae datos de entrada
-CategoryToURLMapper: Mapea categorías y construye URLs
-ConfigureHTTPRequest: Configura la solicitud HTTP
-FilterProductsByPrice: Filtra productos por precio
-hub_message_Filter.esql: Contiene el módulo de filtro que determina si se debe aplicar el filtrado por precio.
+**hub_message.msgflow:** Flujo principal con nodos y conexiones
+**Http_Message_Compute.esql:** Contiene 4 módulos:
+- `Http_Message_Compute`: Validación de entrada
+- `CategoryToURLMapper`: Mapeo y validación de categorías  
+- `ConfigureHTTPRequest`: Configuración HTTP
+- `FilterProductsByPrice`: Filtrado por precio
+**hub_message_Filter.esql:** Filtro para determinar si aplicar filtrado por precio
 
 🔧 Instalación y Uso
 
-1️⃣ Clonar el repositorio
+1️⃣ Clonar repositorio**
+```bash
 git clone https://github.com/jasnaykel/IBMACE_FakeStore_API.git
-2️⃣ Configurar en IBM ACE
+```
+2️⃣ Configurar en IBM ACE**
+- Importar proyecto en workspace
+- Verificar archivos .msgflow y .esql
+- Crear carpeta para logs
 
-Abre IBM App Connect Enterprise Toolkit
-Importa el proyecto en tu espacio de trabajo
-Verifica que todos los archivos se hayan importado correctamente
-Asegúrate de que la carpeta D:\LOG\ exista para los archivos de registro
-3️⃣ Desplegar el servicio
+3️⃣ Desplegar**
+- Crear archivo BAR
+- Desplegar en servidor de integración
 
-Crea un archivo BAR (clic derecho en el proyecto → Export → BAR file)
-Despliega el archivo BAR en tu servidor de integración
-4️⃣ Probar el servicio
+4️⃣ Probar servicio**
 
-Ejemplo 1: Consulta por categoría
-Usando Postman:
+**URL:** `http://localhost:7080/path/http_service_hub/products/categ`  
+**Método:** POST  
+**Content-Type:** application/json
 
-Crea una nueva solicitud GET
-URL: http://localhost:7800/path/http_service_hub
-En la pestaña Body, selecciona "raw" y "JSON"
-Ingresa uno de los ejemplos JSON anteriores
-Haz clic en "Send"
-📊 Respuesta esperada
-### ✅ **Caso 1: JSON Simple**
-**Envías:**
-Para una consulta por categoría (ejemplo: "men clothing"):
+### 📊 Ejemplos de uso
+
+**Consulta por categoría:**
 ```json
-{"category": "mens_clothing"}
+{"category": "electronics"}
+```
+
+**Filtrado por precio:**
+```json
+{"price": 695}
+```
+
+**Combinado:**
+```json
+{
+  "category": "jewelery",
+  "price": 695
+}
+```
+
+### ✅ Validación de categorías:** El servicio requiere categorías exactas:
+
+- `"men's clothing"`✅
+- `"women's clothing"`✅
+- `"jewelery"`✅
+- `"electronics"`✅
+- Cualquier otra → ERROR ❌
+
+### ❌ Manejo de errores
+
+**Categoría vacía:**
+```
+HTTP 500 - Category is required and cannot be empty
+```
+
+**Categoría inválida:**
+```
+HTTP 500 - Invalid category. Valid categories are: men's clothing, women's clothing, jewelery, electronics
+```
+
+**Precio no encontrado:**
+```json
+{"message": "No products found with price 999"}
+```
+
+### ✅ **Caso 1 ejemplo: JSON Simple**
+**Envías:**
+Para una consulta por categoría (ejemplo: "men's clothing"):
+```json
+{"category": "men's clothing"}
 ```
 
 **Recibes:**
@@ -146,10 +180,10 @@ Para una consulta por categoría (ejemplo: "men clothing"):
 ]
 ```
 
-### ✅ **Caso 2: JSON Complejo**
+### ✅ **Caso 2: JSON**
 **Envías:**
 ```json
-{"category": "women clothing"}
+{"category": "women's clothing"}
 ```
 
 **Recibes:**
@@ -230,7 +264,7 @@ Para una consulta por categoría (ejemplo: "men clothing"):
 ]
 ```
 
-### ✅ **Caso 3: JSON Complejo**
+### ✅ **Caso 3: JSON**
 **Envías:**
 Para un filtrado por precio (ejemplo: 695):
 ```json
@@ -275,46 +309,13 @@ Para un filtrado por precio (ejemplo: 695):
 ```
 
 
-🔍 Características de transformación
+### 🔍 Configuración de logs
 
-Mapeo de categorías: El servicio normaliza y mapea las categorías ingresadas por el usuario a los valores exactos aceptados por la API:
+Los logs se almacenan según configuración de nodos Trace en el msgflow. Registran información en diferentes puntos del flujo para facilitar depuración.
 
-"mens_clothing", "men_clothing", "men clothing" → "men's clothing"
-"womens_clothing", "women_clothing", "women clothing" → "women's clothing"
-"jewelery", "jewelry" → "jewelery"
-"electronics", "electronic" → "electronics"
-Construcción dinámica de URL: Basado en la categoría mapeada, el servicio construye la URL apropiada:
+### 📝 Notas técnicas
 
-Con categoría: https://fakestoreapi.com/products/category/[categoría]
-Sin categoría: https://fakestoreapi.com/products
-Filtrado de productos: Si se especifica un precio, el servicio filtra los productos que coinciden exactamente con ese precio.
-
-🔍 Monitoreo y Solución de Problemas
-
-Los logs detallados se almacenan en D:\LOG\log_http_prueba.log
-Los nodos de Trace registran información en diferentes puntos del flujo:
-Entrada HTTP
-Errores y timeouts
-Salida antes de la solicitud externa
-Respuesta de la API externa
-Errores comunes:
-
-Formato JSON inválido
-Categoría no reconocida (se usará el valor original)
-Precio no encontrado en ningún producto
-Timeout del cliente (15s) o del servidor externo (5s)
-🔄 Flujo de Datos
-
-Cliente envía solicitud JSON con parámetros (categoría y/o precio)
-Http_Message_Compute extrae y valida los parámetros
-CategoryToURLMapper normaliza la categoría y construye la URL
-ConfigureHTTPRequest prepara la solicitud HTTP
-WSRequest envía la solicitud a FakeStoreAPI
-Si hay un precio especificado:
-FilterProductsByPrice filtra los productos por precio
-HTTP Reply devuelve los productos (filtrados o no) al cliente
-📝 Notas Adicionales
-
-El servicio maneja variaciones en los nombres de categorías para mejorar la experiencia del usuario
-La transformación bidireccional permite que el cliente use un formato simplificado mientras se comunica correctamente con la API externa
-El sistema está preparado para futuras extensiones como rangos de precios
+- El servicio valida categorías exactas de FakeStore API
+- URLs se construyen dinámicamente con codificación manual
+- Filtrado por precio usa comparación exacta
+- Manejo robusto de excepciones en validaciones
