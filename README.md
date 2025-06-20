@@ -23,12 +23,15 @@ La principal ventaja es que puedes integrar información internacional en tus si
 - Convierte peticiones  REST/JSON a llamadas SOAP/XML
 - Transforma respuestas SOAP/XML a JSON estructurado
 - Maneja múltiples operaciones SOAP desde una sola API REST
+  
 ✅ Registro detallado de logs
 - Logs detallados en cada etapa del proceso
+  
 ✅ Manejo Inteligente de Datos
 - Procesa arrays XML complejos
 - Extrae información específica según el tipo de consulta
 - Genera respuestas JSON consistentes y estructuradas
+  
 ✅ Validación Robusta
 - Verifica estructura de requests de entrada
 - Maneja errores del servicio externo automáticamente
@@ -286,7 +289,7 @@ Para información de país (countryInfo):
   }
 }
 ```
-
+```json
 **Recibes:**
 {
     "error": {
@@ -298,4 +301,4 @@ Para información de país (countryInfo):
 ", ",
 "  El código de error interno es 0x0000018C. "
 }
-}
+}```
